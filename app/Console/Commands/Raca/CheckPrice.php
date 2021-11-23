@@ -4,6 +4,7 @@ namespace App\Console\Commands\Raca;
 
 use App\Enums\Raca\CategoryEnum;
 use App\Http\Client\DiscordWebhook;
+use App\Services\Contracts\MarkdownTableService;
 use Illuminate\Console\Command;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Http;
@@ -24,7 +25,7 @@ class CheckPrice extends Command
      */
     protected $description = 'Check raca item\'s price.';
 
-    protected $discordWebhook = 'https://discord.com/api/webhooks/912698740857516073/f9mj_Rw4nlxOrl_W0a42ioF4JRc7flZsbjbMBmlcfzGuAooqSt80l7hKtTZLLGUtcUV5';
+    protected $discordWebhook = 'https://discord.com/api/webhooks/912721660799500308/hnoQ35EKb1GzbuobYoz30exVJnxHomEocG5SIzhAnK26gThyfcSsvhRgq4lsUPo9ZQqf';
 
     /**
      * Create a new command instance.
@@ -41,7 +42,7 @@ class CheckPrice extends Command
      *
      * @return int
      */
-    public function handle(CategoryEnum $categoryEnum)
+    public function handle(MarkdownTableService $markdownTableService)
     {
         $urls = collect($this->option('category'))->mapWithKeys(function ($category) {
             return [$category => $this->buildQueryUrl($this->option('sort'), $this->option('order'), $category)];
@@ -58,18 +59,26 @@ class CheckPrice extends Command
 
         $response = Http::pool($poolCallback);
 
-        $message = "Trending:\n\n";
+        foreach ($response as $response) {
+            $list = $response->collect('list')->filter(fn ($item) => $item['status'] === 'active');
+            if ($list->isEmpty()) {
+                continue;
+            }
+            $message = $markdownTableService
+                ->rows($list->take(5)->map(function ($item) {
+                    return [
+                        $item['name'],
+                        number_format($item['fixed_price']),
+                        " x" . $item['count'],
+                        number_format($item['fixed_price'] * $item['count']),
+                        "https://market.radiocaca.com/#/market-place/" . $item['id'],
+                    ];
+                })->toArray())
+                ->render();
 
-        foreach ($response as $category => $response) {
-            $list = collect($response->json('list'));
-            $minPrice = number_format($list->min('fixed_price')) . ' RACA';
-
-            $message .= "Category: " . $categoryEnum->label($category) . "\n";
-            $message .= "Min price: " . $minPrice . "\n";
-            $message .= "\n";
+            $this->info($message);
+            DiscordWebhook::make($this->discordWebhook, "$message\n")->send();
         }
-
-        DiscordWebhook::make($this->discordWebhook, "```$message```")->send();
 
         return Command::SUCCESS;
     }
