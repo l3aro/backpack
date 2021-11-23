@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Raca;
 
 use App\Enums\Raca\CategoryEnum;
+use App\Http\Client\DiscordWebhook;
 use Illuminate\Console\Command;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Http;
@@ -22,6 +23,8 @@ class CheckPrice extends Command
      * @var string
      */
     protected $description = 'Check raca item\'s price.';
+
+    protected $discordWebhook = 'https://discord.com/api/webhooks/912698740857516073/f9mj_Rw4nlxOrl_W0a42ioF4JRc7flZsbjbMBmlcfzGuAooqSt80l7hKtTZLLGUtcUV5';
 
     /**
      * Create a new command instance.
@@ -55,13 +58,18 @@ class CheckPrice extends Command
 
         $response = Http::pool($poolCallback);
 
+        $message = "Trending:\n\n";
+
         foreach ($response as $category => $response) {
-            $this->info("Category: " . $categoryEnum->label($category));
             $list = collect($response->json('list'));
             $minPrice = number_format($list->min('fixed_price')) . ' RACA';
-            $this->info("Min price: " . $minPrice);
-            $this->info("");
+
+            $message .= "Category: " . $categoryEnum->label($category) . "\n";
+            $message .= "Min price: " . $minPrice . "\n";
+            $message .= "\n";
         }
+
+        DiscordWebhook::make($this->discordWebhook, "```$message```")->send();
 
         return Command::SUCCESS;
     }
