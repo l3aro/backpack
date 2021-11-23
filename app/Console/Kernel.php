@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('raca:check-price --category=13 --category=15 --category=16 --category=17 --category=20')->quarterly();
+        $schedule->command('raca:check-price --category=13 --category=15 --category=16 --category=17 --category=20 --sort=single_price')->quarterly();
     }
 
     /**
@@ -34,7 +35,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
