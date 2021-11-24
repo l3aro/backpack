@@ -9,14 +9,14 @@ use Illuminate\Console\Command;
 use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Http;
 
-class CheckPrice extends Command
+class CheckMarketPrice extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'raca:check-price {--S|sort=fixed_price} {--O|order=asc} {--C|category=*}';
+    protected $signature = 'raca:check-market-price {--S|sort=fixed_price} {--O|order=asc} {--C|category=*}';
 
     /**
      * The console command description.
