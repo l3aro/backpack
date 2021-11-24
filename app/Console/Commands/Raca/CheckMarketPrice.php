@@ -68,9 +68,9 @@ class CheckMarketPrice extends Command
                 ->rows($list->sortBy('fixed_price')->take(5)->map(function ($item) {
                     return [
                         $item['name'],
-                        number_format($item['fixed_price']),
+                        number_format($item['fixed_price'] / $item['count']),
                         " x" . $item['count'],
-                        number_format($item['fixed_price'] * $item['count']),
+                        number_format($item['fixed_price']),
                         "https://market.radiocaca.com/#/market-place/" . $item['id'],
                     ];
                 })->toArray())
