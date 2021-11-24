@@ -65,7 +65,7 @@ class CheckMarketPrice extends Command
                 continue;
             }
             $message = $markdownTableService
-                ->rows($list->take(5)->map(function ($item) {
+                ->rows($list->sortBy('fixed_price')->take(5)->map(function ($item) {
                     return [
                         $item['name'],
                         number_format($item['fixed_price']),
