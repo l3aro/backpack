@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Http;
 
 class CheckMarketPrice extends Command
 {
+    const PER_PAGE = 20;
     /**
      * The name and signature of the console command.
      *
@@ -61,10 +62,12 @@ class CheckMarketPrice extends Command
 
         foreach ($response as $response) {
             $list = $response->collect('list')->filter(fn ($item) => $item['status'] === 'active');
-            if ($list->isEmpty()) {
+            $total = $response->json('total');
+            if (!$total) {
                 continue;
             }
-            $message = $markdownTableService
+            $message = "Total: {$total} | Pages: " . ceil($total / self::PER_PAGE) . PHP_EOL;
+            $message .= $markdownTableService
                 ->rows($list->sortBy('fixed_price')->take(5)->map(function ($item) {
                     return [
                         $item['name'],
@@ -77,7 +80,7 @@ class CheckMarketPrice extends Command
                 ->render();
 
             $this->info($message);
-            DiscordWebhook::make($this->discordWebhook, "$message\n")->send();
+            DiscordWebhook::make($this->discordWebhook, "$message\n\n")->send();
         }
 
         return Command::SUCCESS;
