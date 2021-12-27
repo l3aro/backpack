@@ -38,20 +38,6 @@ class AdminSidebar
             ],
             [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
-                self::PROPERTY_TITLE => __('Projects'),
-                self::PROPERTY_LINK => route('admin.projects.index'),
-                self::PROPERTY_ICON => 'heroicon-o-camera',
-                self::PROPERTY_ACTIVE => request()->routeIs('admin.projects.*'),
-            ],
-            [
-                self::PROPERTY_TYPE => self::TYPE_ITEM,
-                self::PROPERTY_TITLE => __('Contact'),
-                self::PROPERTY_LINK => route('admin.contacts.index'),
-                self::PROPERTY_ICON => 'heroicon-o-mail',
-                self::PROPERTY_ACTIVE => request()->routeIs('admin.contacts.*'),
-            ],
-            [
-                self::PROPERTY_TYPE => self::TYPE_ITEM,
                 self::PROPERTY_TITLE => __('Users'),
                 self::PROPERTY_LINK => route('admin.users.index'),
                 self::PROPERTY_ICON => 'heroicon-o-user',
