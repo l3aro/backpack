@@ -36,12 +36,11 @@
             <div class="flex justify-between w-full md:w-auto">
                 <a class="font-extrabold text-3xl" href="{{ route('home') }}">3aro</a>
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-sm" x-on:click="openNav = !openNav">
-                    <x-heroicon-o-menu-alt-3 class="w-5 h-5" x-show="!openNav"/>
+                    <x-heroicon-o-menu-alt-3 class="w-5 h-5" x-show="!openNav" />
                     <x-heroicon-o-x class="w-5 h-5" x-show="openNav" />
                 </button>
             </div>
-            <ul x-cloak
-                class="flex md:hidden transition flex-col flex-grow pl-0 mb-0 pb-4 flex-wrap font-normal text-sm"
+            <ul x-cloak class="flex md:hidden transition flex-col flex-grow pl-0 mb-0 pb-4 flex-wrap font-normal text-sm"
                 x-show="openNav" x-transition>
                 <li class="mx-0 mt-5"><a href="#home-section"
                         class="text-base transition duration-400 ease-in-out py-3 hover:border-b-2 hover:border-blue-600"><span>Home</span></a>
@@ -116,85 +115,59 @@
             </a>
         </div>
     </section>
-    <section class="ftco-about img ftco-section ftco-no-pt ftco-no-pb" id="about-section">
-        <div class="container">
-            <div class="row d-flex no-gutters">
-                <div class="col-md-6 col-lg-6 d-flex">
-                    <div class="img-about img d-flex align-items-stretch">
-                        <div class="overlay"></div>
-                        <div class="img d-flex align-self-stretch align-items-center"
-                            style="background-image:url(images/xabout.jpg.pagespeed.ic.-j2kfNwXDg.webp)"></div>
+    <section class="pt-28 min-h-screen" id="about-section">
+        <div class="container mx-auto px-5">
+            <div class="flex flex-col md:grid md:grid-cols-2">
+                <div class="flex justify-center md:justify-end md:col-span-1">
+                    <div class="w-1/2 md:w-full lg:w-3/4 xl:w-2/3 2xl:w-3/4">
+                        <img class="rounded-full md:rounded-none" src="/assets/images/a.jpg">
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-6 pl-md-5 py-5">
-                    <div class="row justify-content-start pb-3">
-                        <div class="col-md-12 heading-section ftco-animate">
-                            <h1 class="big">About</h1>
-                            <h2 class="mb-4">About Me</h2>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia.</p>
-                            <ul class="about-info mt-4 px-md-0 px-2">
-                                <li class="d-flex"><span>Name:</span> <span>Ronaldo Fredrickson</span></li>
-                                <li class="d-flex"><span>Date of birth:</span> <span>November 28, 1989</span>
+                <div class="md:col-span-1 pl-0 md:pl-10">
+                    <div class="justify-start pb-3">
+                        <div class="w-full">
+                            <h2 class="text-4xl md:text-5xl font-bold text-center md:text-left my-5">About Me</h2>
+                            <ul class="p-0 m-0 w-full inline-block md:mt-5">
+                                <li class="flex mt-4">
+                                    <span class="font-medium text-black w-32">Name:</span>
+                                    <span>Dương Gia Bảo</span>
                                 </li>
-                                <li class="d-flex"><span>Address:</span> <span>San Francisco CA 97987 USA</span>
+                                <li class="flex mt-4">
+                                    <span class="font-medium text-black w-32">Date of birth:</span>
+                                    <span>October 03, 1995</span>
                                 </li>
-                                <li class="d-flex"><span>Zip code:</span> <span>1000</span></li>
-                                <li class="d-flex"><span>Email:</span> <span><a
-                                            href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                            data-cfemail="aad8c5c4cbc6cec5eacdc7cbc3c684c9c5c7">[email&#160;protected]</a></span>
+                                <li class="flex mt-4">
+                                    <span class="font-medium text-black w-32">Address:</span>
+                                    <span>Hanoi, Vietnam</span>
                                 </li>
-                                <li class="d-flex"><span>Phone: </span> <span>+1-2234-5678-9-0</span></li>
+                                <li class="flex mt-4">
+                                    <span class="font-medium text-black w-32">Email:</span>
+                                    <span>baro@mail.com</span>
+                                </li>
+                                <li class="flex mt-4">
+                                    <span class="font-medium text-black w-32">Phone: </span>
+                                    <span>+1-2234-5678-9-0</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="counter-wrap ftco-animate d-flex mt-md-3">
                         <div class="text">
-                            <p class="mb-4">
-                                <span class="number" data-number="120">0</span>
+                            <p class="my-10">
+                                <span class="text-xl text-blue-600 font-bold" class="number" data-number="12">0</span>
                                 <span>Project complete</span>
                             </p>
-                            <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+                            <div class="flex md:block justify-between">
+                                <a href="#resume-section" class="py-2 px-5 rounded shadow bg-green-600 hover:bg-green-800 hover:shadow-lg text-white">See resume</a>
+                                <a href="#" class="py-2 px-5 rounded shadow bg-blue-600 hover:bg-blue-800 hover:shadow-lg text-white">Download CV</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="ftco-section ftco-partner">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner">
-                        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>___scripts_1___<img src="images/xpartner-1.png.pagespeed.ic.b7FlbbQVdf.webp"
-                            class="img-fluid" alt="Colorlib Template" data-pagespeed-url-hash="2531790171"
-                            onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                    </a>
-                </div>
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="images/xpartner-2.png.pagespeed.ic.4tCtqXfPLh.webp"
-                            class="img-fluid" alt="Colorlib Template" data-pagespeed-url-hash="2826290092"
-                            onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></a>
-                </div>
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="images/xpartner-3.png.pagespeed.ic.K6b-CsdlC4.webp"
-                            class="img-fluid" alt="Colorlib Template" data-pagespeed-url-hash="3120790013"
-                            onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></a>
-                </div>
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="images/xpartner-4.png.pagespeed.ic.DaTQYymmyu.webp"
-                            class="img-fluid" alt="Colorlib Template" data-pagespeed-url-hash="3415289934"
-                            onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></a>
-                </div>
-                <div class="col-sm ftco-animate">
-                    <a href="#" class="partner"><img src="images/xpartner-5.png.pagespeed.ic.A4xeUmT9Fd.webp"
-                            class="img-fluid" alt="Colorlib Template" data-pagespeed-url-hash="3709789855"
-                            onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="ftco-section ftco-no-pb goto-here" id="resume-section">
+    <section class="pt-28 min-h-screen" id="resume-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
