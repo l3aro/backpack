@@ -28,35 +28,68 @@
 </head>
 
 <body>
-    <nav class="bg-transparent absolute top-0 left-0 right-0 z-10 px-4 py-2 flex lg:flex-nowrap lg:flex-row lg:justify-start"
-        id="ftco-navbar">
-        <div class="container mx-auto flex items-center justify-between py-5">
-            <a class="font-extrabold" href="{{ route('home') }}">3aro</a>
-            <button class="lg:hidden" type="button" data-toggle="collapse" data-target="#ftco-nav"
-                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-            <div class="flex basis-auto" id="ftco-nav">
-                <ul class="flex flex-row ml-auto pl-0 mb-0 flex-wrap font-medium">
-                    <li class=""><a href="#home-section" class="text-base px-5 py-3"><span>Home</span></a>
-                    </li>
-                    <li class=""><a href="#about-section"
-                            class="text-base px-5 py-3"><span>About</span></a>
-                    </li>
-                    <li class=""><a href="#resume-section"
-                            class="text-base px-5 py-3"><span>Resume</span></a>
-                    </li>
-                    <li class=""><a href="#services-section"
-                            class="text-base px-5 py-3"><span>Services</span></a></li>
-                    <li class=""><a href="#projects-section"
-                            class="text-base px-5 py-3"><span>Projects</span></a></li>
-                    <li class=""><a href="#blog-section" class="text-base px-5 py-3"><span>My
-                                Blog</span></a>
-                    </li>
-                    <li class=""><a href="#contact-section"
-                            class="text-base px-5 py-3"><span>Contact</span></a></li>
-                </ul>
+    <nav class="bg-white top-0 left-0 right-0 z-20 px-4 py-2 flex lg:flex-nowrap lg:flex-row lg:justify-start transition"
+        x-data="{ scrollPosition: 0, openNav: false }" x-init="scrollPosition = window.scrollY"
+        x-on:scroll.document="scrollPosition = window.scrollY"
+        x-bind:class="scrollPosition < 100 ? 'absolute md:bg-transparent' : 'fixed md:bg-white shadow' ">
+        <div class="container mx-auto flex flex-col px-4 md:items-center md:justify-between md:flex-row">
+            <div class="flex justify-between w-full md:w-auto">
+                <a class="font-extrabold text-3xl" href="{{ route('home') }}">3aro</a>
+                <button class="rounded-lg md:hidden focus:outline-none focus:shadow-sm" x-on:click="openNav = !openNav">
+                    <x-heroicon-o-menu-alt-3 class="w-5 h-5" x-show="!openNav"/>
+                    <x-heroicon-o-x class="w-5 h-5" x-show="openNav" />
+                </button>
             </div>
+            <ul x-cloak
+                class="flex md:hidden transition flex-col flex-grow pl-0 mb-0 pb-4 flex-wrap font-normal text-sm"
+                x-show="openNav" x-transition>
+                <li class="mx-0 mt-5"><a href="#home-section"
+                        class="text-base transition duration-400 ease-in-out py-3 hover:border-b-2 hover:border-blue-600"><span>Home</span></a>
+                </li>
+                <li class="mx-0 mt-5"><a href="#about-section"
+                        class="text-base transition duration-400 ease-in-out py-3 hover:border-b-2 hover:border-blue-600"><span>About</span></a>
+                </li>
+                <li class="mx-0 mt-5"><a href="#resume-section"
+                        class="text-base transition duration-400 ease-in-out py-3 hover:border-b-2 hover:border-blue-600"><span>Resume</span></a>
+                </li>
+                <li class="mx-0 mt-5"><a href="#services-section"
+                        class="text-base transition duration-400 ease-in-out py-3 hover:border-b-2 hover:border-blue-600"><span>Services</span></a>
+                </li>
+                <li class="mx-0 mt-5"><a href="#projects-section"
+                        class="text-base transition duration-400 ease-in-out py-3 hover:border-b-2 hover:border-blue-600"><span>Projects</span></a>
+                </li>
+                <li class="mx-0 mt-5"><a href="#blog-section"
+                        class="text-base transition duration-400 ease-in-out py-3 hover:border-b-2 hover:border-blue-600"><span>My
+                            Blog</span></a>
+                </li>
+                <li class="mx-0 mt-5"><a href="#contact-section"
+                        class="text-base transition duration-400 ease-in-out py-3 hover:border-b-2 hover:border-blue-600"><span>Contact</span></a>
+                </li>
+            </ul>
+            <ul class="hidden flex-grow pl-0 mb-0 pb-0 flex-wrap text-sm font-medium md:flex justify-end flex-row">
+                <li class="mx-5 my-3"><a href="#home-section"
+                        class="text-base transition duration-400 ease-in-out py-2 hover:border-b-2 hover:border-blue-600"><span>Home</span></a>
+                </li>
+                <li class="mx-5 my-3"><a href="#about-section"
+                        class="text-base transition duration-400 ease-in-out py-2 hover:border-b-2 hover:border-blue-600"><span>About</span></a>
+                </li>
+                <li class="mx-5 my-3"><a href="#resume-section"
+                        class="text-base transition duration-400 ease-in-out py-2 hover:border-b-2 hover:border-blue-600"><span>Resume</span></a>
+                </li>
+                <li class="mx-5 my-3"><a href="#services-section"
+                        class="text-base transition duration-400 ease-in-out py-2 hover:border-b-2 hover:border-blue-600"><span>Services</span></a>
+                </li>
+                <li class="mx-5 my-3"><a href="#projects-section"
+                        class="text-base transition duration-400 ease-in-out py-2 hover:border-b-2 hover:border-blue-600"><span>Projects</span></a>
+                </li>
+                <li class="mx-5 my-3"><a href="#blog-section"
+                        class="text-base transition duration-400 ease-in-out py-2 hover:border-b-2 hover:border-blue-600"><span>My
+                            Blog</span></a>
+                </li>
+                <li class="mx-5 my-3"><a href="#contact-section"
+                        class="text-base transition duration-400 ease-in-out py-2 hover:border-b-2 hover:border-blue-600"><span>Contact</span></a>
+                </li>
+            </ul>
         </div>
     </nav>
     <section class="w-100 h-screen bg-cover bg-no-repeat">
@@ -75,7 +108,7 @@
         </div>
         </div>
         <div class="absolute left-0 right-0 bottom-28 z-10">
-            <a href="#" class="w-20 h-20 cursor-pointer relative text-center mx-auto my-0">
+            <a href="#about-section" class="w-20 h-20 cursor-pointer relative text-center mx-auto my-0">
                 <div
                     class="h-20 w-20 flex justify-center mt-1 mb-0 mx-auto bg-transparent rounded-[50%] animate-bounce">
                     <x-heroicon-o-arrow-down class="w-12 h-12 text-blue-600 m-0" />
