@@ -8,5 +8,5 @@ trait LoadWebLayout
 {
     use LoadLayoutView;
 
-    protected $layoutPath = 'portfolio::layouts.web';
+    protected $layoutPath = 'portfolio::layouts.app';
 }
