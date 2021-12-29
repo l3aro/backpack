@@ -2,7 +2,7 @@
 
 namespace Modules\Core\Http\Livewire\Plugins;
 
-trait LoadAdminView
+trait LoadLayoutView
 {
     public function render()
     {

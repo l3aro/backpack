@@ -3,13 +3,13 @@
 namespace Modules\Core\Http\Livewire\Admin\Setting;
 
 use Livewire\Component;
-use Modules\Core\Http\Livewire\Plugins\LoadAdminView;
+use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Models\Setting;
 use Illuminate\Support\Str;
 
 class About extends Component
 {
-    use LoadAdminView;
+    use LoadLayoutView;
 
     protected $viewPath = 'core::livewire.admin.setting.about';
     public $setting = [];

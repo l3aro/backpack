@@ -5,11 +5,11 @@ namespace Modules\Core\Http\Livewire\Admin\User;
 use App\Models\User;
 use Livewire\Component;
 use Modules\Core\Enums\UserTypeEnum;
-use Modules\Core\Http\Livewire\Plugins\LoadAdminView;
+use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
 class Show extends Component
 {
-    use LoadAdminView;
+    use LoadLayoutView;
 
     public $viewPath = 'core::livewire.admin.user.show';
     public User $user;

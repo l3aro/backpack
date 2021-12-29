@@ -5,13 +5,13 @@ namespace Modules\Core\Http\Livewire\Admin\User;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Modules\Core\Http\Livewire\Plugins\LoadAdminView;
+use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Services\Contracts\UserService;
 
 class Edit extends Component
 {
     use WithFileUploads;
-    use LoadAdminView;
+    use LoadLayoutView;
 
     public $viewPath = 'core::livewire.admin.user.edit';
     public User $user;

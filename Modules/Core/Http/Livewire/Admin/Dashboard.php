@@ -3,11 +3,11 @@
 namespace Modules\Core\Http\Livewire\Admin;
 
 use Livewire\Component;
-use Modules\Core\Http\Livewire\Plugins\LoadAdminView;
+use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
 class Dashboard extends Component
 {
-    use LoadAdminView;
+    use LoadLayoutView;
 
     public $viewPath = 'core::livewire.admin.dashboard';
 }

@@ -5,7 +5,7 @@ namespace Modules\Core\Http\Livewire\Admin\User;
 use Livewire\Component;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
-use Modules\Core\Http\Livewire\Plugins\LoadAdminView;
+use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Services\Contracts\UserService;
 
 /**
@@ -14,7 +14,7 @@ use Modules\Core\Services\Contracts\UserService;
 class Index extends Component
 {
     use HasDataTable;
-    use LoadAdminView;
+    use LoadLayoutView;
     use CanDestroyRecord;
 
     public $viewPath = 'core::livewire.admin.user.index';
