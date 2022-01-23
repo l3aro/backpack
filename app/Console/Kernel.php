@@ -24,8 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('raca:check-market-price --category=13 --category=15 --category=16 --category=17 --category=20')->everyFiveMinutes();
-        $schedule->command('raca:check-market-price --category=15 --sort=single_price')->everyFiveMinutes();
+        // $schedule->command('raca:check-market-price --category=13 --category=15 --category=16 --category=17 --category=20')->everyFiveMinutes();
+        // $schedule->command('raca:check-market-price --category=15 --sort=single_price')->everyFiveMinutes();
     }
 
     /**
