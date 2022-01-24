@@ -31,38 +31,110 @@
 
 <body class="font-['Montserrat'] leading-7 text-neutral-400">
     <div class="w-full overflow-hidden relative">
-        <a href="#" class="hidden"><i></i></a>
-        <aside role="complementary" class="text-center h-screen hidden">
-            <h1><a href="/">baro<span>.</span></a></h1>
-            <nav id="colorlib-main-menu" role="navigation">
-                <ul>
-                    <li class="colorlib-active"><a href="/">Home</a></li>
-                    <li><a href="photography.html">Photography</a></li>
-                    <li><a href="travel.html">Travel</a></li>
-                    <li><a href="fashion.html">Fashion</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+        <div class="relative lg:hidden mx-auto px-6 flex">
+            <div x-data="{showMenu: false}" class="flex items-center justify-end">
+                <!-- menu button -->
+                <button x-on:click="showMenu = true" class="fixed top-0 left-0 mt-8 ml-6 z-10">
+                    <x-fas-bars class="w-8 h-8 text-black/80" />
+                </button>
+
+                <div x-show="showMenu" x-trap.inert.noscroll="showMenu"
+                    class="fixed inset-0 w-screen h-full bg-white z-30" x-cloak>
+                    <button x-on:click="showMenu = false" class="z-20 absolute top-0 left-0 mt-8 ml-6">
+                        <x-fas-times class="w-8 h-8 text-black/80" />
+                    </button>
+                    <div class="h-full mx-auto px-6 py-8 relative z-10 flex flex-col items-center justify-center text-2xl uppercase font-bold tracking-widest space-y-6"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-x-10"
+                        x-transition:enter-end="opacity-100 translate-x-0"
+                        x-transition:leave="transition ease-in duration-300"
+                        x-transition:leave-start="opacity-100 translate-x-0"
+                        x-transition:leave-end="opacity-0 -translate-x-10" x-show="showMenu">
+                        <a href="#" class="inline-block border-b-2 @if (true) border-black text-black/80 @else border-transparent @endif">
+                            Home
+                        </a>
+                        <a href="#" class="inline-block border-b-2 @if (false) border-black @else border-transparent @endif">
+                            About
+                        </a>
+                        <a href="#" class="inline-block border-b-2 @if (false) border-black @else border-transparent @endif">
+                            Work
+                        </a>
+                        <a href="#" class="inline-block border-b-2 @if (false) border-black @else border-transparent @endif">
+                            Contact
+                        </a>
+                    </div>
+                    <div class="absolute bottom-10 right-6 left-6 text-black/80">
+                        <ul class="flex items-center justify-center" x-show="showMenu"
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 translate-y-10"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 translate-y-0"
+                            x-transition:leave-end="opacity-0 translate-y-10">
+                            <li>
+                                <a href="#">
+                                    <x-fab-facebook-f class="w-5 h-5 mx-5" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <x-fab-twitter class="w-5 h-5 mx-5" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <x-fab-linkedin-in class="w-5 h-5 mx-5" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="absolute inset-0 w-screen h-full bg-black/5 bg-opacity-20"></div>
+                </div>
+            </div>
+
+            <div class="text-white text-[0.6rem] md:tracking-widest text-center mt-2 col-span-3">
+                {{ setting('header_slogan') }}
+            </div>
+        </div>
+        <aside
+            class="text-center h-screen hidden lg:block lg:fixed w-full lg:w-1/4 p-11 top-0 bottom-0 left-0 overflow-y-auto z-20 bg-black/5">
+            <a href="/">
+                <h1 class="mb-10 w-full font-black text-4xl text-black/80">
+                    baro<span class="text-neutral-400">.</span>
+                </h1>
+            </a>
+            <nav role="navigation">
+                <ul class="m-0 p-0">
+                    <li class="mb-4 p-0 font-bold hover:text-black transition text-black"><a href="/"
+                            class="border-b-2 border-b-black pb-1">Home</a></li>
+                    <li class="mb-4 p-0 font-bold hover:text-black transition"><a
+                            href="photography.html">Photography</a>
+                    </li>
+                    <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="travel.html">Travel</a></li>
+                    <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="fashion.html">Fashion</a></li>
+                    <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="about.html">About</a></li>
+                    <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
-            <div class="colorlib-footer">
-                <p>
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i class="icon-heart"
-                        aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                <ul>
-                    <li><a href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a href="#"><i class="icon-instagram"></i></a></li>
-                    <li><a href="#"><i class="icon-linkedin"></i></a></li>
+            <div class="absolute bottom-10 right-6 left-6 text-black/80">
+                <ul class="flex items-center justify-center">
+                    <li><a href="#">
+                            <x-fab-facebook-f class="w-5 h-5 mx-5" />
+                        </a></li>
+                    <li><a href="#">
+                            <x-fab-twitter class="w-5 h-5 mx-5" />
+                        </a></li>
+                    <li><a href="#">
+                            <x-fab-linkedin-in class="w-5 h-5 mx-5" />
+                        </a></li>
                 </ul>
             </div>
         </aside>
-        <div class="w-full float-right transition-all">
+        <div class="w-full lg:w-3/4 float-right transition-all">
             <div class="h-screen w-full relative z-0 bg-gray-100">
                 <div class="absolute top-0 left-0 right-0 bottom-0 opacity-50 bg-white z-0"></div>
                 <div class="h-screen flex justify-center items-center">
-                    <div class="px-4 text-center z-10">
+                    <div class="w-3/4 md:w-2/3 mx-auto text-center z-10">
                         <div class="w-48 h-48 mx-auto my-0 rounded-full bg-cover mb-6"
                             style="background-image: url(assets/images/ava.jpg);"></div>
                         <div class="desc">
