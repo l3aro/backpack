@@ -5,7 +5,7 @@
                 {{ $header ?? '' }}
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="bg-white divide-y divide-gray-200" {{ $attributes }}>
             {{ $slot }}
         </tbody>
     </table>

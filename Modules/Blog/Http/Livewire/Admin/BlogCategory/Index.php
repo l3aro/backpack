@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Modules\Blog\Models\BlogCategory;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
+use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
@@ -17,29 +18,10 @@ class Index extends Component
     use LoadLayoutView;
     use HasDataTable;
     use CanDestroyRecord;
+    use CanReorderRecord;
 
     protected $viewPath = 'blog::livewire.admin.blog-category.index';
-
-    public function reorder($reorderedIds)
-    {
-        DB::beginTransaction();
-        try {
-            foreach ($reorderedIds as $index => $id) {
-                $oldIndex = $this->blogCategories[$index];
-                if ($id['value'] === $oldIndex->id) {
-                    continue;
-                }
-                $swapItem = BlogCategory::find($id['value']);
-                $swapItem->update(['priority' => $oldIndex->priority]);
-            }
-            DB::commit();
-            $this->forgetComputed('blogCategories');
-            $this->dispatchBrowserEvent('reordered');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
-    }
+    protected $recordListName = 'blogCategories';
 
     public function getBlogCategoriesProperty()
     {

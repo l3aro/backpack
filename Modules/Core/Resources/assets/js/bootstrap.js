@@ -15,6 +15,8 @@ import '@toast-ui/editor/dist/toastui-editor.css'
 import AOS from 'aos'
 require('aos/dist/aos.css')
 
+require('livewire-sortable')
+
 Alpine.plugin(trap)
 window.Alpine = Alpine
 window.flatpickr = flatpickr

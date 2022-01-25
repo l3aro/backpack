@@ -31,7 +31,7 @@
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <x-core::data-table wire:sortable="reorder" draggable="true">
+                <x-core::data-table wire:sortable="reorder">
                     <x-slot name="header">
                         <x-core::data-table.heading class="w-1">
                             &nbsp;
@@ -40,9 +40,9 @@
                             :direction="$sort['id'] ?? null">
                             ID
                         </x-core::data-table.heading>
-                        <x-core::data-table.heading sortable wire:click="applySort('name')"
-                            :direction="$sort['name'] ?? null">
-                            Name
+                        <x-core::data-table.heading sortable wire:click="applySort('title')"
+                            :direction="$sort['title'] ?? null">
+                            Title
                         </x-core::data-table.heading>
                         <x-core::data-table.heading>
                             Blog Count

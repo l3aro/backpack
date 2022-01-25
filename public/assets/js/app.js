@@ -282,6 +282,8 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! aos/dist/aos.css */ "./node_modules/aos/dist/aos.css");
 
+__webpack_require__(/*! livewire-sortable */ "./node_modules/livewire-sortable/dist/livewire-sortable.js");
+
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_trap__WEBPACK_IMPORTED_MODULE_1__["default"]);
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.flatpickr = flatpickr__WEBPACK_IMPORTED_MODULE_2__["default"];
