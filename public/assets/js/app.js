@@ -1,4 +1,3 @@
-"use strict";
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["/assets/js/app"],{
 
 /***/ "./Modules/Core/Resources/assets/js/alpine-components/select.js":
@@ -7,6 +6,7 @@
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -240,6 +240,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _alpine_components_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./alpine-components/select */ "./Modules/Core/Resources/assets/js/alpine-components/select.js");
 __webpack_require__(/*! ./bootstrap */ "./Modules/Core/Resources/assets/js/bootstrap.js");
@@ -257,19 +258,21 @@ AOS.init();
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 /* harmony import */ var _alpinejs_trap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @alpinejs/trap */ "./node_modules/@alpinejs/trap/dist/module.esm.js");
-/* harmony import */ var flatpickr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flatpickr */ "./node_modules/flatpickr/dist/esm/index.js");
-/* harmony import */ var flatpickr_dist_flatpickr_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flatpickr/dist/flatpickr.min.css */ "./node_modules/flatpickr/dist/flatpickr.min.css");
-/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/popper.js");
-/* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/fancybox.esm.js");
-/* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
-/* harmony import */ var _toast_ui_editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @toast-ui/editor */ "./node_modules/@toast-ui/editor/dist/esm/index.js");
-/* harmony import */ var _toast_ui_editor_dist_toastui_editor_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @toast-ui/editor/dist/toastui-editor.css */ "./node_modules/@toast-ui/editor/dist/toastui-editor.css");
-/* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! aos */ "./node_modules/aos/dist/aos.js");
-/* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(aos__WEBPACK_IMPORTED_MODULE_8__);
-
+/* harmony import */ var _alpinejs_collapse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @alpinejs/collapse */ "./node_modules/@alpinejs/collapse/dist/module.esm.js");
+/* harmony import */ var flatpickr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flatpickr */ "./node_modules/flatpickr/dist/esm/index.js");
+/* harmony import */ var flatpickr_dist_flatpickr_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flatpickr/dist/flatpickr.min.css */ "./node_modules/flatpickr/dist/flatpickr.min.css");
+/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/popper.js");
+/* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/fancybox.esm.js");
+/* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
+/* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! aos */ "./node_modules/aos/dist/aos.js");
+/* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(aos__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var simplemde__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! simplemde */ "./node_modules/simplemde/src/js/simplemde.js");
+/* harmony import */ var simplemde__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(simplemde__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var marked__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! marked */ "./node_modules/marked/lib/marked.esm.js");
 
 
 
@@ -284,13 +287,20 @@ __webpack_require__(/*! aos/dist/aos.css */ "./node_modules/aos/dist/aos.css");
 
 __webpack_require__(/*! livewire-sortable */ "./node_modules/livewire-sortable/dist/livewire-sortable.js");
 
+
+
+__webpack_require__(/*! simplemde/dist/simplemde.min.css */ "./node_modules/simplemde/dist/simplemde.min.css");
+
+
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_trap__WEBPACK_IMPORTED_MODULE_1__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_collapse__WEBPACK_IMPORTED_MODULE_2__["default"]);
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
-window.flatpickr = flatpickr__WEBPACK_IMPORTED_MODULE_2__["default"];
-window.createPopper = _popperjs_core__WEBPACK_IMPORTED_MODULE_9__.createPopper;
-window.Fancybox = _fancyapps_ui__WEBPACK_IMPORTED_MODULE_4__.Fancybox;
-window.Editor = _toast_ui_editor__WEBPACK_IMPORTED_MODULE_6__["default"];
-window.AOS = (aos__WEBPACK_IMPORTED_MODULE_8___default());
+window.flatpickr = flatpickr__WEBPACK_IMPORTED_MODULE_3__["default"];
+window.createPopper = _popperjs_core__WEBPACK_IMPORTED_MODULE_10__.createPopper;
+window.Fancybox = _fancyapps_ui__WEBPACK_IMPORTED_MODULE_5__.Fancybox;
+window.SimpleMDE = (simplemde__WEBPACK_IMPORTED_MODULE_8___default());
+window.AOS = (aos__WEBPACK_IMPORTED_MODULE_7___default());
+window.markdownParse = marked__WEBPACK_IMPORTED_MODULE_9__.parse;
 
 /***/ }),
 
@@ -300,9 +310,20 @@ window.AOS = (aos__WEBPACK_IMPORTED_MODULE_8___default());
   \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "?f052":
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+/***/ (() => {
+
+/* (ignored) */
 
 /***/ })
 

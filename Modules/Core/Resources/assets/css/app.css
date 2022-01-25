@@ -13,3 +13,7 @@
     width: 100%;
     position: absolute;
 }
+
+.CodeMirror, .CodeMirror-scroll {
+	max-height: 500px;
+}

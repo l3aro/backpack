@@ -51,4 +51,9 @@ class BlogCategory extends Model
                 ->orWhere('description', 'like', "%{$search}%");
         });
     }
+
+    public function scopePublished(Builder $query)
+    {
+        return $query->where('is_published', true);
+    }
 }

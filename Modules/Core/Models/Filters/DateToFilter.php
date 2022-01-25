@@ -6,9 +6,9 @@ use Closure;
 
 class DateToFilter extends BaseFilter
 {
-    public function __construct()
+    public function __construct($field = 'created_at')
     {
-        $this->filterOn('created_at');
+        $this->filterOn($field);
     }
 
     public function handle($query, Closure $next)
