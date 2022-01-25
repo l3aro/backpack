@@ -35,7 +35,7 @@
         </x-core::visual.row>
         <x-core::visual.row :title="__('Blog Count')" no-border-bottom>
             @if ($blogCategory->blogs_count)
-                <a href="{{ route('admin.blogs.index', ['filter' => ['blog_category_id' => $blogCategory->id]]) }}" class="font-bold text-blue-600">
+                <a href="{{ route('admin.blogs.index', ['filter' => ['categories_id' => $blogCategory->id]]) }}" class="font-bold text-blue-600">
                     {{ $blogCategory->blogs_count }} {{ __('blogs') }}
                 </a>
             @else
