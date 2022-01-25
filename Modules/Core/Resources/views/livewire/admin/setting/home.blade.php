@@ -71,29 +71,29 @@
 
             </x-core::field.form-section>
 
-            <x-core::field.form-section :title="__('Project Showcase')" class="pt-5">
+            <x-core::field.form-section :title="__('Blog Showcase')" class="pt-5">
 
-                <x-core::field.form-row title="Project 1">
+                <x-core::field.form-row title="Blog 1">
                     <x-core::field.select wire:model.defer="setting.home_project_1" searchable>
-                        <x-core::field.select.option label="Select Project" />
+                        <x-core::field.select.option label="Select Blog" />
                         @foreach ($projects as $project)
                             <x-core::field.select.option :value="$project->id" :label="$project->name" />
                         @endforeach
                     </x-core::field.select>
                 </x-core::field.form-row>
 
-                <x-core::field.form-row title="Project 2">
+                <x-core::field.form-row title="Blog 2">
                     <x-core::field.select wire:model.defer="setting.home_project_2" searchable>
-                        <x-core::field.select.option label="Select Project" />
+                        <x-core::field.select.option label="Select Blog" />
                         @foreach ($projects as $project)
                             <x-core::field.select.option :value="$project->id" :label="$project->name" />
                         @endforeach
                     </x-core::field.select>
                 </x-core::field.form-row>
 
-                <x-core::field.form-row title="Project 3">
+                <x-core::field.form-row title="Blog 3">
                     <x-core::field.select wire:model.defer="setting.home_project_3" searchable>
-                        <x-core::field.select.option label="Select Project" />
+                        <x-core::field.select.option label="Select Blog" />
                         @foreach ($projects as $project)
                             <x-core::field.select.option :value="$project->id" :label="$project->name" />
                         @endforeach

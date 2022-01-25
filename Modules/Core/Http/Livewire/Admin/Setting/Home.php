@@ -7,7 +7,7 @@ use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Models\Setting;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use Modules\Project\Models\Project;
+use Modules\Blog\Models\Blog;
 
 class Home extends Component
 {
@@ -65,7 +65,7 @@ class Home extends Component
             ->map->getValue()
             ->toArray();
 
-        $this->projects = Project::query()
+        $this->projects = Blog::query()
             ->get(['id', 'name']);
 
         $this->setting['home_project_1'] ??= '';

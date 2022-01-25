@@ -38,6 +38,20 @@ class AdminSidebar
             ],
             [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
+                self::PROPERTY_TITLE => __('Blog Categories'),
+                self::PROPERTY_LINK => route('admin.blog-categories.index'),
+                self::PROPERTY_ICON => 'heroicon-o-archive',
+                self::PROPERTY_ACTIVE => request()->routeIs('admin.blog-categories.*'),
+            ],
+            [
+                self::PROPERTY_TYPE => self::TYPE_ITEM,
+                self::PROPERTY_TITLE => __('Blogs'),
+                self::PROPERTY_LINK => route('admin.blogs.index'),
+                self::PROPERTY_ICON => 'heroicon-o-document-text',
+                self::PROPERTY_ACTIVE => request()->routeIs('admin.blogs.*'),
+            ],
+            [
+                self::PROPERTY_TYPE => self::TYPE_ITEM,
                 self::PROPERTY_TITLE => __('Users'),
                 self::PROPERTY_LINK => route('admin.users.index'),
                 self::PROPERTY_ICON => 'heroicon-o-user',

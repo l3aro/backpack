@@ -18,6 +18,7 @@ class CreateBlogCategoriesTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('slug')->unique();
+            $table->boolean('is_published')->default(true);
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keyword')->nullable();

@@ -13,6 +13,7 @@ trait HasDataTable
     public $filter = [];
     public $sort = [];
     public $arrayFilters = [];
+    public $perPageOptions = [10, 25, 50, 100];
 
     public function queryStringHasDataTable()
     {
