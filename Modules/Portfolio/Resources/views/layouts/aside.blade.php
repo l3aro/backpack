@@ -16,7 +16,7 @@
                 x-transition:leave="transition ease-in duration-300"
                 x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 -translate-x-10"
                 x-show="showMenu">
-                <a href="#" class="inline-block border-b-2 @if (true) border-black text-black/80 @else border-transparent @endif">
+                <a href="{{ route('home') }}" class="inline-block border-b-2 @if (true) border-black text-black/80 @else border-transparent @endif">
                     Home
                 </a>
                 <a href="#" class="inline-block border-b-2 @if (false) border-black @else border-transparent @endif">
@@ -40,7 +40,7 @@
                     @include('portfolio::layouts.social')
                 </ul>
             </div>
-            <div class="absolute inset-0 w-screen h-full bg-black/5 bg-opacity-20"></div>
+            <div class="absolute inset-0 w-screen h-full bg-black/10 bg-opacity-20"></div>
         </div>
     </div>
 
@@ -49,7 +49,7 @@
     </div>
 </div>
 <aside
-    class="text-center h-screen hidden lg:block lg:fixed w-full lg:w-1/4 p-11 top-0 bottom-0 left-0 overflow-y-auto z-20 bg-black/5">
+    class="text-center h-screen hidden lg:block lg:fixed w-full lg:w-1/4 p-11 top-0 bottom-0 left-0 overflow-y-auto z-20 bg-black/10">
     <a href="/">
         <h1 class="mb-10 w-full font-black text-4xl text-black/80">
             baro<span class="text-neutral-400">.</span>
@@ -57,13 +57,12 @@
     </a>
     <nav role="navigation">
         <ul class="m-0 p-0">
-            <li class="mb-4 p-0 font-bold hover:text-black transition text-black"><a href="/"
-                    class="border-b-2 border-b-black pb-1">Home</a></li>
-            <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="photography.html">Photography</a>
+            <li class="mb-4 p-0 font-bold hover:text-black transition text-black">
+                <a href="{{ route('home') }}" class="border-b-2 border-b-black pb-1">Home</a>
             </li>
-            <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="travel.html">Travel</a></li>
-            <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="fashion.html">Fashion</a></li>
-            <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="about.html">About</a></li>
+            <li class="mb-4 p-0 font-bold hover:text-black transition">
+                <a href="{{ route('blogs.index') }}">Blog</a>
+            </li>
             <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="contact.html">Contact</a></li>
         </ul>
     </nav>

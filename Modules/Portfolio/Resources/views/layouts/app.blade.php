@@ -42,6 +42,8 @@
                 stroke="#F96D00" />
         </svg>
     </div>
+
+    @livewireScripts
 </body>
 
 </html>
