@@ -1,4 +1,4 @@
-<div class="w-full lg:w-3/4 float-right transition-all h-screen relative z-0 bg-gray-100">
+<div class="min-h-screen bg-gray-100">
     <div class="absolute top-0 left-0 right-0 bottom-0 opacity-50 bg-white z-0"></div>
     <div class="h-screen flex justify-center items-center">
         <div class="w-3/4 md:w-2/3 mx-auto text-center z-10">

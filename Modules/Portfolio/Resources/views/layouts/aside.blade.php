@@ -49,7 +49,7 @@
     </div>
 </div>
 <aside
-    class="text-center h-screen hidden lg:block lg:fixed w-full lg:w-1/4 p-11 top-0 bottom-0 left-0 overflow-y-auto z-20 bg-black/10">
+    class="text-center h-screen hidden lg:block lg:fixed w-full lg:w-1/5 p-11 top-0 bottom-0 left-0 overflow-y-auto z-20 bg-black/10">
     <a href="/">
         <h1 class="mb-10 w-full font-black text-4xl text-black/80">
             baro<span class="text-neutral-400">.</span>
