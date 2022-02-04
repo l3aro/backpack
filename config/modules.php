@@ -182,6 +182,8 @@ return [
         ResourceMakeCommand::class,
         TestMakeCommand::class,
         LaravelModulesV6Migrator::class,
+        ComponentClassMakeCommand::class,
+        ComponentViewMakeCommand::class,
     ],
 
     /*
