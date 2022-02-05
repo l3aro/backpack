@@ -6,16 +6,19 @@ use Livewire\Component;
 use Modules\Blog\Models\Blog;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 use Modules\Blog\Models\BlogCategory;
 
 class Create extends Component
 {
     use LoadLayoutView;
+    use WithFileUploads;
 
     protected $viewPath = 'blog::livewire.admin.blog.create';
     public Blog $blog;
     public $blogCategories;
     public $selectedBlogCategories = [];
+    public $photo;
 
     protected $rules = [
         'blog.title' => 'required|string|max:255',
@@ -27,6 +30,7 @@ class Create extends Component
         'blog.meta_description' => '',
         'blog.meta_keyword' => '',
         'selectedBlogCategories' => 'required|array',
+        'photo' => 'required|image',
     ];
 
     public function mount()

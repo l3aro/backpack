@@ -14,7 +14,7 @@
                 <div>
                     <a href="{{ route('portfolio.blogs.show', $item->slug) }}">
                         <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                            style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
+                            style="background-image: url({{ $item->getFirstMediaUrl('cover', 'thumb') }})"></div>
                     </a>
                     <span class="text-orange-600 font-medium uppercase text-xs flex flex-col truncate">
                         @foreach ($item->categories as $itemCategory)

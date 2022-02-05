@@ -21,6 +21,9 @@
         <x-core::visual.row :title="__('Status')">
             {{ $blog->status_text }}
         </x-core::visual.row>
+        <x-core::visual.row :title="__('Cover Photo')">
+            <x-core::visual.image :src="$blog->getFirstMediaUrl('cover', 'thumb')" />
+        </x-core::visual.row>
         <x-core::visual.row :title="__('Category')">
             <div class="flex flex-col">
                 @foreach ($blog->categories as $category)

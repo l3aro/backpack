@@ -6,16 +6,19 @@ use Livewire\Component;
 use Modules\Blog\Models\Blog;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 use Modules\Blog\Models\BlogCategory;
 
 class Edit extends Component
 {
     use LoadLayoutView;
+    use WithFileUploads;
 
     protected $viewPath = 'blog::livewire.admin.blog.edit';
     public Blog $blog;
     public $blogCategories;
     public $selectedBlogCategories = [];
+    public $photo;
 
     protected function rules()
     {
@@ -28,6 +31,7 @@ class Edit extends Component
             'blog.meta_title' => '',
             'blog.meta_description' => '',
             'blog.meta_keyword' => '',
+            'photo' => 'nullable|image',
         ];
     }
 
@@ -49,6 +53,10 @@ class Edit extends Component
         $this->validate();
         $this->blog->save();
         $this->blog->categories()->sync($this->selectedBlogCategories);
+        if ($this->photo) {
+            $this->blog->addMedia($this->photo)->toMediaCollection('cover');
+        }
+        $this->photo = null;
         return $this->blog;
     }
 

@@ -15,6 +15,11 @@
                         mode='enableTime: true, dateFormat: "Y-m-d H:i"' />
                 </x-core::field.form-row>
 
+                <x-core::field.form-row title="Cover photo">
+                    <x-core::field.image wire:model.defer="photo"
+                        :default="$photo?->temporaryUrl() ?? $blog->getFirstMediaUrl('cover', 'thumb') ?? ''" />
+                </x-core::field.form-row>
+
                 <x-core::field.form-row title="Category" required>
                     <x-core::field.select wire:model.defer="selectedBlogCategories" multiple>
                         @foreach ($blogCategories as $item)

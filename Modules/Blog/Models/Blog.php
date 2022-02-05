@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Pipeline\Pipeline;
 use Modules\Blog\Enums\BlogStatusEnum;
 use Modules\Core\Models\Scopes\PriorityScope;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Blog extends Model
+class Blog extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
 
     protected static function booted()
     {
@@ -125,5 +129,19 @@ class Blog extends Model
     public function isDraft(): bool
     {
         return $this->status === BlogStatusEnum::DRAFT;
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('cover')
+            ->singleFile()
+            ->registerMediaConversions(function () {
+                $this->addMediaConversion('thumb')
+                    ->crop(Manipulations::CROP_CENTER, 450, 450)
+                    ->optimize();
+                $this->addMediaConversion('meta')
+                    ->crop(Manipulations::CROP_CENTER, 1200, 1200)
+                    ->optimize();
+            });
     }
 }
