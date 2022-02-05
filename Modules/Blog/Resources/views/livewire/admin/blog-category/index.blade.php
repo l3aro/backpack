@@ -44,6 +44,10 @@
                             :direction="$sort['title'] ?? null">
                             Title
                         </x-core::data-table.heading>
+                        <x-core::data-table.heading sortable wire:click="applySort('is_published')"
+                            :direction="$sort['is_published'] ?? null">
+                            Publishing
+                        </x-core::data-table.heading>
                         <x-core::data-table.heading>
                             Blog Count
                         </x-core::data-table.heading>
@@ -56,18 +60,23 @@
                         </x-core::data-table.heading>
                     </x-slot>
                     @forelse ($this->blogCategories as $blogCategory)
-                        <tr wire:key="category-{{ $blogCategory->id }}"  wire:sortable.item="{{ $blogCategory->id }}">
+                        <tr wire:key="category-{{ $blogCategory->id }}"
+                            wire:sortable.item="{{ $blogCategory->id }}">
                             <td wire:sortable.handle
                                 class="px-6 py-4 flex items-center whitespace-nowrap text-sm text-gray-300 hover:text-gray-500 transition cursor-grab">
                                 <x-heroicon-s-switch-vertical class="h-6 w-6" />
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="{{ route('admin.blog-categories.show', $blogCategory->id) }}" class="font-bold text-blue-600">
+                                <a href="{{ route('admin.blog-categories.show', $blogCategory->id) }}"
+                                    class="font-bold text-blue-600">
                                     {{ $blogCategory->id }}
                                 </a>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $blogCategory->title }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <x-core::visual.boolean :value="$blogCategory->is_published" />
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $blogCategory->blogs_count }}

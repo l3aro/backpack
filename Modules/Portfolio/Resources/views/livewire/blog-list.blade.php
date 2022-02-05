@@ -10,179 +10,54 @@
                 </div>
             </div>
             <div class="hidden xl:block"></div>
+            @foreach ($posts as $item)
+                <div>
+                    <a href="{{ route('portfolio.blogs.show', $item->slug) }}">
+                        <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
+                            style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
+                    </a>
+                    <span class="text-orange-600 font-medium uppercase text-xs flex flex-col truncate">
+                        @foreach ($item->categories as $itemCategory)
+                            <a href="javascript:void(0)"
+                                class="transition hover:underline">{{ $itemCategory->title }}</a>
+                        @endforeach
+                    </span>
+                    <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
+                        <a href="{{ route('portfolio.blogs.show', $item->slug) }}">
+                            {{ $item->title }}
+                        </a>
+                    </h3>
+                    <p class="mt-4 font-medium text-sm leading-normal">
+                        {{ Str::limit($item->description, 100) }}
+                    </p>
+                    <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
+                        href="{{ route('portfolio.blogs.show', $item->slug) }}">
+                        Continue Reading
+                        <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
+                    </a>
+                </div>
+            @endforeach
 
-            <div>
-                <a href="#">
-                    <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                        style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
-                </a>
-                <span class="text-orange-600 font-medium">Technology</span>
-                <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
-                    <a href="#">
-                        This Newest Technology On This Year
-                    </a>
-                </h3>
-                <p class="mt-4 font-medium text-sm leading-normal">Even the all-powerful Pointing has no control
-                    about the blind texts it is an almost...</p>
-                <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
-                    href="#">
-                    Continue Reading
-                    <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
-                </a>
-            </div>
-
-            <!-- Blog Post -->
-            <div>
-                <a href="#">
-                    <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                        style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
-                </a>
-                <span class="text-orange-600 font-medium">Technology</span>
-                <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
-                    <a href="#">
-                        This Newest Technology On This Year
-                    </a>
-                </h3>
-                <p class="mt-4 font-medium text-sm leading-normal">Even the all-powerful Pointing has no control
-                    about the blind texts it is an almost...</p>
-                <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
-                    href="#">
-                    Continue Reading
-                    <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
-                </a>
-            </div>
-
-            <div>
-                <a href="#">
-                    <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                        style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
-                </a>
-                <span class="text-orange-600 font-medium">Technology</span>
-                <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
-                    <a href="#">
-                        This Newest Technology On This Year
-                    </a>
-                </h3>
-                <p class="mt-4 font-medium text-sm leading-normal">Even the all-powerful Pointing has no control
-                    about the blind texts it is an almost...</p>
-                <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
-                    href="#">
-                    Continue Reading
-                    <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
-                </a>
-            </div>
-            <div>
-                <a href="#">
-                    <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                        style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
-                </a>
-                <span class="text-orange-600 font-medium">Technology</span>
-                <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
-                    <a href="#">
-                        This Newest Technology On This Year
-                    </a>
-                </h3>
-                <p class="mt-4 font-medium text-sm leading-normal">Even the all-powerful Pointing has no control
-                    about the blind texts it is an almost...</p>
-                <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
-                    href="#">
-                    Continue Reading
-                    <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
-                </a>
-            </div>
-            <div>
-                <a href="#">
-                    <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                        style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
-                </a>
-                <span class="text-orange-600 font-medium">Technology</span>
-                <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
-                    <a href="#">
-                        This Newest Technology On This Year
-                    </a>
-                </h3>
-                <p class="mt-4 font-medium text-sm leading-normal">Even the all-powerful Pointing has no control
-                    about the blind texts it is an almost...</p>
-                <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
-                    href="#">
-                    Continue Reading
-                    <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
-                </a>
-            </div>
-            <div>
-                <a href="#">
-                    <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                        style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
-                </a>
-                <span class="text-orange-600 font-medium">Technology</span>
-                <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
-                    <a href="#">
-                        This Newest Technology On This Year
-                    </a>
-                </h3>
-                <p class="mt-4 font-medium text-sm leading-normal">Even the all-powerful Pointing has no control
-                    about the blind texts it is an almost...</p>
-                <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
-                    href="#">
-                    Continue Reading
-                    <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
-                </a>
-            </div>
-            <div>
-                <a href="#">
-                    <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                        style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
-                </a>
-                <span class="text-orange-600 font-medium">Technology</span>
-                <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
-                    <a href="#">
-                        This Newest Technology On This Year
-                    </a>
-                </h3>
-                <p class="mt-4 font-medium text-sm leading-normal">Even the all-powerful Pointing has no control
-                    about the blind texts it is an almost...</p>
-                <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
-                    href="#">
-                    Continue Reading
-                    <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
-                </a>
-            </div>
-            <div>
-                <a href="#">
-                    <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
-                        style="background-image: url({{ asset('/assets/images/article.webp') }})"></div>
-                </a>
-                <span class="text-orange-600 font-medium">Technology</span>
-                <h3 class="text-black font-extrabold text-xl mt-4 leading-normal">
-                    <a href="#">
-                        This Newest Technology On This Year
-                    </a>
-                </h3>
-                <p class="mt-4 font-medium text-sm leading-normal">Even the all-powerful Pointing has no control
-                    about the blind texts it is an almost...</p>
-                <a class="text-orange-600 uppercase mt-8 pb-2 flex items-center font-medium transition hover:translate-x-6"
-                    href="#">
-                    Continue Reading
-                    <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
-                </a>
-            </div>
-            <!-- End of Blog Post -->
             <div class="flex justify-between content-center px-4 pb-12 col-span-1 lg:col-span-2">
                 <div class="text-left">
-                    <p>
-                        <a href="#" wire:click.prevent="previousPage"
-                            class="break-normal text-base text-gray-600 font-bold no-underline hover:underline">
-                            &lt; Previous
-                        </a>
-                    </p>
+                    <a href="#" wire:click.prevent="previousPage" @class([
+                        'break-normal text-base font-bold no-underline flex items-center',
+                        'hover:underline text-gray-600' => !$posts->onFirstPage(),
+                        'cursor-not-allowed text-gray-400' => $posts->onFirstPage(),
+                    ])>
+                        <x-heroicon-s-chevron-left class="w-5 h-5" />
+                        Previous
+                    </a>
                 </div>
                 <div class="text-right">
-                    <p>
-                        <a href="#" wire:click.prevent="nextPage"
-                            class="break-normal text-base text-gray-600 font-bold no-underline hover:underline">
-                            Next &gt;
-                        </a>
-                    </p>
+                    <a href="#" wire:click.prevent="nextPage" @class([
+                        'break-normal text-base font-bold no-underline flex items-center',
+                        'hover:underline text-gray-600' => $posts->hasMorePages(),
+                        'cursor-not-allowed text-gray-400' => !$posts->hasMorePages(),
+                    ])>
+                        Next
+                        <x-heroicon-s-chevron-right class="w-5 h-5" />
+                    </a>
                 </div>
             </div>
         </div>
@@ -191,14 +66,12 @@
         <div class="p-6 mb-8">
             <h3 class="uppercase text-sm text-black/80 tracking-wider font-bold mb-7">Categories</h3>
             <ul class="divide-y">
-                <li class="flex justify-between items-center py-3 font-medium">
-                    <a href="#" class="text-black/80">Laravel</a>
-                    <span>(6)</span>
-                </li>
-                <li class="flex justify-between items-center py-3 font-medium">
-                    <a href="#" class="text-black/80">Laravel</a>
-                    <span>(6)</span>
-                </li>
+                @foreach ($categories as $item)
+                    <li class="flex justify-between items-center py-3 font-medium">
+                        <a href="javascript:void(0)" class="text-black/80">{{ Str::limit($item->title, 34) }}</a>
+                        <span>({{ $item->blogs_count }})</span>
+                    </li>
+                @endforeach
             </ul>
         </div>
         <div class="p-6 mb-8">

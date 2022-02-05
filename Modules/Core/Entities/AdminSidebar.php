@@ -28,7 +28,7 @@ class AdminSidebar
             [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
                 self::PROPERTY_TITLE => __('Home'),
-                self::PROPERTY_LINK => route('home'),
+                self::PROPERTY_LINK => route('portfolio.home'),
                 self::PROPERTY_ICON => 'heroicon-o-home',
                 self::PROPERTY_ACTIVE => request()->routeIs('home'),
             ],
