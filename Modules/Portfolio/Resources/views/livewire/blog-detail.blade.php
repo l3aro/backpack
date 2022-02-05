@@ -1,6 +1,6 @@
 <div class="min-h-screen">
     <div class="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal mt-20 lg:mt-10">
-        <a href="{{ route('blogs.index') }}"
+        <a href="{{ route('portfolio.blogs.index') }}"
             class="text-base md:text-sm text-orange-600 font-bold no-underline transition flex items-center">
             <x-heroicon-s-arrow-left class="inline-block w-5 h-5 mr-2" />
             BACK TO BLOG
@@ -290,7 +290,7 @@
                 {{-- @if ($previousPost) --}}
                 <div class="text-left">
                     <p>
-                        <a href="{{ route('blogs.show', '$previousPost->slug') }}"
+                        <a href="{{ route('portfolio.blogs.show', '$previousPost->slug') }}"
                             class="break-normal text-base text-gray-600 font-bold no-underline hover:underline">
                             &lt; Previous
                         </a>
@@ -304,7 +304,7 @@
                 @if ($nextPost) --}}
                 <div class="text-right">
                     <p>
-                        <a href="{{ route('blogs.show', '$nextPost->slug') }}"
+                        <a href="{{ route('portfolio.blogs.show', '$nextPost->slug') }}"
                             class="break-normal text-base text-gray-600 font-bold no-underline hover:underline">
                             Next &gt;
                         </a>

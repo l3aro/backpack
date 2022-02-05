@@ -31,7 +31,7 @@
 
 <body class="font-['Montserrat'] leading-7 text-neutral-400">
     <div class="w-full overflow-hidden relative">
-        @include('portfolio::layouts.aside')
+        <x-portfolio::aside />
         <div class="w-full lg:w-4/5 float-right transition-all relative z-0">
             {{ $slot }}
         </div>

@@ -1,3 +1,7 @@
+@php
+$sidebar = app(\Modules\Portfolio\Enums\AsideEnum::class);
+@endphp
+
 <div class="relative lg:hidden mx-auto px-6 flex">
     <div x-data="{showMenu: false}" class="flex items-center justify-end">
         <!-- menu button -->
@@ -16,18 +20,12 @@
                 x-transition:leave="transition ease-in duration-300"
                 x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 -translate-x-10"
                 x-show="showMenu">
-                <a href="{{ route('portfolio.home') }}" class="inline-block border-b-2 @if (true) border-black text-black/80 @else border-transparent @endif">
-                    Home
-                </a>
-                <a href="#" class="inline-block border-b-2 @if (false) border-black @else border-transparent @endif">
-                    About
-                </a>
-                <a href="#" class="inline-block border-b-2 @if (false) border-black @else border-transparent @endif">
-                    Work
-                </a>
-                <a href="#" class="inline-block border-b-2 @if (false) border-black @else border-transparent @endif">
-                    Contact
-                </a>
+                @foreach ($sidebar->getItems() as $item)
+                    <x-portfolio::aside.item-mobile href="{{ $item[$sidebar::PROPERTY_LINK] }}"
+                        :active="$item[$sidebar::PROPERTY_ACTIVE]">
+                        {{ $item[$sidebar::PROPERTY_TITLE] }}
+                    </x-portfolio::aside.item-mobile>
+                @endforeach
             </div>
             <div class="absolute bottom-10 right-6 left-6 text-black/80">
                 <ul class="flex items-center justify-center" x-show="showMenu"
@@ -57,13 +55,12 @@
     </a>
     <nav role="navigation">
         <ul class="m-0 p-0">
-            <li class="mb-4 p-0 font-bold hover:text-black transition text-black">
-                <a href="{{ route('portfolio.home') }}" class="border-b-2 border-b-black pb-1">Home</a>
-            </li>
-            <li class="mb-4 p-0 font-bold hover:text-black transition">
-                <a href="{{ route('portfolio.blogs.index') }}">Blog</a>
-            </li>
-            <li class="mb-4 p-0 font-bold hover:text-black transition"><a href="contact.html">Contact</a></li>
+            @foreach ($sidebar->getItems() as $item)
+                <x-portfolio::aside.item href="{{ $item[$sidebar::PROPERTY_LINK] }}"
+                    :active="$item[$sidebar::PROPERTY_ACTIVE]">
+                    {{ $item[$sidebar::PROPERTY_TITLE] }}
+                </x-portfolio::aside.item>
+            @endforeach
         </ul>
     </nav>
     <div class="absolute bottom-10 right-6 left-6 text-black/80">

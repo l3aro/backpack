@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', \Modules\Portfolio\Http\Livewire\Landing::class)
-    ->name('home');
+    ->name('portfolio.home');
 Route::get('blog', \Modules\Portfolio\Http\Livewire\BlogList::class)
-    ->name('blogs.index');
+    ->name('portfolio.blogs.index');
 Route::get('blog/{detail}', \Modules\Portfolio\Http\Livewire\BlogDetail::class)
-    ->name('blogs.show');
+    ->name('portfolio.blogs.show');
