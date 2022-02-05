@@ -58,6 +58,7 @@ class Blog extends Model implements HasMedia
                 new \Modules\Core\Models\Filters\DateFromFilter('published_at'),
                 new \Modules\Core\Models\Filters\DateToFilter('published_at'),
                 new \Modules\Core\Models\Filters\RelationFilter('categories', 'id'),
+                new \Modules\Core\Models\Filters\RelationFilter('categories', 'slug'),
                 new \Modules\Core\Models\Filters\Sort,
             ])
             ->thenReturn();

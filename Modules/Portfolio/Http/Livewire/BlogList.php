@@ -14,21 +14,23 @@ class BlogList extends Component
     use HasDataTable;
 
     protected $viewPath = 'portfolio::livewire.blog-list';
-    public $categories;
-
-    public function mount()
-    {
-        $this->categories = BlogCategory::published()
-            ->withCount('blogs')
-            ->get(['id', 'title', 'slug']);
-    }
 
     public function viewData()
     {
         return [
-            'posts' => Blog::published()
+            'posts' => $this->queryBuilder()
+                ->filter()
+                ->published()
                 ->with(['categories' => fn ($query) => $query->published()])
                 ->simplePaginate($this->perPage),
+            'categories' => BlogCategory::published()
+                ->withCount('blogs')
+                ->get(['id', 'title', 'slug']),
         ];
+    }
+
+    protected function getModel()
+    {
+        return Blog::class;
     }
 }

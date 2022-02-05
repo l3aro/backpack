@@ -2,15 +2,15 @@
     <div class="w-full lg:w-2/3">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-14 gap-y-20">
             <div class="col-span-1 lg:col-span-2 xl:col-span-1 mt-1 relative rounded-md shadow-sm">
-                <input type="text" name="account-number" id="account-number"
+                <input type="search" name="account-number" id="account-number"
                     class="focus:ring-0 focus:border-gray-500 block w-full pr-10 sm:text-sm border-gray-300 rounded text-gray-700"
-                    placeholder="Search...">
+                    placeholder="Search..." wire:model.debounce.500ms="filter.search">
                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                     <x-heroicon-o-search class="h-5 w-5 text-gray-600" />
                 </div>
             </div>
             <div class="hidden xl:block"></div>
-            @foreach ($posts as $item)
+            @forelse ($posts as $item)
                 <div>
                     <a href="{{ route('portfolio.blogs.show', $item->slug) }}">
                         <div class="w-full rounded aspect-square bg-cover bg-center mb-8"
@@ -19,6 +19,7 @@
                     <span class="text-orange-600 font-medium uppercase text-xs flex flex-col truncate">
                         @foreach ($item->categories as $itemCategory)
                             <a href="javascript:void(0)"
+                                wire:click.prevent="$set('filter.categories_slug', '{{ $itemCategory->slug }}')"
                                 class="transition hover:underline">{{ $itemCategory->title }}</a>
                         @endforeach
                     </span>
@@ -36,7 +37,13 @@
                         <x-heroicon-s-chevron-right class="ml-1 w-5 h-5" />
                     </a>
                 </div>
-            @endforeach
+            @empty
+                <div class="flex justify-center content-center px-4 pb-12 col-span-1 lg:col-span-2">
+                    <div class="text-center">
+                        <h6 class="text-xl font-bold">No Posts Found</h6>
+                    </div>
+                </div>
+            @endforelse
 
             <div class="flex justify-between content-center px-4 pb-12 col-span-1 lg:col-span-2">
                 <div class="text-left">
@@ -68,7 +75,9 @@
             <ul class="divide-y">
                 @foreach ($categories as $item)
                     <li class="flex justify-between items-center py-3 font-medium">
-                        <a href="javascript:void(0)" class="text-black/80">{{ Str::limit($item->title, 34) }}</a>
+                        <a href="javascript:void(0)"
+                            wire:click.prevent="$set('filter.categories_slug', '{{ $item->slug }}')"
+                            class="text-black/80">{{ Str::limit($item->title, 34) }}</a>
                         <span>({{ $item->blogs_count }})</span>
                     </li>
                 @endforeach
