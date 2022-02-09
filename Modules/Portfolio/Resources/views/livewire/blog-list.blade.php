@@ -86,16 +86,12 @@
         <div class="p-6 mb-8">
             <h3 class="uppercase text-sm text-black/80 tracking-wider font-bold mb-7">Tags</h3>
             <div class="flex flex-wrap gap-2">
-                <a href="#"
-                    class="inline-block text-sm font-medium text-black/80 px-3 py-1 rounded border border-gray-300 hover:border-gray-500 transition hover:bg-gray-200">Laravel</a>
-                <a href="#"
-                    class="inline-block text-sm font-medium text-black/80 px-3 py-1 rounded border border-gray-300 hover:border-gray-500 transition hover:bg-gray-200">Laravel</a>
-                <a href="#"
-                    class="inline-block text-sm font-medium text-black/80 px-3 py-1 rounded border border-gray-300 hover:border-gray-500 transition hover:bg-gray-200">Laravel</a>
-                <a href="#"
-                    class="inline-block text-sm font-medium text-black/80 px-3 py-1 rounded border border-gray-300 hover:border-gray-500 transition hover:bg-gray-200">Laravel</a>
-                <a href="#"
-                    class="inline-block text-sm font-medium text-black/80 px-3 py-1 rounded border border-gray-300 hover:border-gray-500 transition hover:bg-gray-200">Laravel</a>
+                @foreach ($tags as $item)
+                    <a href="javascript:void(0)" wire:click.prevent="$set('filter.tag', '{{ $item->name }}')"
+                        class="inline-block text-sm font-medium text-black/80 px-3 py-1 rounded border border-gray-300 hover:border-gray-500 transition hover:bg-gray-200">
+                        {{ $item->name }}
+                    </a>
+                @endforeach
             </div>
         </div>
         <div class="p-6 mb-8 bg-neutral-500">

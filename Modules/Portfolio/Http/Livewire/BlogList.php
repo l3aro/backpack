@@ -7,6 +7,7 @@ use Modules\Blog\Models\Blog;
 use Modules\Blog\Models\BlogCategory;
 use Modules\Portfolio\Http\Livewire\Plugins\LoadWebLayout;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
+use Spatie\Tags\Tag;
 
 class BlogList extends Component
 {
@@ -26,6 +27,7 @@ class BlogList extends Component
             'categories' => BlogCategory::published()
                 ->withCount('blogs')
                 ->get(['id', 'title', 'slug']),
+            'tags' => Tag::getWithType($this->getModel()),
         ];
     }
 
