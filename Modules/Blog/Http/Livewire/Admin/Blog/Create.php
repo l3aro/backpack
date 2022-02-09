@@ -19,6 +19,7 @@ class Create extends Component
     public $blogCategories;
     public $selectedBlogCategories = [];
     public $photo;
+    public $tags = [];
 
     protected $rules = [
         'blog.title' => 'required|string|max:255',
@@ -31,6 +32,7 @@ class Create extends Component
         'blog.meta_keyword' => '',
         'selectedBlogCategories' => 'required|array',
         'photo' => 'required|image',
+        'tags' => 'nullable|array',
     ];
 
     public function mount()
@@ -52,7 +54,12 @@ class Create extends Component
         $this->blog->priority = $maxPriority + 1;
         $this->blog->save();
         $this->blog->categories()->sync($this->selectedBlogCategories);
+        $this->blog->attachTags($this->tags, get_class($this->blog));
+        if ($this->photo) {
+            $this->blog->addMedia($this->photo)->toMediaCollection('cover');
+        }
         $blog = $this->blog;
+        $this->photo = null;
         $this->blog = new Blog;
         return $blog;
     }

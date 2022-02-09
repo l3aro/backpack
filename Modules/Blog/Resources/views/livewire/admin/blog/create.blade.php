@@ -27,6 +27,10 @@
                     </x-core::field.select>
                 </x-core::field.form-row>
 
+                <x-core::field.form-row title="Tags">
+                    <x-core::field.tagify wire:model.defer="tags">
+                    </x-core::field.tagify>
+                </x-core::field.form-row>
 
                 <x-core::field.form-row title="Description">
                     <x-core::field.input type="text" wire:model.defer="blog.description" />

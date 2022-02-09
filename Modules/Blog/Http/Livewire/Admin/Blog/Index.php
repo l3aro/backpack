@@ -9,7 +9,7 @@ use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
-use Illuminate\Support\Str;
+use Spatie\Tags\Tag;
 
 /**
  * @property \Illuminate\Pagination\LengthAwarePaginator $blogs
@@ -24,10 +24,12 @@ class Index extends Component
     protected $viewPath = 'blog::livewire.admin.blog.index';
     protected $recordListName = 'blogs';
     public $blogCategories;
+    public $blogTags;
 
     public function mount()
     {
         $this->blogCategories = BlogCategory::all(['id', 'title']);
+        $this->blogTags = Tag::getWithType($this->getModel());
     }
 
     protected function getModel()

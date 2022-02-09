@@ -19,6 +19,7 @@
         "nwidart/laravel-modules": "^8.2",
         "owenvoke/blade-fontawesome": "^1.10",
         "spatie/laravel-medialibrary": "^9.11",
+        "spatie/laravel-tags": "^4.3",
         "wire-elements/spotlight": "^1.0"
     },
     "require-dev": {

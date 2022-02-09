@@ -39,11 +39,19 @@
                         <b>Filter Options</b>
                     </div>
                     <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6 py-4">
-                        <x-core::field.dropdown-row :title="__('Type')" class="sm:col-span-6">
+                        <x-core::field.dropdown-row :title="__('Category')" class="sm:col-span-6">
                             <x-core::field.select.native wire:model="filter.categories_id">
                                 <option value="">&nbsp;</option>
                                 @foreach ($blogCategories as $item)
                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                @endforeach
+                            </x-core::field.select.native>
+                        </x-core::field.dropdown-row>
+                        <x-core::field.dropdown-row :title="__('Tag')" class="sm:col-span-6">
+                            <x-core::field.select.native wire:model="filter.tag">
+                                <option value="">&nbsp;</option>
+                                @foreach ($blogTags as $item)
+                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
                                 @endforeach
                             </x-core::field.select.native>
                         </x-core::field.dropdown-row>

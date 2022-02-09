@@ -11,10 +11,12 @@ use Modules\Core\Models\Scopes\PriorityScope;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Tags\HasTags;
 
 class Blog extends Model implements HasMedia
 {
     use HasFactory;
+    use HasTags;
     use InteractsWithMedia;
 
     protected static function booted()
@@ -55,6 +57,7 @@ class Blog extends Model implements HasMedia
             ->through([
                 new \Modules\Core\Models\Filters\ScopeFilter('search'),
                 new \Modules\Core\Models\Filters\ScopeFilter('status'),
+                new \Modules\Core\Models\Filters\ScopeFilter('tag'),
                 new \Modules\Core\Models\Filters\DateFromFilter('published_at'),
                 new \Modules\Core\Models\Filters\DateToFilter('published_at'),
                 new \Modules\Core\Models\Filters\RelationFilter('categories', 'id'),
@@ -71,6 +74,11 @@ class Blog extends Model implements HasMedia
                 ->orWhere('title', 'like', "%{$keyword}%")
                 ->orWhere('description', 'like', "%{$keyword}%");
         });
+    }
+
+    public function scopeTag(Builder $query, string $tag)
+    {
+        return $query->withAnyTags([$tag], get_class());
     }
 
     public function scopeStatus(Builder $query, string $status)

@@ -20,6 +20,9 @@ require('simplemde/dist/simplemde.min.css')
 
 import { parse } from 'marked'
 
+import Tagify from '@yaireo/tagify'
+require('@yaireo/tagify/dist/tagify.css')
+
 Alpine.plugin(trap)
 Alpine.plugin(collapse)
 window.Alpine = Alpine
@@ -29,3 +32,4 @@ window.Fancybox = Fancybox
 window.SimpleMDE = SimpleMDE
 window.AOS = AOS
 window.markdownParse = parse
+window.Tagify = Tagify

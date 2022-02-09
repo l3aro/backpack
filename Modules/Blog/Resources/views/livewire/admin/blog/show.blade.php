@@ -34,6 +34,16 @@
                 @endforeach
             </div>
         </x-core::visual.row>
+        <x-core::visual.row :title="__('Tags')">
+            <div class="flex flex-wrap gap-2">
+                @foreach ($blog->tags as $tag)
+                    <a href="{{ route('admin.blogs.index', ['filter' => ['tag' => $tag->name]]) }}"
+                        class="text-green-600 bg-green-100 px-3 py-1 rounded-full border border-green-600 hover:text-green-50 hover:bg-green-600 transition">
+                        {{ Str::limit($tag->name, 20) }}
+                    </a>
+                @endforeach
+            </div>
+        </x-core::visual.row>
         <x-core::visual.row :title="__('Meta Title')">
             {{ $blog->meta_title }}
         </x-core::visual.row>

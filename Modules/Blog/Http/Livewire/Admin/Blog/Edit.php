@@ -19,6 +19,7 @@ class Edit extends Component
     public $blogCategories;
     public $selectedBlogCategories = [];
     public $photo;
+    public $tags;
 
     protected function rules()
     {
@@ -32,12 +33,14 @@ class Edit extends Component
             'blog.meta_description' => '',
             'blog.meta_keyword' => '',
             'photo' => 'nullable|image',
+            'tags' => 'nullable|array',
         ];
     }
 
     public function mount(Blog $blog)
     {
         $this->blog = $blog;
+        $this->tags = $blog->tags->pluck('name')->toArray();
         $this->blogCategories = BlogCategory::all(['id', 'title']);
         $this->selectedBlogCategories = $this->blog->categories->pluck('id')->toArray();
     }
@@ -53,6 +56,7 @@ class Edit extends Component
         $this->validate();
         $this->blog->save();
         $this->blog->categories()->sync($this->selectedBlogCategories);
+        $this->blog->syncTagsWithType($this->tags, get_class($this->blog));
         if ($this->photo) {
             $this->blog->addMedia($this->photo)->toMediaCollection('cover');
         }
