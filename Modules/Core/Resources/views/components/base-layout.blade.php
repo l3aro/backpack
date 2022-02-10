@@ -23,7 +23,7 @@
     {{ $slot }}
 
     <x-core::notification />
-    @livewire('livewire-ui-spotlight')
+    {{-- @livewire('livewire-ui-spotlight') --}}
     @livewireScripts
 </body>
 
