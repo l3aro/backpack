@@ -59,7 +59,7 @@
 
             <div class="pt-5">
                 <div class="flex justify-end">
-                    <x-core::button.secondary href="{{ route('admin.posts.show', $post->id) }}">
+                    <x-core::button.secondary href="{{ route('admin.blog.posts.show', $post->id) }}">
                         Cancel
                     </x-core::button.secondary>
                     <x-core::button.primary type="submit" wire:click.prevent="saveAndContinue" class="ml-3">

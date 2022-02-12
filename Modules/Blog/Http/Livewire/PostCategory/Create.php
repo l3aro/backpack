@@ -3,7 +3,7 @@
 namespace Modules\Blog\Http\Livewire\PostCategory;
 
 use Livewire\Component;
-use Modules\Blog\Models\PostCategory;
+use Modules\Blog\Models\Category;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
 
@@ -12,7 +12,7 @@ class Create extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'blog::livewire.post-category.create';
-    public PostCategory $postCategory;
+    public Category $postCategory;
 
     protected $rules = [
         'postCategory.title' => 'required|string|max:255',
@@ -27,7 +27,7 @@ class Create extends Component
 
     public function mount()
     {
-        $this->postCategory = new PostCategory;
+        $this->postCategory = new Category;
     }
 
     public function updatedPostCategoryTitle()
@@ -38,18 +38,18 @@ class Create extends Component
     public function save()
     {
         $this->validate($this->rules);
-        $maxPriority = PostCategory::max('priority') ?? 1;
+        $maxPriority = Category::max('priority') ?? 1;
         $this->postCategory->priority = $maxPriority + 1;
         $this->postCategory->save();
         $postCategory = $this->postCategory;
-        $this->postCategory = new PostCategory;
+        $this->postCategory = new Category;
         return $postCategory;
     }
 
     public function saveAndShow()
     {
         $postCategory = $this->save();
-        return redirect()->route('admin.post-categories.show', $postCategory->id);
+        return redirect()->route('admin.blog.categories.show', $postCategory->id);
     }
 
     public function saveAndContinue()

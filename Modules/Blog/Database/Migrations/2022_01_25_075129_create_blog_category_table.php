@@ -13,10 +13,10 @@ class CreateBlogCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('blog_category', function (Blueprint $table) {
-            $table->foreignId('blog_id')->constrained('blogs');
-            $table->foreignId('category_id')->constrained('blog_categories');
-            $table->primary(['blog_id', 'category_id']);
+        Schema::create('blog__post_category', function (Blueprint $table) {
+            $table->foreignId('post_id')->constrained('blog__posts');
+            $table->foreignId('category_id')->constrained('blog__categories');
+            $table->primary(['post_id', 'category_id']);
         });
     }
 

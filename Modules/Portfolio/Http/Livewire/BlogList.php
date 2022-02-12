@@ -4,7 +4,7 @@ namespace Modules\Portfolio\Http\Livewire;
 
 use Livewire\Component;
 use Modules\Blog\Models\Post;
-use Modules\Blog\Models\PostCategory;
+use Modules\Blog\Models\Category;
 use Modules\Portfolio\Http\Livewire\Plugins\LoadWebLayout;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
 use Spatie\Tags\Tag;
@@ -24,8 +24,8 @@ class BlogList extends Component
                 ->published()
                 ->with(['categories' => fn ($query) => $query->published()])
                 ->simplePaginate($this->perPage),
-            'categories' => PostCategory::published()
-                ->withCount('blogs')
+            'categories' => Category::published()
+                ->withCount('posts')
                 ->get(['id', 'title', 'slug']),
             'tags' => Tag::getWithType($this->getModel()),
         ];

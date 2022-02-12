@@ -4,7 +4,7 @@ namespace Modules\Blog\Http\Livewire\Post;
 
 use Livewire\Component;
 use Modules\Blog\Models\Post;
-use Modules\Blog\Models\PostCategory;
+use Modules\Blog\Models\Category;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
@@ -28,7 +28,7 @@ class Index extends Component
 
     public function mount()
     {
-        $this->postCategories = PostCategory::all(['id', 'title']);
+        $this->postCategories = Category::all(['id', 'title']);
         $this->postTags = Tag::getWithType($this->getModel());
     }
 

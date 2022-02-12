@@ -3,7 +3,7 @@
 namespace Modules\Blog\Http\Livewire\PostCategory;
 
 use Livewire\Component;
-use Modules\Blog\Models\PostCategory;
+use Modules\Blog\Models\Category;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
@@ -32,7 +32,7 @@ class Index extends Component
 
     protected function getModel()
     {
-        return PostCategory::class;
+        return Category::class;
     }
 
     protected function beforeDestroyRecord()

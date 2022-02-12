@@ -24,7 +24,7 @@ class Post extends Model implements HasMedia
         static::addGlobalScope(new PriorityScope);
     }
 
-    protected $table = "blogs";
+    protected $table = "blog__posts";
 
     protected $guarded = ['id'];
 
@@ -32,9 +32,14 @@ class Post extends Model implements HasMedia
         'published_at' => 'datetime:Y-m-d H:i',
     ];
 
+    protected static function newFactory()
+    {
+        return \Modules\Blog\Database\factories\PostFactory::new();
+    }
+
     public function categories()
     {
-        return $this->belongsToMany(PostCategory::class, 'blog_category', 'blog_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'blog__post_category', 'post_id', 'category_id');
     }
 
     public function scopePublished(Builder $query)

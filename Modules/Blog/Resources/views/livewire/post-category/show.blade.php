@@ -1,6 +1,6 @@
 <div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
     <div class="flex justify-end mb-3">
-        <a href="{{ route('admin.post-categories.edit', $postCategory->id) }}"
+        <a href="{{ route('admin.blog.categories.edit', $postCategory->id) }}"
             class="ml-2 transition inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-xs font-medium text-gray-700 hover:text-white bg-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-green-500">
             <x-heroicon-o-pencil-alt class="w-5 h-5" />
         </a>
@@ -35,7 +35,7 @@
         </x-core::visual.row>
         <x-core::visual.row :title="__('Blog Count')" no-border-bottom>
             @if ($postCategory->posts_count)
-                <a href="{{ route('admin.posts.index', ['filter' => ['categories_id' => $postCategory->id]]) }}" class="font-bold text-blue-600">
+                <a href="{{ route('admin.blog.posts.index', ['filter' => ['categories_id' => $postCategory->id]]) }}" class="font-bold text-blue-600">
                     {{ $postCategory->posts_count }} {{ __('posts') }}
                 </a>
             @else

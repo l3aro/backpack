@@ -35,7 +35,7 @@
 
             <div class="pt-5">
                 <div class="flex justify-end">
-                    <x-core::button.secondary href="{{ route('admin.post-categories.index') }}">
+                    <x-core::button.secondary href="{{ route('admin.blog.categories.index') }}">
                         Cancel
                     </x-core::button.secondary>
                     <x-core::button.primary type="submit" wire:click.prevent="saveAndContinue" class="ml-3">

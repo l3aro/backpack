@@ -7,7 +7,7 @@ use Modules\Blog\Models\Post;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use Modules\Blog\Models\PostCategory;
+use Modules\Blog\Models\Category;
 
 class Edit extends Component
 {
@@ -41,7 +41,7 @@ class Edit extends Component
     {
         $this->post = $post;
         $this->tags = $post->tags->pluck('name')->toArray();
-        $this->postCategories = PostCategory::all(['id', 'title']);
+        $this->postCategories = Category::all(['id', 'title']);
         $this->selectedPostCategories = $this->post->categories->pluck('id')->toArray();
     }
 
@@ -67,7 +67,7 @@ class Edit extends Component
     public function saveAndShow()
     {
         $post = $this->save();
-        return redirect()->route('admin.posts.show', $post->id);
+        return redirect()->route('admin.blog.posts.show', $post->id);
     }
 
     public function saveAndContinue()

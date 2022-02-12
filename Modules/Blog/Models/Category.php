@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Pipeline\Pipeline;
 use Modules\Core\Models\Scopes\PriorityScope;
 
-class PostCategory extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -17,7 +17,7 @@ class PostCategory extends Model
         static::addGlobalScope(new PriorityScope);
     }
 
-    protected $table = "blog_categories";
+    protected $table = "blog__categories";
 
     protected $guarded = ['id'];
 
@@ -25,9 +25,14 @@ class PostCategory extends Model
         'is_published' => true,
     ];
 
+    protected static function newFactory()
+    {
+        return \Modules\Blog\Database\factories\CategoryFactory::new();
+    }
+
     public function posts()
     {
-        return $this->belongsToMany(Post::class, 'blog_category', 'category_id', 'blog_id');
+        return $this->belongsToMany(Post::class, 'blog__post_category', 'category_id', 'post_id');
     }
 
     public function scopeFilter(Builder $query)

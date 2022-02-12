@@ -3,7 +3,7 @@
 namespace Modules\Blog\Http\Livewire\PostCategory;
 
 use Livewire\Component;
-use Modules\Blog\Models\PostCategory;
+use Modules\Blog\Models\Category;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
 class Show extends Component
@@ -11,9 +11,9 @@ class Show extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'blog::livewire.post-category.show';
-    public PostCategory $postCategory;
+    public Category $postCategory;
 
-    public function mount(PostCategory $postCategory)
+    public function mount(Category $postCategory)
     {
         $this->postCategory = $postCategory;
         $this->postCategory->loadCount('posts');

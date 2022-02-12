@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="ml-2 flex">
-            <x-core::button.primary :href="route('admin.posts.create')" class="mr-2">
+            <x-core::button.primary :href="route('admin.blog.posts.create')" class="mr-2">
                 <x-heroicon-s-plus class="h-5 w-5" />
             </x-core::button.primary>
             <x-core::dropdown width="w-72">
@@ -108,7 +108,7 @@
                                 <x-heroicon-s-switch-vertical class="h-6 w-6" />
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="{{ route('admin.posts.show', $post->id) }}" class="font-bold text-blue-600">
+                                <a href="{{ route('admin.blog.posts.show', $post->id) }}" class="font-bold text-blue-600">
                                     {{ $post->id }}
                                 </a>
                             </td>
@@ -117,7 +117,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex flex-col">
                                 @foreach ($post->categories as $category)
-                                    <a href="{{ route('admin.post-categories.show', $category->id) }}"
+                                    <a href="{{ route('admin.blog.categories.show', $category->id) }}"
                                         class="font-bold text-blue-600 hover:text-green-600 transition">
                                         {{ Str::limit($category->title, 20) }}
                                     </a>
@@ -137,14 +137,14 @@
                                             <x-heroicon-o-dots-vertical class="w-5 h-5" />
                                         </button>
                                     </x-slot>
-                                    <a href="{{ route('admin.posts.show', $post->id) }}"
+                                    <a href="{{ route('admin.blog.posts.show', $post->id) }}"
                                         class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
                                         role="menuitem" tabindex="-1" id="menu-item-0">
                                         <x-heroicon-s-eye
                                             class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                                         {{ __('View') }}
                                     </a>
-                                    <a href="{{ route('admin.posts.edit', $post->id) }}"
+                                    <a href="{{ route('admin.blog.posts.edit', $post->id) }}"
                                         class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
                                         role="menuitem" tabindex="-1" id="menu-item-0">
                                         <x-heroicon-s-pencil-alt

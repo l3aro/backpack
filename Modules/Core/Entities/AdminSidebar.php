@@ -39,16 +39,16 @@ class AdminSidebar
             [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
                 self::PROPERTY_TITLE => __('Blog Categories'),
-                self::PROPERTY_LINK => route('admin.post-categories.index'),
+                self::PROPERTY_LINK => route('admin.blog.categories.index'),
                 self::PROPERTY_ICON => 'heroicon-o-archive',
-                self::PROPERTY_ACTIVE => request()->routeIs('admin.post-categories.*'),
+                self::PROPERTY_ACTIVE => request()->routeIs('admin.blog.categories.*'),
             ],
             [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
                 self::PROPERTY_TITLE => __('Blogs'),
-                self::PROPERTY_LINK => route('admin.posts.index'),
+                self::PROPERTY_LINK => route('admin.blog.posts.index'),
                 self::PROPERTY_ICON => 'heroicon-o-document-text',
-                self::PROPERTY_ACTIVE => request()->routeIs('admin.posts.*'),
+                self::PROPERTY_ACTIVE => request()->routeIs('admin.blog.posts.*'),
             ],
             [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,

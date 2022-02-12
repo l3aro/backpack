@@ -36,7 +36,7 @@
 
             <div class="pt-5">
                 <div class="flex justify-end">
-                    <x-core::button.secondary href="{{ route('admin.post-categories.show', $postCategory->id) }}">
+                    <x-core::button.secondary href="{{ route('admin.blog.categories.show', $postCategory->id) }}">
                         Cancel
                     </x-core::button.secondary>
                     <x-core::button.primary type="submit" wire:click.prevent="saveAndContinue" class="ml-3">

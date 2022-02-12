@@ -7,7 +7,7 @@ use Modules\Blog\Models\Post;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use Modules\Blog\Models\PostCategory;
+use Modules\Blog\Models\Category;
 
 class Create extends Component
 {
@@ -38,7 +38,7 @@ class Create extends Component
     public function mount()
     {
         $this->post = new Post;
-        $this->postCategories = PostCategory::all(['id', 'title']);
+        $this->postCategories = Category::all(['id', 'title']);
     }
 
     public function updatedPostTitle()
@@ -67,7 +67,7 @@ class Create extends Component
     public function saveAndShow()
     {
         $post = $this->save();
-        return redirect()->route('admin.posts.show', $post->id);
+        return redirect()->route('admin.blog.posts.show', $post->id);
     }
 
     public function saveAndContinue()

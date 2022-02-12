@@ -11,6 +11,8 @@ class Setting extends Model
 {
     const UPLOAD_DISK = 'public';
 
+    protected $table = 'core__settings';
+
     protected $fillable = [
         'key',
         'value',

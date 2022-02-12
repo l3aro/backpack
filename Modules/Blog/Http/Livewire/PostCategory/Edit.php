@@ -3,7 +3,7 @@
 namespace Modules\Blog\Http\Livewire\PostCategory;
 
 use Livewire\Component;
-use Modules\Blog\Models\PostCategory;
+use Modules\Blog\Models\Category;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
 
@@ -12,7 +12,7 @@ class Edit extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'blog::livewire.post-category.edit';
-    public PostCategory $postCategory;
+    public Category $postCategory;
 
     protected function rules()
     {
@@ -28,7 +28,7 @@ class Edit extends Component
         ];
     }
 
-    public function mount(PostCategory $postCategory)
+    public function mount(Category $postCategory)
     {
         $this->postCategory = $postCategory;
     }
@@ -49,7 +49,7 @@ class Edit extends Component
     public function saveAndShow()
     {
         $postCategory = $this->save();
-        return redirect()->route('admin.post-categories.show', $postCategory->id);
+        return redirect()->route('admin.blog.categories.show', $postCategory->id);
     }
 
     public function saveAndContinue()

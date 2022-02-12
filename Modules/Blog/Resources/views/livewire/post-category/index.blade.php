@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="ml-2 flex">
-            <x-core::button.primary :href="route('admin.post-categories.create')" class="mr-2">
+            <x-core::button.primary :href="route('admin.blog.categories.create')" class="mr-2">
                 <x-heroicon-s-plus class="h-5 w-5" />
             </x-core::button.primary>
         </div>
@@ -67,7 +67,7 @@
                                 <x-heroicon-s-switch-vertical class="h-6 w-6" />
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="{{ route('admin.post-categories.show', $postCategory->id) }}"
+                                <a href="{{ route('admin.blog.categories.show', $postCategory->id) }}"
                                     class="font-bold text-blue-600">
                                     {{ $postCategory->id }}
                                 </a>
@@ -92,14 +92,14 @@
                                             <x-heroicon-o-dots-vertical class="w-5 h-5" />
                                         </button>
                                     </x-slot>
-                                    <a href="{{ route('admin.post-categories.show', $postCategory->id) }}"
+                                    <a href="{{ route('admin.blog.categories.show', $postCategory->id) }}"
                                         class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
                                         role="menuitem" tabindex="-1" id="menu-item-0">
                                         <x-heroicon-s-eye
                                             class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                                         {{ __('View') }}
                                     </a>
-                                    <a href="{{ route('admin.post-categories.edit', $postCategory->id) }}"
+                                    <a href="{{ route('admin.blog.categories.edit', $postCategory->id) }}"
                                         class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
                                         role="menuitem" tabindex="-1" id="menu-item-0">
                                         <x-heroicon-s-pencil-alt
