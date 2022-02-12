@@ -7,9 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public const ADMIN_ROOT = '/admin';
-
-    public const HOME = '/';
+    public const HOME = '/admin';
 
     public function boot()
     {
@@ -24,9 +22,6 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::middleware('web')
             ->prefix('admin')
-            ->group(module_path('Core', '/Routes/admin.php'));
-
-        Route::middleware('web')
             ->group(module_path('Core', '/Routes/web.php'));
     }
 }

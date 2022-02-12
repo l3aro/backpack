@@ -23,7 +23,7 @@ trait LoadLayoutView
         if (method_exists($this, 'layoutPath')) {
             return $this->layoutPath();
         }
-        return property_exists($this, 'layoutPath') ? $this->layoutPath : config('core.layout-admin');
+        return property_exists($this, 'layoutPath') ? $this->layoutPath : config('core.layout-auth');
     }
 
     protected function getViewData(): array

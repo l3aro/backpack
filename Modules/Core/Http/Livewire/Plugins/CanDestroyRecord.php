@@ -15,6 +15,9 @@ trait CanDestroyRecord
 
     public function confirmDelete()
     {
+        if (method_exists($this, 'beforeDestroyRecord')) {
+            $this->beforeDestroyRecord();
+        }
         app($this->getModel())->find($this->confirmingId)->delete();
         $this->confirmingDeletion = false;
         $this->confirmingId = null;

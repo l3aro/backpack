@@ -2,5 +2,6 @@
 
 return [
     'name' => 'Core',
-    'layout-admin' => 'core::components.layout-admin-auth',
+    'layout-auth' => 'core::components.layout-auth',
+    'layout-guest' => 'core::components.layout-guest',
 ];
