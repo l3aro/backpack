@@ -10,6 +10,6 @@ class PriorityScope implements Scope
 {
     public function apply(Builder $builder, Model $model)
     {
-        $builder->orderBy('priority', 'desc');
+        $builder->orderBy($model->getOrderColumn(), 'desc');
     }
 }

@@ -11,9 +11,6 @@ use Modules\Core\Http\Livewire\Plugins\HasDataTable;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Spatie\Tags\Tag;
 
-/**
- * @property \Illuminate\Pagination\LengthAwarePaginator $posts
- */
 class Index extends Component
 {
     use HasDataTable;
@@ -37,12 +34,14 @@ class Index extends Component
         return Post::class;
     }
 
-    public function getPostsProperty()
+    public function viewData(): array
     {
-        return $this->queryBuilder()
-            ->filter()
-            ->with('categories:id,title')
-            ->paginate($this->perPage);
+        return [
+            'posts' => $this->queryBuilder()
+                ->filter()
+                ->with('categories:id,title')
+                ->paginate($this->perPage),
+        ];
     }
 
     protected function beforeDestroyRecord()

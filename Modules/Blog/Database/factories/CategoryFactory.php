@@ -28,16 +28,8 @@ class CategoryFactory extends Factory
             'meta_title' => $this->faker->sentences(3, true),
             'meta_description' => $this->faker->text('100'),
             'meta_keyword' => $this->faker->words(10, true),
-            'priority' => $this->autoIncrement()->current(),
             'created_at' => $this->faker->dateTimeBetween('-3 year', '-2 year'),
             'updated_at' => $this->faker->dateTimeBetween('-3 year', '-2 year'),
         ];
-    }
-
-    protected function autoIncrement()
-    {
-        for ($i = 0; $i < 1000; $i++) {
-            yield $i;
-        }
     }
 }

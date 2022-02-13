@@ -17,7 +17,7 @@ class Create extends Component
     protected $viewPath = 'blog::livewire.post.create';
     public Post $post;
     public $postCategories;
-    public $selectedBlogCategories = [];
+    public $selectedCategories = [];
     public $photo;
     public $tags = [];
 
@@ -30,7 +30,7 @@ class Create extends Component
         'post.meta_title' => '',
         'post.meta_description' => '',
         'post.meta_keyword' => '',
-        'selectedBlogCategories' => 'required|array',
+        'selectedCategories' => 'required|array',
         'photo' => 'required|image',
         'tags' => 'nullable|array',
     ];
@@ -49,11 +49,9 @@ class Create extends Component
 
     public function save()
     {
-        $this->validate($this->rules);
-        $maxPriority = Post::max('priority') ?? 1;
-        $this->post->priority = $maxPriority + 1;
+        $this->validate();
         $this->post->save();
-        $this->post->categories()->sync($this->selectedPostCategories);
+        $this->post->categories()->sync($this->selectedCategories);
         $this->post->attachTags($this->tags, get_class($this->post));
         if ($this->photo) {
             $this->post->addMedia($this->photo)->toMediaCollection('cover');

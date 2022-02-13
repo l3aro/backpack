@@ -9,9 +9,6 @@ use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
-/**
- * @property \Illuminate\Pagination\LengthAwarePaginator $postCategories
- */
 class Index extends Component
 {
     use LoadLayoutView;
@@ -22,12 +19,14 @@ class Index extends Component
     protected $viewPath = 'blog::livewire.post-category.index';
     protected $recordListName = 'postCategories';
 
-    public function getPostCategoriesProperty()
+    public function viewData(): array
     {
-        return $this->queryBuilder()
-            ->filter()
-            ->withCount('posts')
-            ->paginate($this->perPage);
+        return [
+            'postCategories' => $this->queryBuilder()
+                ->filter()
+                ->withCount('posts')
+                ->paginate($this->perPage),
+        ];
     }
 
     protected function getModel()

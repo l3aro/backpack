@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Pipeline\Pipeline;
 use Modules\Blog\Enums\BlogStatusEnum;
-use Modules\Core\Models\Scopes\PriorityScope;
+use Modules\Core\Models\Plugins\Orderable;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -18,11 +18,7 @@ class Post extends Model implements HasMedia
     use HasFactory;
     use HasTags;
     use InteractsWithMedia;
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new PriorityScope);
-    }
+    use Orderable;
 
     protected $table = "blog__posts";
 

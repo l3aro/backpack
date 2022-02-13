@@ -6,16 +6,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Pipeline\Pipeline;
-use Modules\Core\Models\Scopes\PriorityScope;
+use Modules\Core\Models\Plugins\Orderable;
 
 class Category extends Model
 {
     use HasFactory;
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new PriorityScope);
-    }
+    use Orderable;
 
     protected $table = "blog__categories";
 

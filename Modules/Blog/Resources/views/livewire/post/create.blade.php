@@ -20,7 +20,7 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Category" required>
-                    <x-core::field.select wire:model.defer="selectedBlogCategories" multiple>
+                    <x-core::field.select wire:model.defer="selectedCategories" multiple>
                         @foreach ($postCategories as $item)
                             <x-core::field.select.option :value="$item->id" :label="$item->title" />
                         @endforeach

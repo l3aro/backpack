@@ -22,7 +22,6 @@ class Create extends Component
         'postCategory.meta_title' => '',
         'postCategory.meta_description' => '',
         'postCategory.meta_keyword' => '',
-        'postCategory.priority' => '',
     ];
 
     public function mount()
@@ -38,8 +37,6 @@ class Create extends Component
     public function save()
     {
         $this->validate($this->rules);
-        $maxPriority = Category::max('priority') ?? 1;
-        $this->postCategory->priority = $maxPriority + 1;
         $this->postCategory->save();
         $postCategory = $this->postCategory;
         $this->postCategory = new Category;

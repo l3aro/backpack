@@ -101,7 +101,7 @@
                             #
                         </x-core::data-table.heading>
                     </x-slot>
-                    @forelse ($this->posts as $post)
+                    @forelse ($posts as $post)
                         <tr wire:key="post-{{ $post->id }}" wire:sortable.item="{{ $post->id }}">
                             <td wire:sortable.handle
                                 class="px-6 py-4 whitespace-nowrap text-sm text-gray-300 hover:text-gray-500 transition cursor-grab">
@@ -170,7 +170,7 @@
                     @endforelse
 
                     <x-slot name="pagination">
-                        {{ $this->posts->onEachSide(1)->links() }}
+                        {{ $posts->onEachSide(1)->links() }}
                     </x-slot>
                 </x-core::data-table>
             </div>

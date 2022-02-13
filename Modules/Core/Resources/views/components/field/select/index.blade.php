@@ -13,6 +13,10 @@
     'disabled' => false,
 ])
 
+@php
+$field ??= $attributes->wire('model')->value() ?? '';
+@endphp
+
 <div x-data="select({
     model:       @entangle($attributes->wire('model')),
     searchable:  @boolean($searchable),
@@ -90,8 +94,8 @@
                 "
                     x-ref="search" x-model="search"
                     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
-                    x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()" borderless shadowless right-icon="heroicon-o-search"
-                    placeholder="Search here" wire:key="select-search">
+                    x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()" borderless shadowless
+                    right-icon="heroicon-o-search" placeholder="Search here" wire:key="select-search">
                 </x-core::field.input>
             </div>
         @endif
@@ -105,3 +109,4 @@
         </ul>
     </div>
 </div>
+<x-core::field.session-error :field="$field" />

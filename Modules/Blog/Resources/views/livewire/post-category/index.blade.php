@@ -59,7 +59,7 @@
                             #
                         </x-core::data-table.heading>
                     </x-slot>
-                    @forelse ($this->postCategories as $postCategory)
+                    @forelse ($postCategories as $postCategory)
                         <tr wire:key="category-{{ $postCategory->id }}"
                             wire:sortable.item="{{ $postCategory->id }}">
                             <td wire:sortable.handle
@@ -125,7 +125,7 @@
                     @endforelse
 
                     <x-slot name="pagination">
-                        {{ $this->postCategories->onEachSide(1)->links() }}
+                        {{ $postCategories->onEachSide(1)->links() }}
                     </x-slot>
                 </x-core::data-table>
             </div>
