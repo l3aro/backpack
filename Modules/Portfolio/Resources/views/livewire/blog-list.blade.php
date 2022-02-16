@@ -78,7 +78,7 @@
                         <a href="javascript:void(0)"
                             wire:click.prevent="$set('filter.categories_slug', '{{ $item->slug }}')"
                             class="text-black/80">{{ Str::limit($item->title, 34) }}</a>
-                        <span>({{ $item->blogs_count }})</span>
+                        <span>({{ $item->posts_count }})</span>
                     </li>
                 @endforeach
             </ul>
