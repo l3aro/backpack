@@ -31,7 +31,7 @@ class Create extends Component
         'post.meta_description' => '',
         'post.meta_keyword' => '',
         'selectedCategories' => 'required|array',
-        'photo' => 'required|image',
+        'photo' => 'nullable|image',
         'tags' => 'nullable|array',
     ];
 
