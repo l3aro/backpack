@@ -5,16 +5,15 @@
             <div class="w-48 h-48 mx-auto my-0 rounded-full bg-cover mb-6"
                 style="background-image: url(assets/images/ava.jpg);"></div>
             <div class="desc">
-                <h2 class="text-2xl text-gray-400 font-light mb-6">Hello I'm</h2>
+                <h2 class="text-2xl text-gray-400 font-light mb-6">Hey I'm</h2>
                 <h1 class="font-black tracking-widest mb-6 text-4xl text-black/80">Dương "Baro" Gia Bảo</h1>
                 <p class="mb-4 font-medium text-lg">
-                    I am A Web Developer far far away, behind the word mountains, far
-                    from the countries Vokalia and Consonantia, there live the blind texts. Separated they
-                    live in Bookmarksgrove right at the coast of the Semantics.
+                    I am A Full-Stack Developer, I have a passion for creating and learning new things.<br />
+                    On this site, you can find my projects, my resume, and my contact information.<br />
+                    I also have a blog where I write about my life and my experiences.
                 </p>
                 <a href="#" class="text-neutral-400 border-b-2 border-b-neutral-400 text-lg">
                     More About Me
-                    <span class="ion-ios-arrow-forward"></span>
                 </a>
             </div>
         </div>
