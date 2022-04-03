@@ -1,0 +1,13 @@
+{
+    "name": "Aoe2Notebook",
+    "alias": "aoe2notebook",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Aoe2Notebook\\Providers\\Aoe2NotebookServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
