@@ -22,7 +22,7 @@ switch ($align) {
         createPopper($el, $refs.popper, {
             placement: '{{ $placement }}',
         })
-    ">
+    " {{ $attributes }}>
     <div x-on:click="open = ! open">
         {{ $trigger }}
     </div>

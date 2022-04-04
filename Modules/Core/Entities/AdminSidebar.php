@@ -34,7 +34,7 @@ class AdminSidebar
             ],
             [
                 self::PROPERTY_TYPE => self::TYPE_DIVIDER,
-                self::PROPERTY_TITLE => __('Resources'),
+                self::PROPERTY_TITLE => __('Blogs'),
             ],
             [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
@@ -51,15 +51,26 @@ class AdminSidebar
                 self::PROPERTY_ACTIVE => request()->routeIs('admin.blog.posts.*'),
             ],
             [
+                self::PROPERTY_TYPE => self::TYPE_DIVIDER,
+                self::PROPERTY_TITLE => __('Aoe2 Notebook'),
+            ],
+            [
+                self::PROPERTY_TYPE => self::TYPE_ITEM,
+                self::PROPERTY_TITLE => __('Civilizations'),
+                self::PROPERTY_LINK => route('admin.aoe2notebook.civilizations.index'),
+                self::PROPERTY_ICON => 'heroicon-o-user',
+                self::PROPERTY_ACTIVE => request()->routeIs('admin.aoe2notebook.civilizations.*'),
+            ],
+            [
+                self::PROPERTY_TYPE => self::TYPE_DIVIDER,
+                self::PROPERTY_TITLE => __('Settings'),
+            ],
+            [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
                 self::PROPERTY_TITLE => __('Users'),
                 self::PROPERTY_LINK => route('admin.users.index'),
                 self::PROPERTY_ICON => 'heroicon-o-user',
                 self::PROPERTY_ACTIVE => request()->routeIs('admin.users.*'),
-            ],
-            [
-                self::PROPERTY_TYPE => self::TYPE_DIVIDER,
-                self::PROPERTY_TITLE => __('Settings'),
             ],
             [
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
