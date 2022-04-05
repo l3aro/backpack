@@ -5,6 +5,7 @@ namespace Modules\Aoe2Notebook\Http\Livewire\Unit;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Modules\Aoe2Notebook\Enums\ExpansionEnums;
+use Modules\Aoe2Notebook\Enums\UnitTypeEnums;
 use Modules\Aoe2Notebook\Models\Unit;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
@@ -17,6 +18,7 @@ class Create extends Component
     public Unit $unit;
     public $photo;
     public $expansions = [];
+    public $unitTypes = [];
 
     protected $rules = [
         'unit.name' => 'required|string|max:100|unique:aoe2notebook_units,name',
@@ -41,10 +43,11 @@ class Create extends Component
         'photo' => 'image|max:2048',
     ];
 
-    public function mount(ExpansionEnums $expansionEnums)
+    public function mount(ExpansionEnums $expansionEnums, UnitTypeEnums $unitTypeEnums)
     {
         $this->unit = new Unit;
         $this->expansions = $expansionEnums->labels();
+        $this->unitTypes = $unitTypeEnums->labels();
     }
 
     public function save()

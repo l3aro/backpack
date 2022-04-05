@@ -15,28 +15,16 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Type">
-                    <x-core::field.input type="text" wire:model.defer="civilization.type" />
+                    <x-core::field.select wire:model.defer="civilization.type" multiple>
+                        @foreach ($unitTypes as $key => $item)
+                            <x-core::field.select.option :value="$key" :label="$item" />
+                        @endforeach
+                    </x-core::field.select>
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Avatar">
                     <x-core::field.image wire:model.defer="photo" :default="$photo?->temporaryUrl() ?? ''" />
                 </x-core::field.form-row>
-
-                {{-- <x-core::field.form-row title="Unique Units" required>
-                    <x-core::field.select wire:model.defer="selectedCategories" multiple>
-                        @foreach ($postCategories as $item)
-                            <x-core::field.select.option :value="$item->id" :label="$item->title" />
-                        @endforeach
-                    </x-core::field.select>
-                </x-core::field.form-row> --}}
-
-                {{-- <x-core::field.form-row title="Unique Technologies" required>
-                    <x-core::field.select wire:model.defer="selectedCategories" multiple>
-                        @foreach ($postCategories as $item)
-                            <x-core::field.select.option :value="$item->id" :label="$item->title" />
-                        @endforeach
-                    </x-core::field.select>
-                </x-core::field.form-row> --}}
 
                 <x-core::field.form-row title="Civilization">
                     <x-core::field.input type="text" wire:model.defer="civilization.team_bonus" />
