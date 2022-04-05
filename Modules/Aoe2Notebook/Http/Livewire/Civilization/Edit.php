@@ -12,6 +12,7 @@ class Edit extends Component
 
     protected $viewPath = 'aoe2notebook::livewire.civilization.edit';
     public Civilization $civilization;
+    public $photo;
 
     protected function rules()
     {
@@ -20,6 +21,7 @@ class Edit extends Component
             'civilization.expansion' => 'string|max:100',
             'civilization.army_type' => 'string|max:100',
             'civilization.team_bonus' => 'string|max:255',
+            'photo' => 'nullable|image|max:2048',
         ];
     }
 
@@ -32,6 +34,9 @@ class Edit extends Component
     {
         $this->validate();
         $this->civilization->save();
+        if ($this->photo) {
+            $this->civilization->addMedia($this->photo)->toMediaCollection();
+        }
         return $this->civilization;
     }
 

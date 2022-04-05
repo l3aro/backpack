@@ -3,11 +3,18 @@
 namespace Modules\Aoe2Notebook\Http\Livewire\Unit;
 
 use Livewire\Component;
+use Modules\Aoe2Notebook\Models\Unit;
+use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
 class Show extends Component
 {
-    public function render()
+    use LoadLayoutView;
+
+    protected $viewPath = 'aoe2notebook::livewire.unit.show';
+    public Unit $unit;
+
+    public function mount(Unit $unit)
     {
-        return view('aoe2notebook::livewire.unit.show');
+        $this->unit = $unit;
     }
 }

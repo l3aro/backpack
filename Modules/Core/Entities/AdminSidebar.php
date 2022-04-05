@@ -58,8 +58,15 @@ class AdminSidebar
                 self::PROPERTY_TYPE => self::TYPE_ITEM,
                 self::PROPERTY_TITLE => __('Civilizations'),
                 self::PROPERTY_LINK => route('admin.aoe2notebook.civilizations.index'),
-                self::PROPERTY_ICON => 'heroicon-o-user',
+                self::PROPERTY_ICON => 'heroicon-o-users',
                 self::PROPERTY_ACTIVE => request()->routeIs('admin.aoe2notebook.civilizations.*'),
+            ],
+            [
+                self::PROPERTY_TYPE => self::TYPE_ITEM,
+                self::PROPERTY_TITLE => __('Units'),
+                self::PROPERTY_LINK => route('admin.aoe2notebook.units.index'),
+                self::PROPERTY_ICON => 'heroicon-o-sparkles',
+                self::PROPERTY_ACTIVE => request()->routeIs('admin.aoe2notebook.units.*'),
             ],
             [
                 self::PROPERTY_TYPE => self::TYPE_DIVIDER,

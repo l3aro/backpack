@@ -23,7 +23,7 @@ class Create extends Component
         'civilization.expansion' => 'string|max:100',
         'civilization.army_type' => 'string|max:100',
         'civilization.team_bonus' => 'string|max:255',
-        'photo' => 'image|max:2048',
+        'photo' => 'nullable|image|max:2048',
     ];
 
     public function mount(ExpansionEnums $expansionEnums)
