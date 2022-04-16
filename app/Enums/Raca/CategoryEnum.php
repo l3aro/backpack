@@ -32,10 +32,9 @@ final class CategoryEnum extends BaseEnum
     const SSR_METAMON = 25;
     const DRAGON_FRUIT_DOG = 26;
 
-    public function __construct()
+    protected function defineLabels(): array
     {
-        parent::__construct();
-        $this->labels = [
+        return [
             self::OTHER => 'Other',
             self::TESLA => 'Tesla',
             self::DIAMOND_AVATAR => 'Diamond Avatar',

@@ -2,7 +2,7 @@
 
 namespace Modules\Core\Enums;
 
-class BaseEnum
+abstract class BaseEnum
 {
     protected $items;
     protected $labels;
@@ -10,8 +10,10 @@ class BaseEnum
     public function __construct()
     {
         $this->items = $this->getClassConstants();
-        $this->labels = [];
+        $this->labels = $this->defineLabels(); 
     }
+
+    abstract protected function defineLabels(): array;
 
     protected function getClassConstants()
     {

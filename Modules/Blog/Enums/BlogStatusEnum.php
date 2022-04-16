@@ -10,7 +10,7 @@ final class BlogStatusEnum extends BaseEnum
     const PUBLISHED = 'published';
     const SCHEDULED = 'scheduled';
 
-    public static function getLabels(): array
+    protected function defineLabels(): array
     {
         return [
             self::DRAFT => __('Draft'),

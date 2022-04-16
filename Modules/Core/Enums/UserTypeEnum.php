@@ -7,10 +7,9 @@ final class UserTypeEnum extends BaseEnum
     const ADMIN = 1;
     const USER = 0;
 
-    public function __construct()
+    protected function defineLabels(): array
     {
-        parent::__construct();
-        $this->labels = [
+        return [
             self::ADMIN => __('Admin'),
             self::USER => __('User'),
         ];

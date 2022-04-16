@@ -17,10 +17,9 @@ class UnitTypeEnums extends BaseEnum
     const SIEGE = 'SIEGE';
     const SUICIDE = 'SUICIDE';
 
-    public function __construct()
+    protected function defineLabels(): array
     {
-        parent::__construct();
-        $this->labels = [
+        return [
             self::ANIMAL => 'Animal',
             self::ARCHER => 'Archer',
             self::CAVALRY => 'Cavalry',

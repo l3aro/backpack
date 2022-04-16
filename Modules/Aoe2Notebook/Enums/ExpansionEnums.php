@@ -15,10 +15,9 @@ class ExpansionEnums extends BaseEnum
     const LORDS_OF_THE_WEST = 'LORDS_OF_THE_WEST';
     const DAWN_OF_THE_DUKES = 'DAWN_OF_THE_DUKES';
 
-    public function __construct()
+    protected function defineLabels(): array
     {
-        parent::__construct();
-        $this->labels = [
+        return [
             self::THE_AGE_OF_KING => 'The Age of Kings',
             self::THE_CONQUERORS => 'The Conquerors',
             self::THE_FORGOTTEN => 'The Forgotten',
