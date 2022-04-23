@@ -17,6 +17,12 @@ class Unit extends Model implements HasMedia
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'training_cost' => 'array',
+        'upgrade_cost' => 'array',
+        'type' => 'array',
+    ];
+
     public function scopeFilter(Builder $query)
     {
         return app(Pipeline::class)
