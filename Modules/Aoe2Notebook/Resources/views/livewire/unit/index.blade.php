@@ -65,7 +65,7 @@
                                 {{ $unit->name }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $unit->type }}
+                                {{ $unit->type_label }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex flex-col">
                                 {{ $unit->trained_at }}

@@ -6,7 +6,7 @@
             <x-heroicon-o-pencil-alt class="w-5 h-5" />
         </a>
     </div>
-    <div class="bg-white shadow rounded mb-6 py-3 px-6">
+    <div class="bg-white shadow rounded mb-6 py-3 px-6 divide-y">
         <x-core::visual.row :title="__('Name')">
             {{ $user->name }}
         </x-core::visual.row>

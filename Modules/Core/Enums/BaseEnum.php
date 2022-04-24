@@ -40,4 +40,9 @@ abstract class BaseEnum
     {
         return $this->labels[$key];
     }
+
+    public static function getLabel($key)
+    {
+        return (new static)->label($key);
+    }
 }

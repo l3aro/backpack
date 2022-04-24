@@ -3,8 +3,12 @@
 namespace Modules\Aoe2Notebook\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pipeline\Pipeline;
+use Modules\Aoe2Notebook\Enums\AgeEnums;
+use Modules\Aoe2Notebook\Enums\ExpansionEnums;
+use Modules\Aoe2Notebook\Enums\UnitTypeEnums;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -54,5 +58,29 @@ class Unit extends Model implements HasMedia
                     ->crop(Manipulations::CROP_CENTER, 1200, 1200)
                     ->optimize();
             });
+    }
+
+    protected function typeLabel(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => collect($this->type)
+                ->sort()
+                ->map(fn ($type) => UnitTypeEnums::getLabel($type))
+                ->implode(' ')
+        );
+    }
+
+    protected function expansionLabel(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => ExpansionEnums::getLabel($this->expansion)
+        );
+    }
+
+    protected function ageLabel(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => AgeEnums::getLabel($this->age)
+        );
     }
 }

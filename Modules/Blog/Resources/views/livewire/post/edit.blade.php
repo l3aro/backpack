@@ -1,7 +1,7 @@
 <div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
     <div class="bg-white rounded shadow px-8 py-6">
         <form class="space-y-8 divide-y divide-gray-200">
-            <x-core::field.form-section :title="__('Create')" :description="__('Add new post.')">
+            <x-core::field.form-section :title="__('Edit')" :description="__('Update post.')">
                 <x-core::field.form-row title="Title" required>
                     <x-core::field.input type="text" wire:model.debounce.500ms="post.title" />
                 </x-core::field.form-row>

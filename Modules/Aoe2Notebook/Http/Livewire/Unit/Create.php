@@ -35,7 +35,6 @@ class Create extends Component
         'unit.age' => 'nullable|string|max:50',
         'unit.training_time' => 'nullable|numeric',
         'unit.training_cost' => 'nullable|array',
-        // 'unit.training_cost.*' => 'nullable|numeric',
         'unit.hit_points' => 'nullable|numeric',
         'unit.attack' => 'nullable|numeric',
         'unit.rate_of_fire' => 'nullable|numeric',
@@ -59,8 +58,12 @@ class Create extends Component
         'upgradeCosts.*' => 'nullable|numeric',
     ];
 
-    public function mount(ExpansionEnums $expansionEnums, UnitTypeEnums $unitTypeEnums, ResourceEnums $resourceEnums, AgeEnums $ageEnums)
-    {
+    public function mount(
+        ExpansionEnums $expansionEnums,
+        UnitTypeEnums $unitTypeEnums,
+        ResourceEnums $resourceEnums,
+        AgeEnums $ageEnums
+    ) {
         $this->resetState();
         $this->expansions = $expansionEnums->labels();
         $this->ages = $ageEnums->labels();
@@ -101,6 +104,8 @@ class Create extends Component
     public function saveAndContinue()
     {
         $this->save();
-        $this->dispatchBrowserEvent('success', ['message' => __('The unit has been created successfully.')]);
+        $this->dispatchBrowserEvent('success', [
+            'message' => __('The unit has been created successfully.')
+        ]);
     }
 }

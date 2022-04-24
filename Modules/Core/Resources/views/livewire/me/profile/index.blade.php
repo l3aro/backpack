@@ -5,7 +5,7 @@
             <x-heroicon-o-pencil-alt class="w-5 h-5" />
         </a>
     </div>
-    <div class="bg-white shadow rounded mb-6 py-3 px-6">
+    <div class="bg-white shadow rounded mb-6 py-3 px-6 divide-y">
         <div class="flex border-b border-40 -mx-6 px-6">
             <div class="w-1/4 py-4">
                 <h4 class="font-normal text-80">Name</h4>
