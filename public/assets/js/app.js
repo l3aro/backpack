@@ -249,6 +249,7 @@ __webpack_require__(/*! ./bootstrap */ "./Modules/Core/Resources/assets/js/boots
 Alpine.data('select', _alpine_components_select__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Alpine.start();
 AOS.init();
+Prism.highlightAll();
 
 /***/ }),
 
@@ -261,11 +262,11 @@ AOS.init();
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
-/* harmony import */ var _alpinejs_trap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @alpinejs/trap */ "./node_modules/@alpinejs/trap/dist/module.esm.js");
+/* harmony import */ var _alpinejs_focus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @alpinejs/focus */ "./node_modules/@alpinejs/focus/dist/module.esm.js");
 /* harmony import */ var _alpinejs_collapse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @alpinejs/collapse */ "./node_modules/@alpinejs/collapse/dist/module.esm.js");
 /* harmony import */ var flatpickr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flatpickr */ "./node_modules/flatpickr/dist/esm/index.js");
 /* harmony import */ var flatpickr_dist_flatpickr_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flatpickr/dist/flatpickr.min.css */ "./node_modules/flatpickr/dist/flatpickr.min.css");
-/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/popper.js");
+/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/popper.js");
 /* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/fancybox.esm.js");
 /* harmony import */ var _fancyapps_ui_dist_fancybox_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fancyapps/ui/dist/fancybox.css */ "./node_modules/@fancyapps/ui/dist/fancybox.css");
 /* harmony import */ var aos__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! aos */ "./node_modules/aos/dist/aos.js");
@@ -275,6 +276,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var marked__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! marked */ "./node_modules/marked/lib/marked.esm.js");
 /* harmony import */ var _yaireo_tagify__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @yaireo/tagify */ "./node_modules/@yaireo/tagify/dist/tagify.min.js");
 /* harmony import */ var _yaireo_tagify__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_yaireo_tagify__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! prismjs */ "./node_modules/prismjs/prism.js");
+/* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(prismjs__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! prismjs/components/prism-markup-templating */ "./node_modules/prismjs/components/prism-markup-templating.js");
+/* harmony import */ var prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_markup_templating__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! prismjs/components/prism-php */ "./node_modules/prismjs/components/prism-php.js");
+/* harmony import */ var prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_php__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! prismjs/components/prism-bash */ "./node_modules/prismjs/components/prism-bash.js");
+/* harmony import */ var prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(prismjs_components_prism_bash__WEBPACK_IMPORTED_MODULE_14__);
 
 
 
@@ -298,16 +307,24 @@ __webpack_require__(/*! simplemde/dist/simplemde.min.css */ "./node_modules/simp
 
 __webpack_require__(/*! @yaireo/tagify/dist/tagify.css */ "./node_modules/@yaireo/tagify/dist/tagify.css");
 
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_trap__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+__webpack_require__(/*! prismjs/themes/prism.css */ "./node_modules/prismjs/themes/prism.css");
+
+
+
+
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_focus__WEBPACK_IMPORTED_MODULE_1__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_collapse__WEBPACK_IMPORTED_MODULE_2__["default"]);
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.flatpickr = flatpickr__WEBPACK_IMPORTED_MODULE_3__["default"];
-window.createPopper = _popperjs_core__WEBPACK_IMPORTED_MODULE_11__.createPopper;
+window.createPopper = _popperjs_core__WEBPACK_IMPORTED_MODULE_15__.createPopper;
 window.Fancybox = _fancyapps_ui__WEBPACK_IMPORTED_MODULE_5__.Fancybox;
 window.SimpleMDE = (simplemde__WEBPACK_IMPORTED_MODULE_8___default());
 window.AOS = (aos__WEBPACK_IMPORTED_MODULE_7___default());
 window.markdownParse = marked__WEBPACK_IMPORTED_MODULE_9__.parse;
 window.Tagify = (_yaireo_tagify__WEBPACK_IMPORTED_MODULE_10___default());
+window.Prism = (prismjs__WEBPACK_IMPORTED_MODULE_11___default());
 
 /***/ }),
 

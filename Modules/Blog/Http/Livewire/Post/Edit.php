@@ -27,7 +27,7 @@ class Edit extends Component
             'post.title' => 'required|string|max:255',
             'post.description' => 'string',
             'post.content' => 'required|string',
-            'post.slug' => 'required|string|max:255|unique:blogs,slug,' . $this->post->id,
+            'post.slug' => 'required|string|max:256|unique:blog__posts,slug,' . $this->post->id,
             'post.published_at' => 'nullable|date',
             'post.meta_title' => '',
             'post.meta_description' => '',

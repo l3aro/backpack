@@ -3,6 +3,7 @@
 namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Pipeline\Pipeline;
@@ -98,18 +99,28 @@ class Post extends Model implements HasMedia
         return $query;
     }
 
-    public function nextPost(): ?self
+    protected function nextPost(): Attribute
     {
-        return self::query()->published()
-            ->where('published_at', '>', $this->published_at)
-            ->first();
+        return Attribute::make(
+            set: fn () => self::query()
+                ->published()
+                ->where('published_at', '>', $this->published_at)
+                ->orderBy('published_at', 'desc')
+                ->select('id', 'title', 'slug')
+                ->first(),
+        );
     }
 
-    public function previousPost(): ?self
+    protected function previousPost(): Attribute
     {
-        return self::query()->published()
-            ->where('published_at', '<', $this->published_at)
-            ->first();
+        return Attribute::make(
+            set: fn () => self::query()
+                ->published()
+                ->where('published_at', '<', $this->published_at)
+                ->orderBy('published_at', 'asc')
+                ->select('id', 'title', 'slug')
+                ->first(),
+        );
     }
 
     public function getStatusAttribute()

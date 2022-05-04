@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs'
-import trap from '@alpinejs/trap'
+import focus from '@alpinejs/focus'
 import collapse from '@alpinejs/collapse'
 
 import flatpickr from 'flatpickr'
@@ -23,7 +23,13 @@ import { parse } from 'marked'
 import Tagify from '@yaireo/tagify'
 require('@yaireo/tagify/dist/tagify.css')
 
-Alpine.plugin(trap)
+import Prism from 'prismjs'
+require('prismjs/themes/prism.css')
+import 'prismjs/components/prism-markup-templating'
+import 'prismjs/components/prism-php'
+import 'prismjs/components/prism-bash'
+
+Alpine.plugin(focus)
 Alpine.plugin(collapse)
 window.Alpine = Alpine
 window.flatpickr = flatpickr
@@ -33,3 +39,4 @@ window.SimpleMDE = SimpleMDE
 window.AOS = AOS
 window.markdownParse = parse
 window.Tagify = Tagify
+window.Prism = Prism

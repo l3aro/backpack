@@ -5,3 +5,4 @@ Alpine.data('select', select)
 Alpine.start()
 
 AOS.init()
+Prism.highlightAll()
