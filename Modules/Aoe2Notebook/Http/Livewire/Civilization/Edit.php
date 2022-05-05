@@ -3,6 +3,7 @@
 namespace Modules\Aoe2Notebook\Http\Livewire\Civilization;
 
 use Livewire\Component;
+use Modules\Aoe2Notebook\Enums\ExpansionEnum;
 use Modules\Aoe2Notebook\Models\Civilization;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
@@ -50,5 +51,10 @@ class Edit extends Component
     {
         $this->save();
         $this->dispatchBrowserEvent('success', ['message' => __('The civilization has been updated successfully.')]);
+    }
+
+    public function getExpansionEnumLabelsProperty()
+    {
+        return ExpansionEnum::labels();
     }
 }

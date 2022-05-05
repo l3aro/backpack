@@ -65,7 +65,7 @@
                                 {{ $civilization->name }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $civilization->expansion }}
+                                {{ $civilization->expansion->label() }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex flex-col">
                                 {{ $civilization->army_type }}

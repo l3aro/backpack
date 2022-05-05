@@ -10,7 +10,7 @@
             {{ $unit->name }}
         </x-core::visual.row>
         <x-core::visual.row :title="__('Expansion')">
-            {{ $unit->expansion_label }}
+            {{ $unit->expansion->label() }}
         </x-core::visual.row>
         <x-core::visual.row :title="__('Type')">
             {{ $unit->type_label }}
@@ -19,7 +19,7 @@
             {{ $unit->civilization }}
         </x-core::visual.row>
         <x-core::visual.row :title="__('Age')">
-            {{ $unit->age_label }}
+            {{ $unit->age->label() }}
         </x-core::visual.row>
         <x-core::visual.row :title="__('Description')" collapse>
             <x-core::visual.markdown :content="$unit->description" />
@@ -30,7 +30,7 @@
         <x-core::visual.row :title="__('Training time')">
             {{ $unit->training_time }}
         </x-core::visual.row>
-        @foreach ($resources as $resourceKey => $resourceLabel)
+        @foreach ($this->resourceEnumLabels as $resourceKey => $resourceLabel)
             <x-core::visual.row :title="'Cost ' . $resourceLabel">
                 {{ $unit->training_cost[$resourceKey] }}
             </x-core::visual.row>
@@ -41,7 +41,7 @@
         <x-core::visual.row :title="__('Hit points')">
             {{ $unit->hit_points }}
         </x-core::visual.row>
-        <x-core::visual.row :title="__('attack')">
+        <x-core::visual.row :title="__('Attack')">
             {{ $unit->attack }}
         </x-core::visual.row>
         <x-core::visual.row :title="__('Rate of fire')">
@@ -83,7 +83,7 @@
         <x-core::visual.row :title="__('Upgrade to')">
             {{ $unit->upgrade_to_id }}
         </x-core::visual.row>
-        @foreach ($resources as $resourceKey => $resourceLabel)
+        @foreach ($this->resourceEnumLabels as $resourceKey => $resourceLabel)
             <x-core::visual.row :title="'Upgrade cost ' . $resourceLabel">
                 {{ $unit->upgrade_cost[$resourceKey] }}
             </x-core::visual.row>

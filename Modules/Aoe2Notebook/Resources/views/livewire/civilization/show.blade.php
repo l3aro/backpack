@@ -10,7 +10,7 @@
             {{ $civilization->name }}
         </x-core::visual.row>
         <x-core::visual.row :title="__('Introduced in')">
-            {{ $this->expansionEnums->label($civilization->expansion) }}
+            {{ $civilization->expansion->label() }}
         </x-core::visual.row>
         <x-core::visual.row :title="__('Army Type')">
             {{ $civilization->army_type }}

@@ -17,9 +17,4 @@ class Show extends Component
     {
         $this->civilization = $civilization;
     }
-
-    public function getExpansionEnumsProperty()
-    {
-        return app(\Modules\Aoe2Notebook\Enums\ExpansionEnums::class);
-    }
 }

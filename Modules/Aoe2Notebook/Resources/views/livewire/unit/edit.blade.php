@@ -8,7 +8,7 @@
 
                 <x-core::field.form-row title="Introduced in">
                     <x-core::field.select wire:model.defer="unit.expansion">
-                        @foreach ($expansions as $key => $item)
+                        @foreach ($this->expansionEnumLabels as $key => $item)
                             <x-core::field.select.option :value="$key" :label="$item" />
                         @endforeach
                     </x-core::field.select>
@@ -32,7 +32,7 @@
 
                 <x-core::field.form-row title="Age">
                     <x-core::field.select wire:model.defer="unit.age">
-                        @foreach ($ages as $key => $item)
+                        @foreach ($this->ageEnumLabels as $key => $item)
                             <x-core::field.select.option :value="$key" :label="$item" />
                         @endforeach
                     </x-core::field.select>
@@ -52,7 +52,7 @@
                     </x-core::field.select> --}}
                 </x-core::field.form-row>
 
-                @foreach ($resources as $resourceKey => $resourceLabel)
+                @foreach ($this->resourceEnumLabels as $resourceKey => $resourceLabel)
                     <x-core::field.form-row :title="'Cost ' . $resourceLabel">
                         <x-core::field.input type="number" wire:model.defer="trainingCosts.{{ $resourceKey }}" />
                     </x-core::field.form-row>
@@ -130,7 +130,7 @@
                     {{-- <x-core::field.input type="number" wire:model.defer="unit.line_of_sight" /> --}}
                 </x-core::field.form-row>
 
-                @foreach ($resources as $resourceKey => $resourceLabel)
+                @foreach ($this->resourceEnumLabels as $resourceKey => $resourceLabel)
                     <x-core::field.form-row :title="'Upgrade cost ' . $resourceLabel">
                         <x-core::field.input type="number" wire:model.defer="upgradeCosts.{{ $resourceKey }}" />
                     </x-core::field.form-row>

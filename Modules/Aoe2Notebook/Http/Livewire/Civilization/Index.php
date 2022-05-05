@@ -3,7 +3,6 @@
 namespace Modules\Aoe2Notebook\Http\Livewire\Civilization;
 
 use Livewire\Component;
-use Modules\Aoe2Notebook\Enums\ExpansionEnums;
 use Modules\Aoe2Notebook\Models\Civilization;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
@@ -29,10 +28,5 @@ class Index extends Component
     protected function getModel()
     {
         return Civilization::class;
-    }
-
-    public function getExpansionEnumsProperty()
-    {
-        return app(ExpansionEnums::class);
     }
 }

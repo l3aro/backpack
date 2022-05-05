@@ -5,6 +5,7 @@ namespace Modules\Aoe2Notebook\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pipeline\Pipeline;
+use Modules\Aoe2Notebook\Enums\ExpansionEnum;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -16,6 +17,10 @@ class Civilization extends Model implements HasMedia
     protected $table = "aoe2notebook_civilizations";
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'expansion' => ExpansionEnum::class,
+    ];
 
     public function scopeFilter(Builder $query)
     {

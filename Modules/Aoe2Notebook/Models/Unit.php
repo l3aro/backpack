@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pipeline\Pipeline;
-use Modules\Aoe2Notebook\Enums\AgeEnums;
-use Modules\Aoe2Notebook\Enums\ExpansionEnums;
-use Modules\Aoe2Notebook\Enums\UnitTypeEnums;
+use Modules\Aoe2Notebook\Enums\AgeEnum;
+use Modules\Aoe2Notebook\Enums\ExpansionEnum;
+use Modules\Aoe2Notebook\Enums\UnitTypeEnum;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -25,6 +25,8 @@ class Unit extends Model implements HasMedia
         'training_cost' => 'array',
         'upgrade_cost' => 'array',
         'type' => 'array',
+        'expansion' => ExpansionEnum::class,
+        'age' => AgeEnum::class,
     ];
 
     public function scopeFilter(Builder $query)
@@ -65,22 +67,8 @@ class Unit extends Model implements HasMedia
         return Attribute::make(
             get: fn () => collect($this->type)
                 ->sort()
-                ->map(fn ($type) => UnitTypeEnums::getLabel($type))
+                ->map(fn ($type) => UnitTypeEnum::tryFrom($type)->label())
                 ->implode(' ')
-        );
-    }
-
-    protected function expansionLabel(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => ExpansionEnums::getLabel($this->expansion)
-        );
-    }
-
-    protected function ageLabel(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => AgeEnums::getLabel($this->age)
         );
     }
 }

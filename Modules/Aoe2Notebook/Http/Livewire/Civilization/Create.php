@@ -4,7 +4,7 @@ namespace Modules\Aoe2Notebook\Http\Livewire\Civilization;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Modules\Aoe2Notebook\Enums\ExpansionEnums;
+use Modules\Aoe2Notebook\Enums\ExpansionEnum;
 use Modules\Aoe2Notebook\Models\Civilization;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
@@ -16,7 +16,6 @@ class Create extends Component
     protected $viewPath = 'aoe2notebook::livewire.civilization.create';
     public Civilization $civilization;
     public $photo;
-    public $expansions = [];
 
     protected $rules = [
         'civilization.name' => 'required|string|max:100|unique:aoe2notebook_civilizations,name',
@@ -26,10 +25,9 @@ class Create extends Component
         'photo' => 'nullable|image|max:2048',
     ];
 
-    public function mount(ExpansionEnums $expansionEnums)
+    public function mount()
     {
         $this->civilization = new Civilization;
-        $this->expansions = $expansionEnums->labels();
     }
 
     public function save()
@@ -54,5 +52,10 @@ class Create extends Component
     {
         $this->save();
         $this->dispatchBrowserEvent('success', ['message' => __('The civilization has been created successfully.')]);
+    }
+
+    public function getExpansionEnumLabelsProperty()
+    {
+        return ExpansionEnum::labels();
     }
 }

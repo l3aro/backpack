@@ -3,7 +3,7 @@
 namespace Modules\Aoe2Notebook\Http\Livewire\Unit;
 
 use Livewire\Component;
-use Modules\Aoe2Notebook\Enums\ResourceEnums;
+use Modules\Aoe2Notebook\Enums\ResourceEnum;
 use Modules\Aoe2Notebook\Models\Unit;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
@@ -15,9 +15,13 @@ class Show extends Component
     public Unit $unit;
     public $resources = [];
 
-    public function mount(Unit $unit, ResourceEnums $resourceEnums)
+    public function mount(Unit $unit)
     {
         $this->unit = $unit;
-        $this->resources = $resourceEnums->labels();
+    }
+
+    public function getResourceEnumLabelsProperty()
+    {
+        return ResourceEnum::labels();
     }
 }

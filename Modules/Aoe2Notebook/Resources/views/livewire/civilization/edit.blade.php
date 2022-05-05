@@ -7,7 +7,11 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Introduced in">
-                    <x-core::field.input type="text" wire:model.defer="civilization.expansion" />
+                    <x-core::field.select wire:model.defer="civilization.expansion">
+                        @foreach ($this->expansionEnumLabels as $key => $item)
+                            <x-core::field.select.option :value="$key" :label="$item" />
+                        @endforeach
+                    </x-core::field.select>
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Army Type">

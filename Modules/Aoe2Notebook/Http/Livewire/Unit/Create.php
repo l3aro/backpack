@@ -4,10 +4,10 @@ namespace Modules\Aoe2Notebook\Http\Livewire\Unit;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Modules\Aoe2Notebook\Enums\AgeEnums;
-use Modules\Aoe2Notebook\Enums\ExpansionEnums;
-use Modules\Aoe2Notebook\Enums\ResourceEnums;
-use Modules\Aoe2Notebook\Enums\UnitTypeEnums;
+use Modules\Aoe2Notebook\Enums\AgeEnum;
+use Modules\Aoe2Notebook\Enums\ExpansionEnum;
+use Modules\Aoe2Notebook\Enums\ResourceEnum;
+use Modules\Aoe2Notebook\Enums\UnitTypeEnum;
 use Modules\Aoe2Notebook\Models\Unit;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
@@ -19,10 +19,6 @@ class Create extends Component
     protected $viewPath = 'aoe2notebook::livewire.unit.create';
     public Unit $unit;
     public $photo;
-    public $expansions = [];
-    public $ages = [];
-    public $unitTypes = [];
-    public $resources = [];
     public $trainingCosts;
     public $upgradeCosts;
 
@@ -58,17 +54,8 @@ class Create extends Component
         'upgradeCosts.*' => 'nullable|numeric',
     ];
 
-    public function mount(
-        ExpansionEnums $expansionEnums,
-        UnitTypeEnums $unitTypeEnums,
-        ResourceEnums $resourceEnums,
-        AgeEnums $ageEnums
-    ) {
+    public function mount() {
         $this->resetState();
-        $this->expansions = $expansionEnums->labels();
-        $this->ages = $ageEnums->labels();
-        $this->unitTypes = $unitTypeEnums->labels();
-        $this->resources = $resourceEnums->labels();
     }
 
     private function resetState()
@@ -107,5 +94,25 @@ class Create extends Component
         $this->dispatchBrowserEvent('success', [
             'message' => __('The unit has been created successfully.')
         ]);
+    }
+
+    public function getAgeEnumLabelsProperty()
+    {
+        return AgeEnum::labels();
+    }
+
+    public function getExpansionEnumLabelsProperty()
+    {
+        return ExpansionEnum::labels();
+    }
+
+    public function getUnitTypeEnumLabelsProperty()
+    {
+        return UnitTypeEnum::labels();
+    }
+
+    public function getResourceEnumLabelsProperty()
+    {
+        return ResourceEnum::labels();
     }
 }

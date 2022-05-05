@@ -8,7 +8,7 @@
 
                 <x-core::field.form-row title="Introduced in">
                     <x-core::field.select wire:model.defer="civilization.expansion">
-                        @foreach ($expansions as $key => $item)
+                        @foreach ($this->expansionEnumLabels as $key => $item)
                             <x-core::field.select.option :value="$key" :label="$item" />
                         @endforeach
                     </x-core::field.select>
