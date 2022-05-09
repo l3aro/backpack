@@ -4,6 +4,9 @@ namespace Modules\Aoe2Notebook\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
+use Modules\Aoe2Notebook\Enums\ExpansionEnum;
+use Modules\Aoe2Notebook\Models\Civilization;
 
 class CreateCivilizationRequest extends FormRequest
 {
@@ -14,17 +17,7 @@ class CreateCivilizationRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => [
-                'required',
-                'string',
-                'max:100',
-                Rule::unique('aoe2notebook_civilizations', 'name'),
-            ],
-            'expansion' => 'string|max:100',
-            'army_type' => 'string|max:100',
-            'team_bonus' => 'string|max:255',
-        ];
+        return static::baseRules($this->state);
     }
 
     /**
@@ -35,5 +28,20 @@ class CreateCivilizationRequest extends FormRequest
     public function authorize()
     {
         return true;
+    }
+
+    public static function baseRules(): array
+    {
+        return [
+            'name' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique((new Civilization())->getTable(), 'name'),
+            ],
+            'expansion' => new Enum(ExpansionEnum::class),
+            'army_type' => 'string|max:100',
+            'team_bonus' => 'string|max:255',
+        ];
     }
 }

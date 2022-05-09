@@ -4,10 +4,12 @@ namespace Modules\Aoe2Notebook\Http\Livewire\Unit;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use MichaelRubel\LoopFunctions\Traits\LoopFunctions;
 use Modules\Aoe2Notebook\Enums\AgeEnum;
 use Modules\Aoe2Notebook\Enums\ExpansionEnum;
 use Modules\Aoe2Notebook\Enums\ResourceEnum;
 use Modules\Aoe2Notebook\Enums\UnitTypeEnum;
+use Modules\Aoe2Notebook\Http\Requests\CreateUnitRequest;
 use Modules\Aoe2Notebook\Models\Unit;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
@@ -15,6 +17,7 @@ class Create extends Component
 {
     use LoadLayoutView;
     use WithFileUploads;
+    use LoopFunctions;
 
     protected $viewPath = 'aoe2notebook::livewire.unit.create';
     public Unit $unit;
@@ -22,45 +25,27 @@ class Create extends Component
     public $trainingCosts;
     public $upgradeCosts;
 
-    protected $rules = [
-        'unit.name' => 'required|string|max:100|unique:aoe2notebook_units,name',
-        'unit.expansion' => 'nullable|string|max:100',
-        'unit.type' => 'nullable|array|max:100',
-        'unit.civilization' => 'nullable|string|max:100',
-        'unit.description' => 'nullable|string|max:255',
-        'unit.age' => 'nullable|string|max:50',
-        'unit.training_time' => 'nullable|numeric',
-        'unit.training_cost' => 'nullable|array',
-        'unit.hit_points' => 'nullable|numeric',
-        'unit.attack' => 'nullable|numeric',
-        'unit.rate_of_fire' => 'nullable|numeric',
-        'unit.attack_delay' => 'nullable|numeric',
-        'unit.frame_delay' => 'nullable|numeric',
-        'unit.minimum_range' => 'nullable|numeric',
-        'unit.range' => 'nullable|numeric',
-        'unit.accuracy' => 'nullable|numeric',
-        'unit.projectile_speed' => 'nullable|numeric',
-        'unit.melee_armor' => 'nullable|numeric',
-        'unit.pierce_armor' => 'nullable|numeric',
-        'unit.speed' => 'nullable|numeric',
-        'unit.line_of_sight' => 'nullable|numeric',
-        'unit.upgrade_from_id' => 'nullable|numeric',
-        'unit.upgrade_to_id' => 'nullable|numeric',
-        'unit.upgrade_time' => 'nullable|numeric',
-        'photo' => 'nullable|image|max:2048',
-        'trainingCosts' => 'nullable|array',
-        'trainingCosts.*' => 'nullable|numeric',
-        'upgradeCosts' => 'nullable|array',
-        'upgradeCosts.*' => 'nullable|numeric',
-    ];
+    protected function rules(): array
+    {
+        return CreateUnitRequest::baseRules();
+    }
 
-    public function mount() {
+    public function mount()
+    {
         $this->resetState();
     }
 
     private function resetState()
     {
-        $this->unit = new Unit;
+        $unit = new Unit();
+        $this->propertiesFrom($unit);
+        $this->fill($unit);
+        $this->expansion = ($this->expansion instanceof ExpansionEnum)
+            ? $this->expansion->value
+            : $this->expansion;
+        $this->age = ($this->age instanceof AgeEnum)
+            ? $this->age->value
+            : $this->age;
         $this->photo = null;
         $this->trainingCosts = [];
         $this->upgradeCosts = [];
@@ -68,16 +53,16 @@ class Create extends Component
 
     public function save()
     {
-        $this->validate();
-        $this->unit->forceFill([
+        $validated = $this->validate();
+        $unit = new Unit();
+        $unit->fill(array_merge($validated, [
             'training_cost' => $this->trainingCosts,
             'upgrade_cost' => $this->upgradeCosts,
-        ]);
-        $this->unit->save();
+        ]));
+        $unit->save();
         if ($this->photo) {
-            $this->unit->addMedia($this->photo)->toMediaCollection();
+            $unit->addMedia($this->photo)->toMediaCollection();
         }
-        $unit = $this->unit;
         $this->resetState();
         return $unit;
     }

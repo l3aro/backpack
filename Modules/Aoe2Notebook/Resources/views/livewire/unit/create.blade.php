@@ -3,11 +3,11 @@
         <form class="space-y-8 divide-y divide-gray-200 gap-y-8">
             <x-core::field.form-section :title="__('Create')" :description="__('Add new unit.')">
                 <x-core::field.form-row title="Name" required>
-                    <x-core::field.input type="text" wire:model.defer="unit.name" />
+                    <x-core::field.input type="text" wire:model.defer="name" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Introduced in">
-                    <x-core::field.select wire:model.defer="unit.expansion">
+                    <x-core::field.select wire:model.defer="expansion">
                         @foreach ($this->expansionEnumLabels as $key => $item)
                             <x-core::field.select.option :value="$key" :label="$item" />
                         @endforeach
@@ -15,7 +15,7 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Type">
-                    <x-core::field.select wire:model.defer="unit.type" multiple>
+                    <x-core::field.select wire:model.defer="type" multiple>
                         @foreach ($this->unitTypeEnumLabels as $key => $item)
                             <x-core::field.select.option :value="$key" :label="$item" />
                         @endforeach
@@ -27,11 +27,11 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Civilization">
-                    <x-core::field.input type="text" wire:model.defer="unit.civilization" />
+                    <x-core::field.input type="text" wire:model.defer="civilization" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Age">
-                    <x-core::field.select wire:model.defer="unit.age">
+                    <x-core::field.select wire:model.defer="age">
                         @foreach ($this->ageEnumLabels as $key => $item)
                             <x-core::field.select.option :value="$key" :label="$item" />
                         @endforeach
@@ -39,13 +39,13 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Description">
-                    <x-core::field.input type="text" wire:model.defer="unit.description" />
+                    <x-core::field.input type="text" wire:model.defer="description" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 
             <x-core::field.form-section :title="__('Training')" :description="__('Training Information.')" class="pt-5">
                 <x-core::field.form-row title="Trained at">
-                    {{-- <x-core::field.select wire:model.defer="unit.expansion">
+                    {{-- <x-core::field.select wire:model.defer="expansion">
                         @foreach ($expansions as $key => $item)
                             <x-core::field.select.option :value="$key" :label="$item" />
                         @endforeach
@@ -59,75 +59,75 @@
                 @endforeach
 
                 <x-core::field.form-row title="Training time (second)">
-                    <x-core::field.input type="number" wire:model.defer="unit.training_time" />
+                    <x-core::field.input type="number" wire:model.defer="training_time" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 
             <x-core::field.form-section :title="__('Statistics')" :description="__('Statistics Information.')" class="pt-5">
                 <x-core::field.form-row title="Hit points">
-                    <x-core::field.input type="number" wire:model.defer="unit.hit_points" />
+                    <x-core::field.input type="number" wire:model.defer="hit_points" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Attack">
-                    <x-core::field.input type="number" wire:model.defer="unit.attack" />
+                    <x-core::field.input type="number" wire:model.defer="attack" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Attack bonuses">
-                    <x-core::field.input type="number" wire:model.defer="unit.hit_points" />
+                    <x-core::field.input type="number" wire:model.defer="hit_points" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Rate of Fire">
-                    <x-core::field.input type="number" wire:model.defer="unit.rate_of_fire" />
+                    <x-core::field.input type="number" wire:model.defer="rate_of_fire" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Frame delay">
-                    <x-core::field.input type="number" wire:model.defer="unit.frame_delay" />
+                    <x-core::field.input type="number" wire:model.defer="frame_delay" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Attack delay">
-                    <x-core::field.input type="number" wire:model.defer="unit.attack_delay" />
+                    <x-core::field.input type="number" wire:model.defer="attack_delay" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Minimum range">
-                    <x-core::field.input type="number" wire:model.defer="unit.minimum_range" />
+                    <x-core::field.input type="number" wire:model.defer="minimum_range" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Range">
-                    <x-core::field.input type="number" wire:model.defer="unit.range" />
+                    <x-core::field.input type="number" wire:model.defer="range" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Accuracy">
-                    <x-core::field.input type="number" wire:model.defer="unit.accuracy" />
+                    <x-core::field.input type="number" wire:model.defer="accuracy" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Projectile speed">
-                    <x-core::field.input type="number" wire:model.defer="unit.projectile_speed" />
+                    <x-core::field.input type="number" wire:model.defer="projectile_speed" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Melee armor">
-                    <x-core::field.input type="number" wire:model.defer="unit.melee_armor" />
+                    <x-core::field.input type="number" wire:model.defer="melee_armor" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Pierce armor">
-                    <x-core::field.input type="number" wire:model.defer="unit.pierce_armor" />
+                    <x-core::field.input type="number" wire:model.defer="pierce_armor" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Speed">
-                    <x-core::field.input type="number" wire:model.defer="unit.speed" />
+                    <x-core::field.input type="number" wire:model.defer="speed" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Line of Sight">
-                    <x-core::field.input type="number" wire:model.defer="unit.line_of_sight" />
+                    <x-core::field.input type="number" wire:model.defer="line_of_sight" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 
             <x-core::field.form-section :title="__('Evolution')" :description="__('Unit Evolution.')" class="pt-5">
                 <x-core::field.form-row title="Upgrade from">
-                    {{-- <x-core::field.input type="number" wire:model.defer="unit.line_of_sight" /> --}}
+                    {{-- <x-core::field.input type="number" wire:model.defer="line_of_sight" /> --}}
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Upgrade to">
-                    {{-- <x-core::field.input type="number" wire:model.defer="unit.line_of_sight" /> --}}
+                    {{-- <x-core::field.input type="number" wire:model.defer="line_of_sight" /> --}}
                 </x-core::field.form-row>
 
                 @foreach ($this->resourceEnumLabels as $resourceKey => $resourceLabel)
@@ -137,7 +137,7 @@
                 @endforeach
 
                 <x-core::field.form-row title="Upgrade time">
-                    <x-core::field.input type="number" wire:model.defer="unit.upgrade_time" />
+                    <x-core::field.input type="number" wire:model.defer="upgrade_time" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 

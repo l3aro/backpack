@@ -22,6 +22,13 @@ class Civilization extends Model implements HasMedia
         'expansion' => ExpansionEnum::class,
     ];
 
+    protected $attributes = [
+        'name' => '',
+        'expansion' => ExpansionEnum::DEFINITIVE_EDITION,
+        'army_type' => '',
+        'team_bonus' => '',
+    ];
+
     public function scopeFilter(Builder $query)
     {
         return app(Pipeline::class)

@@ -4,10 +4,12 @@ namespace Modules\Aoe2Notebook\Http\Livewire\Unit;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use MichaelRubel\LoopFunctions\Traits\LoopFunctions;
 use Modules\Aoe2Notebook\Enums\AgeEnum;
 use Modules\Aoe2Notebook\Enums\ExpansionEnum;
 use Modules\Aoe2Notebook\Enums\ResourceEnum;
 use Modules\Aoe2Notebook\Enums\UnitTypeEnum;
+use Modules\Aoe2Notebook\Http\Requests\EditUnitRequest;
 use Modules\Aoe2Notebook\Models\Unit;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 
@@ -15,6 +17,7 @@ class Edit extends Component
 {
     use LoadLayoutView;
     use WithFileUploads;
+    use LoopFunctions;
 
     protected $viewPath = 'aoe2notebook::livewire.unit.edit';
     public Unit $unit;
@@ -24,53 +27,30 @@ class Edit extends Component
 
     protected function rules()
     {
-        return [
-            'unit.name' => 'required|string|max:100|unique:aoe2notebook_units,name,' . $this->unit->id,
-            'unit.expansion' => 'nullable|string|max:100',
-            'unit.type' => 'nullable|array|max:100',
-            'unit.civilization' => 'nullable|string|max:100',
-            'unit.description' => 'nullable|string|max:255',
-            'unit.age' => 'nullable|string|max:50',
-            'unit.training_time' => 'nullable|numeric',
-            'unit.training_cost' => 'nullable|array',
-            'unit.hit_points' => 'nullable|numeric',
-            'unit.attack' => 'nullable|numeric',
-            'unit.rate_of_fire' => 'nullable|numeric',
-            'unit.attack_delay' => 'nullable|numeric',
-            'unit.frame_delay' => 'nullable|numeric',
-            'unit.minimum_range' => 'nullable|numeric',
-            'unit.range' => 'nullable|numeric',
-            'unit.accuracy' => 'nullable|numeric',
-            'unit.projectile_speed' => 'nullable|numeric',
-            'unit.melee_armor' => 'nullable|numeric',
-            'unit.pierce_armor' => 'nullable|numeric',
-            'unit.speed' => 'nullable|numeric',
-            'unit.line_of_sight' => 'nullable|numeric',
-            'unit.upgrade_from_id' => 'nullable|numeric',
-            'unit.upgrade_to_id' => 'nullable|numeric',
-            'unit.upgrade_time' => 'nullable|numeric',
-            'photo' => 'nullable|image|max:2048',
-            'trainingCosts' => 'nullable|array',
-            'trainingCosts.*' => 'nullable|numeric',
-            'upgradeCosts' => 'nullable|array',
-            'upgradeCosts.*' => 'nullable|numeric',
-        ];
+        return EditUnitRequest::baseRules($this->unit);
     }
 
     public function mount(Unit $unit)
     {
         $this->unit = $unit;
+        $this->propertiesFrom($unit);
+        $this->expansion = ($this->expansion instanceof ExpansionEnum)
+            ? $this->expansion->value
+            : $this->expansion;
+        $this->age = ($this->age instanceof AgeEnum)
+            ? $this->age->value
+            : $this->age;
         $this->trainingCosts = $unit->training_cost;
         $this->upgradeCosts = $unit->upgrade_cost;
     }
 
     public function save()
     {
-        $this->validate();
-        $this->unit->forceFill([
+        $validated = $this->validate();
+        $this->unit->fill(array_merge($validated, [
             'training_cost' => $this->trainingCosts,
             'upgrade_cost' => $this->upgradeCosts,
-        ]);
+        ]));
         $this->unit->save();
         if ($this->photo) {
             $this->unit->addMedia($this->photo)->toMediaCollection();
@@ -93,7 +73,7 @@ class Edit extends Component
         ]);
     }
 
-    public function getAgeEnumLabelProperty()
+    public function getAgeEnumLabelsProperty()
     {
         return AgeEnum::labels();
     }

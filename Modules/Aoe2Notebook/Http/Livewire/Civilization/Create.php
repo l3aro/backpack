@@ -17,36 +17,42 @@ class Create extends Component
     use LoopFunctions;
 
     protected $viewPath = 'aoe2notebook::livewire.civilization.create';
-    // public Civilization $civilization;
+    public $civilization;
     public $photo;
 
-    // protected $rules = [
-    //     'civilization.name' => 'required|string|max:100|unique:aoe2notebook_civilizations,name',
-    //     'civilization.expansion' => 'string|max:100',
-    //     'civilization.army_type' => 'string|max:100',
-    //     'civilization.team_bonus' => 'string|max:255',
-    //     'photo' => 'nullable|image|max:2048',
-    // ];
+    protected function rules()
+    {
+        return CreateCivilizationRequest::baseRules();
+    }
 
     public function mount()
     {
-        // $this->civilization = new Civilization;
-        $civilization = new Civilization;
-        $this->propertiesFrom($civilization);
+        $this->resetState();
     }
 
-    public function save()
+    protected function resetState()
     {
-        // $this->validate();
-        // dd(app(CreateCivilizationRequest::class)->rules());
-        $this->validateOnly('civilization', app(CreateCivilizationRequest::class)->rules());
-        $this->civilization->save();
-        if ($this->photo) {
-            $this->civilization->addMedia($this->photo)->toMediaCollection();
+        $civilization = new Civilization();
+        $this->propertiesFrom($civilization);
+        $this->fill($civilization);
+        if ($this->expansion instanceof ExpansionEnum) {
+            $this->expansion = $this->expansion?->value;
         }
-        $civilization = $this->civilization;
-        $this->civilization = new Civilization;
-        return $civilization;
+        $this->photo = null;
+    }
+
+    public function save(): Civilization
+    {
+        $validated = $this->validate();
+        $state = new Civilization;
+        $state->fill($validated);
+        $state->save();
+
+        if ($this->photo) {
+            $state->addMedia($this->photo)->toMediaCollection();
+        }
+        $this->resetState();
+        return $state;
     }
 
     public function saveAndShow()

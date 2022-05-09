@@ -29,6 +29,35 @@ class Unit extends Model implements HasMedia
         'age' => AgeEnum::class,
     ];
 
+    protected $attributes = [
+        'name' => '',
+        'expansion' => ExpansionEnum::DEFINITIVE_EDITION,
+        'type' => '',
+        'civilization' => '',
+        'age' => AgeEnum::DARK_AGE,
+        'description' => '',
+        'training_time' => null,
+        'training_cost' => null,
+        'trained_at' => null,
+        'hit_points' => null,
+        'attack' => null,
+        'rate_of_fire' => null,
+        'frame_delay' => null,
+        'attack_delay' => null,
+        'minimum_range' => null,
+        'range' => null,
+        'accuracy' => null,
+        'projectile_speed' => null,
+        'melee_armor' => null,
+        'pierce_armor' => null,
+        'speed' => null,
+        'line_of_sight' => null,
+        'upgrade_from_id' => null,
+        'upgrade_to_id' => null,
+        'upgrade_cost' => null,
+        'upgrade_time' => null,
+    ];
+
     public function scopeFilter(Builder $query)
     {
         return app(Pipeline::class)

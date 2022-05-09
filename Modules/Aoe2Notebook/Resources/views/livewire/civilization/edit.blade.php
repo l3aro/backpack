@@ -3,7 +3,7 @@
         <form class="space-y-8 divide-y divide-gray-200">
             <x-core::field.form-section :title="__('Create')" :description="__('Add new civilization.')">
                 <x-core::field.form-row title="Name" required>
-                    <x-core::field.input type="text" wire:model.debounce.500ms="name" />
+                    <x-core::field.input type="text" wire:model.defer="name" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Introduced in">
@@ -19,7 +19,7 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Cover photo">
-                    <x-core::field.image wire:model.defer="photo" :default="$photo?->temporaryUrl() ?? ''" />
+                    <x-core::field.image wire:model.defer="photo" :default="$photo?->temporaryUrl() ?? $civilization->getFirstMediaUrl() ?? ''" />
                 </x-core::field.form-row>
 
                 {{-- <x-core::field.form-row title="Unique Units" required>
