@@ -7,49 +7,43 @@ use Modules\Blog\Models\Post;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use MichaelRubel\LoopFunctions\Traits\LoopFunctions;
+use Modules\Blog\Http\Requests\CreatePostRequest;
 use Modules\Blog\Models\Category;
 
 class Create extends Component
 {
     use LoadLayoutView;
     use WithFileUploads;
+    use LoopFunctions;
 
     protected $viewPath = 'blog::livewire.post.create';
     public Post $post;
-    public $postCategories;
     public $selectedCategories = [];
     public $photo;
     public $tags = [];
 
-    protected $rules = [
-        'post.title' => 'required|string|max:255',
-        'post.description' => 'string',
-        'post.content' => 'required|string',
-        'post.slug' => 'required|string|max:255',
-        'post.published_at' => 'nullable|date',
-        'post.meta_title' => '',
-        'post.meta_description' => '',
-        'post.meta_keyword' => '',
-        'selectedCategories' => 'required|array',
-        'photo' => 'nullable|image',
-        'tags' => 'nullable|array',
-    ];
+    protected function rules(): array
+    {
+        return CreatePostRequest::baseRules();
+    }
 
     public function mount()
     {
         $this->post = new Post;
-        $this->postCategories = Category::all(['id', 'title']);
+        $this->propertiesFrom($this->post);
     }
 
-    public function updatedPostTitle()
+    public function updatedTitle()
     {
-        $this->validateOnly('post.title');
-        $this->post->slug = Str::slug($this->post->title);
+        $this->validateOnly('title');
+        $this->slug = Str::slug($this->title);
     }
 
     public function save()
     {
-        $this->validate();
+        $validated = $this->validate();
+        $this->post->fill($validated);
         $this->post->save();
         $this->post->categories()->sync($this->selectedCategories);
         $this->post->attachTags($this->tags, get_class($this->post));
@@ -72,5 +66,10 @@ class Create extends Component
     {
         $this->save();
         $this->dispatchBrowserEvent('success', ['message' => __('The post has been created successfully.')]);
+    }
+
+    public function getPostCategoriesProperty()
+    {
+        return Category::all(['id', 'title']);
     }
 }

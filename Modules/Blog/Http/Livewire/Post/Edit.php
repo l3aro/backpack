@@ -7,53 +7,45 @@ use Modules\Blog\Models\Post;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use MichaelRubel\LoopFunctions\Traits\LoopFunctions;
+use Modules\Blog\Http\Requests\EditPostRequest;
 use Modules\Blog\Models\Category;
 
 class Edit extends Component
 {
     use LoadLayoutView;
     use WithFileUploads;
+    use LoopFunctions;
 
     protected $viewPath = 'blog::livewire.post.edit';
     public Post $post;
-    public $postCategories;
     public $selectedPostCategories = [];
     public $photo;
     public $tags;
 
-    protected function rules()
+    protected function rules(): array
     {
-        return [
-            'post.title' => 'required|string|max:255',
-            'post.description' => 'string',
-            'post.content' => 'required|string',
-            'post.slug' => 'required|string|max:256|unique:blog__posts,slug,' . $this->post->id,
-            'post.published_at' => 'nullable|date',
-            'post.meta_title' => '',
-            'post.meta_description' => '',
-            'post.meta_keyword' => '',
-            'photo' => 'nullable|image',
-            'tags' => 'nullable|array',
-        ];
+        return EditPostRequest::baseRules($this->post);
     }
 
     public function mount(Post $post)
     {
         $this->post = $post;
+        $this->propertiesFrom($this->post);
         $this->tags = $post->tags->pluck('name')->toArray();
-        $this->postCategories = Category::all(['id', 'title']);
         $this->selectedPostCategories = $this->post->categories->pluck('id')->toArray();
     }
 
-    public function updatedPostTitle()
+    public function updatedTitle()
     {
-        $this->validateOnly('post.title');
-        $this->post->slug = Str::slug($this->post->title);
+        $this->validateOnly('title');
+        $this->slug = Str::slug($this->title);
     }
 
     public function save()
     {
-        $this->validate();
+        $validated = $this->validate();
+        $this->post->fill($validated);
         $this->post->save();
         $this->post->categories()->sync($this->selectedPostCategories);
         $this->post->syncTagsWithType($this->tags, get_class($this->post));
@@ -74,5 +66,10 @@ class Edit extends Component
     {
         $this->save();
         $this->dispatchBrowserEvent('success', ['message' => __('The post has been updated successfully.')]);
+    }
+
+    public function getPostCategoriesProperty()
+    {
+        return Category::all(['id', 'title']);
     }
 }

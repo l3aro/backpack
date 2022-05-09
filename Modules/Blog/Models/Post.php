@@ -29,6 +29,17 @@ class Post extends Model implements HasMedia
         'published_at' => 'datetime:Y-m-d H:i',
     ];
 
+    protected $attributes = [
+        'title' => '',
+        'description' => '',
+        'content' => '',
+        'published_at' => null,
+        'slug' => '',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keyword' => '',
+    ];
+
     protected static function newFactory()
     {
         return \Modules\Blog\Database\factories\PostFactory::new();

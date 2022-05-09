@@ -6,11 +6,9 @@ trait DefineEnumLabel
 {
     public static function labels(): array
     {
-        $result = [];
-        foreach (self::cases() as $case) {
-            $result[$case->value] = $case->label();
-        }
-        return $result;
+        return collect(self::cases())->mapWithKeys(function ($case) {
+            return [$case->value => $case->label()];
+        })->toArray();
     }
 
     public static function getLabel(string $key): string

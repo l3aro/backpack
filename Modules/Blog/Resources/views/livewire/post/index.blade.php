@@ -124,7 +124,7 @@
                                 @endforeach
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $post->status }}
+                                {{ $post->status->label() }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $post->published_at ?? '__' }}

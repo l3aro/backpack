@@ -3,15 +3,15 @@
         <form class="space-y-8 divide-y divide-gray-200">
             <x-core::field.form-section :title="__('Edit')" :description="__('Update post.')">
                 <x-core::field.form-row title="Title" required>
-                    <x-core::field.input type="text" wire:model.debounce.500ms="post.title" />
+                    <x-core::field.input type="text" wire:model.debounce.500ms="title" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Slug" required>
-                    <x-core::field.input type="text" wire:model.defer="post.slug" />
-                </x-core::field.form-row>
+                    <x-core::field.input type="text" wire:model.defer="slug" />
+                </x-core::field.form-row>/
 
                 <x-core::field.form-row title="Schedule Post">
-                    <x-core::field.flatpickr type="text" wire:model.defer="post.published_at"
+                    <x-core::field.flatpickr type="text" wire:model.defer="published_at"
                         mode='enableTime: true, dateFormat: "Y-m-d H:i"' />
                 </x-core::field.form-row>
 
@@ -21,8 +21,8 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Category" required>
-                    <x-core::field.select wire:model.defer="selectedBlogCategories" multiple>
-                        @foreach ($postCategories as $item)
+                    <x-core::field.select wire:model.defer="selectedPostCategories" multiple>
+                        @foreach ($this->postCategories as $item)
                             <x-core::field.select.option :value="$item->id" :label="$item->title" />
                         @endforeach
                     </x-core::field.select>
@@ -34,26 +34,26 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Description">
-                    <x-core::field.input type="text" wire:model.defer="post.description" />
+                    <x-core::field.input type="text" wire:model.defer="description" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Content" required>
-                    <x-core::field.markdown wire:model.defer="post.content" class="max-w-lg" />
+                    <x-core::field.markdown wire:model.defer="content" class="max-w-lg" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 
             <x-core::field.form-section :title="__('SEO')" :description="__('Search Engine Optimization.')"
                 class="pt-5">
                 <x-core::field.form-row title="Meta Title">
-                    <x-core::field.input type="text" wire:model.debounce.500ms="post.meta_title" />
+                    <x-core::field.input type="text" wire:model.debounce.500ms="meta_title" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Meta Description">
-                    <x-core::field.input type="text" wire:model.defer="post.meta_description" />
+                    <x-core::field.input type="text" wire:model.defer="meta_description" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Meta Keyword">
-                    <x-core::field.input type="text" wire:model.defer="post.meta_keyword" />
+                    <x-core::field.input type="text" wire:model.defer="meta_keyword" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 

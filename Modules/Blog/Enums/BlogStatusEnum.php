@@ -2,20 +2,36 @@
 
 namespace Modules\Blog\Enums;
 
-use Modules\Core\Enums\BaseEnum;
+use Modules\Core\Enums\DefineEnumLabel;
+use Modules\Core\Enums\EnumHasLabel;
 
-final class BlogStatusEnum extends BaseEnum
+enum BlogStatusEnum: string implements EnumHasLabel
 {
-    const DRAFT = 'draft';
-    const PUBLISHED = 'published';
-    const SCHEDULED = 'scheduled';
+    use DefineEnumLabel;
 
-    protected function defineLabels(): array
+    case DRAFT = 'draft';
+    case PUBLISHED = 'published';
+    case SCHEDULED = 'scheduled';
+
+    public function label(): string
     {
-        return [
+        return match ($this) {
             self::DRAFT => __('Draft'),
             self::PUBLISHED => __('Published'),
             self::SCHEDULED => __('Scheduled'),
-        ];
+        };
+    }
+
+    public function description(): string
+    {
+        if (!isset($this->published_at)) {
+            return 'On Drafting';
+        }
+
+        if ($this->published_at->isFuture()) {
+            return 'Post is scheduled for publishing on ' . $this->published_at->format('F j, Y H:i');
+        }
+
+        return 'Published on ' . $this->published_at->format('F j, Y H:i');
     }
 }
