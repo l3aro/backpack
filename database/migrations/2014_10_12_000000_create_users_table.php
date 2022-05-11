@@ -21,8 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phone', 50)->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->string('password')->nullable();
-            $table->boolean('is_admin')->default(false);
-            $table->boolean('is_active')->default(true);
+            $table->unsignedTinyInteger('type_flag')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

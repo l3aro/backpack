@@ -72,6 +72,6 @@ trait HasProfilePhoto
      */
     protected function profilePhotoDisk()
     {
-        return 'profile_photo_disk';
+        return 'public';
     }
 }

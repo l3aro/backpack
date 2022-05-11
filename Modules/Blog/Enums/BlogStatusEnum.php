@@ -2,8 +2,8 @@
 
 namespace Modules\Blog\Enums;
 
-use Modules\Core\Enums\DefineEnumLabel;
-use Modules\Core\Enums\EnumHasLabel;
+use Modules\Core\Enums\Concerns\DefineEnumLabel;
+use Modules\Core\Enums\Concerns\EnumHasLabel;
 
 enum BlogStatusEnum: string implements EnumHasLabel
 {

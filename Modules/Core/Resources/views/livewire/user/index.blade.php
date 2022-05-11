@@ -6,7 +6,8 @@
                 <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
                     <x-heroicon-s-search class="h-5 w-5" />
                 </div>
-                <x-core::field.input type="search" name="search" wire:model="filter.search" class="block w-full py-2 pl-10 pr-3" placeholder="ID, Name, Email" />
+                <x-core::field.input type="search" name="search" wire:model="filter.search"
+                    class="block w-full py-2 pl-10 pr-3" placeholder="ID, Name, Email" />
             </div>
         </div>
         <div class="ml-2 flex">
@@ -27,12 +28,12 @@
                     </div>
                     <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6 py-4">
                         <x-core::field.dropdown-row :title="__('Type')" class="sm:col-span-6">
-                            <x-core::field.select.native wire:model="filter.is_admin">
-                                <option value="">&nbsp;</option>
-                                @foreach ($this->userType->labels() as $value => $label)
-                                    <option value="{{ $value }}">{{ $label }}</option>
+                            <x-core::field.select wire:model="arrayFilters.type_flag" multiple>
+                                <x-core::field.select.option value="" label="&nbsp;" />
+                                @foreach ($this->userTypeEnumLabels as $value => $label)
+                                    <x-core::field.select.option value="{{ $value }}" :label="$label" />
                                 @endforeach
-                            </x-core::field.select.native>
+                            </x-core::field.select>
                         </x-core::field.dropdown-row>
                         <x-core::field.dropdown-row :title="__('Created From')" class="sm:col-span-6">
                             <x-core::field.flatpickr type="text" wire:model="filter.created_at_from" />
@@ -55,20 +56,16 @@
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <x-core::data-table>
                     <x-slot name="header">
-                        <x-core::data-table.heading sortable wire:click="applySort('id')"
-                            :direction="$sort['id'] ?? null">
+                        <x-core::data-table.heading sortable wire:click="applySort('id')" :direction="$sort['id'] ?? null">
                             ID
                         </x-core::data-table.heading>
-                        <x-core::data-table.heading sortable wire:click="applySort('name')"
-                            :direction="$sort['name'] ?? null">
+                        <x-core::data-table.heading sortable wire:click="applySort('name')" :direction="$sort['name'] ?? null">
                             Name
                         </x-core::data-table.heading>
-                        <x-core::data-table.heading sortable wire:click="applySort('is_admin')"
-                            :direction="$sort['is_admin'] ?? null">
+                        <x-core::data-table.heading sortable wire:click="applySort('type_flag')" :direction="$sort['type_flag'] ?? null">
                             Type
                         </x-core::data-table.heading>
-                        <x-core::data-table.heading sortable wire:click="applySort('created_at')"
-                            :direction="$sort['created_at'] ?? null">
+                        <x-core::data-table.heading sortable wire:click="applySort('created_at')" :direction="$sort['created_at'] ?? null">
                             Created At
                         </x-core::data-table.heading>
                         <x-core::data-table.heading class="text-right">
@@ -99,7 +96,9 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                {{ $this->userType->label($user->is_admin) }}
+                                @foreach ($user->type as $type)
+                                    <x-core::model.user.type :type="$type" />
+                                @endforeach
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $user->created_at ?? '__' }}

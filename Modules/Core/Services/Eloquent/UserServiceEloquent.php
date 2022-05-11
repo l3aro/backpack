@@ -17,8 +17,11 @@ class UserServiceEloquent implements UserService
     public function create(array $data): User
     {
         $data = $this->preparePassword($data);
+        $model = new User($data);
+        $model->type = $data['type'];
+        $model->save();
 
-        return User::create($data);
+        return $model;
     }
 
     protected function preparePassword(array $data): array
@@ -38,7 +41,9 @@ class UserServiceEloquent implements UserService
 
         $data = $this->preparePassword($data);
 
-        $model->update($data);
+        $model->fill($data);
+        $model->type = $data['type'];
+        $model->save();
 
         return $model;
     }

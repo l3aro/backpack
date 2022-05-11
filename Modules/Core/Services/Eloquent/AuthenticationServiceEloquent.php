@@ -6,7 +6,9 @@ use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
+use Modules\Core\Enums\UserTypeEnum;
 use Modules\Core\Services\Contracts\AuthenticationService;
+use PhpParser\Node\Stmt\Continue_;
 
 class AuthenticationServiceEloquent implements AuthenticationService
 {
@@ -47,8 +49,11 @@ class AuthenticationServiceEloquent implements AuthenticationService
         return $this;
     }
 
-    public function authenticate(array $credentials, bool $remember = false): void
-    {
+    public function authenticate(
+        array $credentials,
+        bool $remember = false,
+        UserTypeEnum|array $types = UserTypeEnum::USER
+    ): void {
         if (!$this->auth->attempt($credentials, $remember)) {
             RateLimiter::hit($this->throttleKey());
 
@@ -58,9 +63,24 @@ class AuthenticationServiceEloquent implements AuthenticationService
         }
 
         $this->ensureAuthenticatedIsActive();
-
+        $this->checkUserType($types);
         RateLimiter::clear($this->throttleKey());
     }
+
+    protected function checkUserType(UserTypeEnum|array $types): void
+    {
+        if (!is_array($types)) {
+            $types = [$types];
+        }
+        foreach ($types as $type) {
+            $checker = $this->auth->user()->checkType($type);
+            if ($checker) continue;
+            throw ValidationException::withMessages([
+                'email' => __('auth.invalid_user_type'),
+            ]);
+        }
+    }
+
 
     protected function ensureAuthenticatedIsActive(): void
     {

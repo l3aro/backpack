@@ -44,7 +44,7 @@ class MakeAdminCommand extends Command
             'name' => $this->ask('Name'),
             'email' => $this->ask('Email'),
             'password' => Hash::make($this->secret('Password')),
-            'is_admin' => UserTypeEnum::ADMIN,
+            'type_flag' => UserTypeEnum::ADMIN->value,
             'email_verified_at' => now(),
         ]);
 

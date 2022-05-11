@@ -10,11 +10,20 @@ abstract class BaseFilter
 
     protected string $field;
 
+    protected string $namespace = 'filter';
+
     abstract public function handle($query, Closure $next);
 
     public function filterOn(string $field): static
     {
         $this->field = $field;
+
+        return $this;
+    }
+
+    public function filterNamespace($namespace = 'filter')
+    {
+        $this->namespace = $namespace;
 
         return $this;
     }

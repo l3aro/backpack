@@ -3,6 +3,7 @@
 namespace Modules\Core\Http\Livewire\User;
 
 use Livewire\Component;
+use Modules\Core\Enums\UserTypeEnum;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
@@ -22,6 +23,7 @@ class Index extends Component
     public function mount()
     {
         $this->sort = ['id' => 'desc'];
+        $this->arrayFilters = ['type_flag' => []];
     }
 
     protected function getModel()
@@ -38,9 +40,9 @@ class Index extends Component
         ];
     }
 
-    public function getUserTypeProperty()
+    public function getUserTypeEnumLabelsProperty()
     {
-        return app(\Modules\Core\Enums\UserTypeEnum::class);
+        return UserTypeEnum::labels();
     }
 
     public function getUserServiceProperty()

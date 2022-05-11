@@ -1,4 +1,4 @@
-@props(['field', 'default' => '', 'title' => __('Change')])
+@props(['field', 'default' => asset('assets/images/avatar-placeholder.png'), 'title' => __('Change')])
 
 @php
 $field ??= $attributes->wire('model')->value() ?? '';

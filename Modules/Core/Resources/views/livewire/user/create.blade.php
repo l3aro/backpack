@@ -3,25 +3,23 @@
         <form class="space-y-8 divide-y divide-gray-200">
             <x-core::field.form-section :title="__('Create')" :description="__('Add new account.')">
                 <x-core::field.form-row title="Name" required>
-                    <x-core::field.input type="text" wire:model.defer="user.name" />
+                    <x-core::field.input type="text" wire:model.defer="name" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Email" required>
-                    <x-core::field.input type="text" wire:model.defer="user.email" />
+                    <x-core::field.input type="text" wire:model.defer="email" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Avatar">
-                    <x-core::field.avatar wire:model.defer="photo"
-                        :default="$photo?->temporaryUrl() ?? $user->profile_photo_url" />
+                    <x-core::field.avatar wire:model.defer="photo" :default="$photo?->temporaryUrl()" />
                 </x-core::field.form-row>
 
-                <x-core::field.form-row title="Type">
-                    <x-core::field.check-group :description="__('Access level to the application.')">
-                        <x-core::field.check type="radio" name="user.is_admin" value="1" :label="__('Admin')"
-                            wire:model.defer="user.is_admin" />
-                        <x-core::field.check type="radio" name="user.is_admin" value="0" :label="__('Member')"
-                            wire:model.defer="user.is_admin" />
-                    </x-core::field.check-group>
+                <x-core::field.form-row title="Type" required>
+                    <x-core::field.select wire:model.defer="type" :placeholder="__('Select type')" multiple>
+                        @foreach ($this->userTypeEnumLabels as $key => $label)
+                            <x-core::field.select.option value="{{ $key }}" :label="$label" />
+                        @endforeach
+                    </x-core::field.select>
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Password" required>

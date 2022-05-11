@@ -1,7 +1,7 @@
 <div>
     <x-slot name="title">Sign in to your account</x-slot>
 
-    <form class="space-y-6" action="#" method="POST">
+    <form class="space-y-6" action="#" method="POST" wire:submit.prevent="login">
         <x-core::alert :message="session()->get('success')" type="success" />
         <div>
             <label for="email" class="block text-sm font-medium text-gray-700">

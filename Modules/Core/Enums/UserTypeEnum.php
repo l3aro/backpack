@@ -2,16 +2,23 @@
 
 namespace Modules\Core\Enums;
 
-final class UserTypeEnum extends BaseEnum
-{
-    const ADMIN = 1;
-    const USER = 0;
+use Modules\Core\Enums\Concerns\DefineEnumLabel;
+use Modules\Core\Enums\Contracts\EnumHasLabel;
 
-    protected function defineLabels(): array
+enum UserTypeEnum: int implements EnumHasLabel
+{
+    use DefineEnumLabel;
+
+    case DEACTIVATED = 1;
+    case USER = 2;
+    case ADMIN = 4;
+
+    public function label(): string
     {
-        return [
-            self::ADMIN => __('Admin'),
+        return match ($this) {
+            self::DEACTIVATED => __('Deactivated'),
             self::USER => __('User'),
-        ];
+            self::ADMIN => __('Admin'),
+        };
     }
 }

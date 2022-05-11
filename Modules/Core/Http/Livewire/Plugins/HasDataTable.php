@@ -31,7 +31,7 @@ trait HasDataTable
         if ($filter && isset($filter['filter'])) {
             foreach ($filter['filter'] as $key => $value) {
                 if (array_key_exists($key, $this->arrayFilters)) {
-                    $this->arrayFilters[$key] = explode(',', $value);
+                    $this->arrayFilters[$key] = $value;
                 }
             }
         }
