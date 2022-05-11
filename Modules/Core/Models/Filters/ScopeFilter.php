@@ -13,8 +13,7 @@ class ScopeFilter extends BaseFilter
 
     public function handle($query, Closure $next)
     {
-        $filterName = 'filter.' . $this->field;
-
+        $filterName = "{$this->namespace}.{$this->field}";
         if ($this->shouldFilter($filterName)) {
             $query->{$this->field}(request()->input($filterName));
         }

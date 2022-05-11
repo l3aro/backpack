@@ -13,9 +13,9 @@ class BooleanFilter extends BaseFilter
 
     public function handle($query, Closure $next)
     {
-        $filterName = 'filter.' . $this->field;
+        $filterName = "{$this->namespace}.{$this->field}";
         if ($this->shouldFilter($filterName)) {
-            $query->where($this->field, request()->input('filter.' . $this->field) ? 1 : 0);
+            $query->where($this->field, request()->input($filterName) ? 1 : 0);
         }
 
         return $next($query);

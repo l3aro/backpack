@@ -13,7 +13,7 @@ class ExactFilter extends BaseFilter
 
     public function handle($query, Closure $next)
     {
-        $fieldName = "filter.$this->field";
+        $fieldName = "{$this->namespace}.{$this->field}";
 
         if ($this->shouldFilter($fieldName)) {
             $query->where($this->field, request()->input($fieldName));

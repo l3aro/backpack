@@ -16,7 +16,7 @@ class RelationFilter extends BaseFilter
 
     public function handle($query, Closure $next)
     {
-        $fieldName = "filter.{$this->relation}_{$this->field}";
+        $fieldName = "{$this->namespace}.{$this->relation}_{$this->field}";
 
         if (!$this->shouldFilter($fieldName)) {
             return $next($query);

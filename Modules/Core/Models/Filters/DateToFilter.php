@@ -13,7 +13,7 @@ class DateToFilter extends BaseFilter
 
     public function handle($query, Closure $next)
     {
-        $fieldName = "filter.{$this->field}_to";
+        $fieldName = "{$this->namespace}.{$this->field}_to";
 
         if ($this->shouldFilter($fieldName)) {
             $query->where($this->field, '<=', request()->input($fieldName));
