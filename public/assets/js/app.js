@@ -1,5 +1,87 @@
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["/assets/js/app"],{
 
+/***/ "./Modules/Core/Resources/assets/js/alpine-components/prose.js":
+/*!*********************************************************************!*\
+  !*** ./Modules/Core/Resources/assets/js/alpine-components/prose.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/fancybox.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var clipboardIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\">\n  <path d=\"M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z\" />\n  <path d=\"M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z\" />\n</svg>";
+var clipboardCheckIcon = "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\">\n  <path d=\"M9 2a1 1 0 000 2h2a1 1 0 100-2H9z\" />\n  <path fill-rule=\"evenodd\" d=\"M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z\" clip-rule=\"evenodd\" />\n</svg>";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
+  return {
+    init: function init() {
+      _fancyapps_ui__WEBPACK_IMPORTED_MODULE_1__.Fancybox.bind("#".concat(this.$el.id, " img"), {
+        groupAll: true
+      });
+
+      if (navigator.clipboard) {
+        appendCopyButton(this.$el);
+      }
+    }
+  };
+});
+
+function appendCopyButton(context) {
+  context.querySelectorAll("pre").forEach(function (el) {
+    var buttonCopy = document.createElement('button');
+    buttonCopy.innerHTML = clipboardIcon;
+    buttonCopy.addEventListener('click', copyContent);
+    el.appendChild(buttonCopy);
+  });
+}
+
+function copyContent(_x) {
+  return _copyContent.apply(this, arguments);
+}
+
+function _copyContent() {
+  _copyContent = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+    var button, pre, code, content;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            button = e.target.closest('button');
+            pre = button.closest('pre');
+            code = pre.querySelector('code');
+            content = code.innerText;
+            _context.next = 6;
+            return navigator.clipboard.writeText(content);
+
+          case 6:
+            button.innerHTML = clipboardCheckIcon;
+            setTimeout(function () {
+              button.innerHTML = clipboardIcon;
+            }, 2000);
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _copyContent.apply(this, arguments);
+}
+
+/***/ }),
+
 /***/ "./Modules/Core/Resources/assets/js/alpine-components/select.js":
 /*!**********************************************************************!*\
   !*** ./Modules/Core/Resources/assets/js/alpine-components/select.js ***!
@@ -243,10 +325,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _alpine_components_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./alpine-components/select */ "./Modules/Core/Resources/assets/js/alpine-components/select.js");
+/* harmony import */ var _alpine_components_prose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./alpine-components/prose */ "./Modules/Core/Resources/assets/js/alpine-components/prose.js");
 __webpack_require__(/*! ./bootstrap */ "./Modules/Core/Resources/assets/js/bootstrap.js");
 
 
+
 Alpine.data('select', _alpine_components_select__WEBPACK_IMPORTED_MODULE_0__["default"]);
+Alpine.data('prose', _alpine_components_prose__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Alpine.start();
 AOS.init();
 Prism.highlightAll();

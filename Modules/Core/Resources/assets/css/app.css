@@ -6,14 +6,24 @@
     display: none;
 }
 
-.map-responsive iframe {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
+@layer components {
+    .map-responsive iframe {
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
 
-.CodeMirror, .CodeMirror-scroll {
-	max-height: 500px;
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 500px;
+    }
+
+    .prose pre {
+        @apply relative;
+    }
+    .prose pre button {
+        @apply absolute text-gray-500 hover:text-gray-700 hover:shadow top-2 right-2 transition;
+    }
 }

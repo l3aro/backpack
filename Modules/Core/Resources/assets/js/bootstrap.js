@@ -7,8 +7,8 @@ import 'flatpickr/dist/flatpickr.min.css'
 
 import { createPopper } from '@popperjs/core'
 
-import { Fancybox } from "@fancyapps/ui"
-import "@fancyapps/ui/dist/fancybox.css"
+import { Fancybox } from '@fancyapps/ui'
+import '@fancyapps/ui/dist/fancybox.css'
 
 import AOS from 'aos'
 require('aos/dist/aos.css')

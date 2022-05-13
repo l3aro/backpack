@@ -14,19 +14,23 @@ export default (options) => ({
     init() {
         this.initMultiSelect()
 
-        this.$watch('popover', status => {
+        this.$watch('popover', (status) => {
             if (status) {
                 this.$nextTick(() => this.$refs.search?.focus())
             }
         })
-        this.$watch('model', selected => this.syncSelected(selected))
-        this.$watch('search', search => this.filterOptions(search?.toLowerCase()))
+        this.$watch('model', (selected) => this.syncSelected(selected))
+        this.$watch('search', (search) =>
+            this.filterOptions(search?.toLowerCase())
+        )
     },
     togglePopover() {
         if (this.readonly || this.disabled) return
 
         this.popover = !this.popover
-        this.$refs.select.dispatchEvent(new Event(this.popover ? 'open' : 'close'))
+        this.$refs.select.dispatchEvent(
+            new Event(this.popover ? 'open' : 'close')
+        )
     },
     closePopover() {
         this.popover = false
@@ -35,7 +39,9 @@ export default (options) => ({
     isSelected(value) {
         if (this.multiple) {
             // eslint-disable-next-line
-            return !!Object.values(this.model ?? []).find(option => option == value)
+            return !!Object.values(this.model ?? []).find(
+                (option) => option == value
+            )
         }
 
         // eslint-disable-next-line
@@ -45,11 +51,13 @@ export default (options) => ({
         if (this.disabled || this.readonly) return
 
         // eslint-disable-next-line
-        let index = this.selectedOptions.findIndex(option => option.value == value)
+        let index = this.selectedOptions.findIndex(
+            (option) => option.value == value
+        )
         this.selectedOptions.splice(index, 1)
 
         // eslint-disable-next-line
-        index = this.model.findIndex(selected => selected == value)
+        index = this.model.findIndex((selected) => selected == value)
         this.model.splice(index, 1)
 
         this.$refs.select.dispatchEvent(new Event('select'))
@@ -63,7 +71,7 @@ export default (options) => ({
             this.model = Object.assign([], this.model)
 
             // eslint-disable-next-line
-            const index = this.model.findIndex(selected => selected == value)
+            const index = this.model.findIndex((selected) => selected == value)
 
             if (~index) return this.unSelect(value)
 
@@ -74,7 +82,9 @@ export default (options) => ({
             return this.model.push(value)
         }
 
-        if (value === this.model) { value = null }
+        if (value === this.model) {
+            value = null
+        }
 
         this.model = value
         this.$refs.select.dispatchEvent(new Event('select'))
@@ -95,7 +105,9 @@ export default (options) => ({
         return this.model == null
     },
     getOptionElement(value) {
-        return this.$refs.optionsContainer.querySelector(`[data-value='${value}']`)
+        return this.$refs.optionsContainer.querySelector(
+            `[data-value='${value}']`
+        )
     },
     getPlaceholderText() {
         if (this.model?.toString().length) return null
@@ -105,18 +117,22 @@ export default (options) => ({
     getValueText() {
         if (this.multiple || !this.model?.toString().length) return null
 
-        return this.decodeSpecialChars(this.getOptionElement(this.model).dataset.label)
+        return this.decodeSpecialChars(
+            this.getOptionElement(this.model).dataset.label
+        )
     },
     isAvailableInList(search, option) {
         const label = this.decodeSpecialChars(option.dataset.label)
         const value = this.decodeSpecialChars(option.dataset.value)
 
-        return label.toLowerCase().includes(search)
-            || value.toLowerCase().includes(search)
+        return (
+            label.toLowerCase().includes(search) ||
+            value.toLowerCase().includes(search)
+        )
     },
     filterOptions(search) {
         const options = [...this.$refs.optionsContainer.children]
-        options.map(option => {
+        options.map((option) => {
             if (this.isAvailableInList(search.toLowerCase(), option)) {
                 option.classList.remove('hidden')
             } else {
@@ -131,21 +147,24 @@ export default (options) => ({
             this.model = []
         }
 
-        this.model?.map(selected => {
+        this.model?.map((selected) => {
             const { dataset: option } = this.getOptionElement(selected)
             this.selectedOptions.push(option)
         })
     },
     modelWasChanged() {
-        return this.model?.toString()
-            !== this.selectedOptions.map(option => option.value).toString()
+        return (
+            this.model?.toString() !==
+            this.selectedOptions.map((option) => option.value).toString()
+        )
     },
     syncSelected() {
         if (!this.multiple || !this.modelWasChanged()) return
 
-        this.selectedOptions = this.model?.map(option => {
-            return this.getOptionElement(option).dataset
-        }) ?? []
+        this.selectedOptions =
+            this.model?.map((option) => {
+                return this.getOptionElement(option).dataset
+            }) ?? []
     },
     decodeSpecialChars(text) {
         const textarea = document.createElement('textarea')
@@ -153,11 +172,37 @@ export default (options) => ({
 
         return textarea.value
     },
-    getFocusables() { return [...this.$el.querySelectorAll('li, input')] },
-    getFirstFocusable() { return this.getFocusables().shift() },
-    getLastFocusable() { return this.getFocusables().pop() },
-    getNextFocusable() { return this.getFocusables()[this.getNextFocusableIndex()] || this.getFirstFocusable() },
-    getPrevFocusable() { return this.getFocusables()[this.getPrevFocusableIndex()] || this.getLastFocusable() },
-    getNextFocusableIndex() { return (this.getFocusables().indexOf(document.activeElement) + 1) % (this.getFocusables().length + 1) },
-    getPrevFocusableIndex() { return Math.max(0, this.getFocusables().indexOf(document.activeElement)) - 1 }
+    getFocusables() {
+        return [...this.$el.querySelectorAll('li, input')]
+    },
+    getFirstFocusable() {
+        return this.getFocusables().shift()
+    },
+    getLastFocusable() {
+        return this.getFocusables().pop()
+    },
+    getNextFocusable() {
+        return (
+            this.getFocusables()[this.getNextFocusableIndex()] ||
+            this.getFirstFocusable()
+        )
+    },
+    getPrevFocusable() {
+        return (
+            this.getFocusables()[this.getPrevFocusableIndex()] ||
+            this.getLastFocusable()
+        )
+    },
+    getNextFocusableIndex() {
+        return (
+            (this.getFocusables().indexOf(document.activeElement) + 1) %
+            (this.getFocusables().length + 1)
+        )
+    },
+    getPrevFocusableIndex() {
+        return (
+            Math.max(0, this.getFocusables().indexOf(document.activeElement)) -
+            1
+        )
+    },
 })
