@@ -2025,6 +2025,9 @@ select {
 .tracking-wider {
   letter-spacing: 0.05em;
 }
+.tracking-wide {
+  letter-spacing: 0.025em;
+}
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
