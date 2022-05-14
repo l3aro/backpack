@@ -44,9 +44,9 @@
         </div>
     </div>
 
-    <div class="text-white text-[0.6rem] md:tracking-widest text-center mt-2 col-span-3">
+    {{-- <div class="text-white text-[0.6rem] md:tracking-widest text-center mt-2 col-span-3">
         {{ setting('header_slogan') }}
-    </div>
+    </div> --}}
 </div>
 <aside
     class="text-center h-screen hidden lg:block lg:fixed w-full lg:w-1/5 p-11 top-0 bottom-0 left-0 overflow-y-auto z-20 bg-black/10">
