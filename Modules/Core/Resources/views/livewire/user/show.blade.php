@@ -17,7 +17,9 @@
             <img class="inline-block h-14 w-14 rounded-full" src="{{ $user->profile_photo_url }}" alt="">
         </x-core::visual.row>
         <x-core::visual.row :title="__('Type')">
-            {!! $user->type_badge !!}
+            @foreach ($user->type as $type)
+                <x-core::model.user.type :type="$type" />
+            @endforeach
         </x-core::visual.row>
         <x-core::visual.row :title="__('Verified')" no-border-bottom>
             <x-core::visual.boolean :value="$user->isVerified()" />

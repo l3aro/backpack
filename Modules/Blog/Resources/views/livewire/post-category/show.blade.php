@@ -16,7 +16,7 @@
             {{ $postCategory->description }}
         </x-core::visual.row>
         <x-core::visual.row :title="__('Published')">
-            <x-core::visual.boolean :value="$postCategory->published" />
+            <x-core::visual.boolean :value="$postCategory->is_published" />
         </x-core::visual.row>
         <x-core::visual.row :title="__('Meta Title')">
             {{ $postCategory->meta_title }}
