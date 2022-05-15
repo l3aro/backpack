@@ -1,4 +1,5 @@
 <div class="min-h-screen bg-gray-100">
+    <x-slot name="metaTitle">Blog</x-slot>
     <div class="container py-24 px-10 flex flex-col md:flex-row mx-auto">
         <div class="w-full lg:w-2/3">
             <div class="grid grid-cols-1 gap-y-10">

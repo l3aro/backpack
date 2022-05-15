@@ -1,4 +1,5 @@
 <div class="min-h-screen bg-gray-100">
+    <x-slot name="metaTitle">Home</x-slot>
     <div class="absolute top-0 left-0 right-0 bottom-0 opacity-50 bg-white z-0"></div>
     <div class="h-screen flex justify-center items-center">
         <div class="w-3/4 md:w-2/3 mx-auto text-center z-10">
