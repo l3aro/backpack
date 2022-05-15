@@ -28,6 +28,7 @@ require('prismjs/themes/prism.css')
 import 'prismjs/components/prism-markup-templating'
 import 'prismjs/components/prism-php'
 import 'prismjs/components/prism-bash'
+const Turbo = require('turbolinks')
 
 Alpine.plugin(focus)
 Alpine.plugin(collapse)
@@ -40,3 +41,4 @@ window.AOS = AOS
 window.markdownParse = parse
 window.Tagify = Tagify
 window.Prism = Prism
+window.Turbo = Turbo

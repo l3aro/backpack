@@ -8,3 +8,4 @@ Alpine.start()
 
 AOS.init()
 Prism.highlightAll()
+Turbo.start()

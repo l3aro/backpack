@@ -1213,6 +1213,9 @@ select {
 .-ml-px {
   margin-left: -1px;
 }
+.mb-0 {
+  margin-bottom: 0px;
+}
 .block {
   display: block;
 }
@@ -2024,9 +2027,6 @@ select {
 }
 .tracking-wider {
   letter-spacing: 0.05em;
-}
-.tracking-wide {
-  letter-spacing: 0.025em;
 }
 .text-gray-400 {
   --tw-text-opacity: 1;

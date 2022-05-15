@@ -335,6 +335,7 @@ Alpine.data('prose', _alpine_components_prose__WEBPACK_IMPORTED_MODULE_1__["defa
 Alpine.start();
 AOS.init();
 Prism.highlightAll();
+Turbo.start();
 
 /***/ }),
 
@@ -399,6 +400,9 @@ __webpack_require__(/*! prismjs/themes/prism.css */ "./node_modules/prismjs/them
 
 
 
+
+var Turbo = __webpack_require__(/*! turbolinks */ "./node_modules/turbolinks/dist/turbolinks.js");
+
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_focus__WEBPACK_IMPORTED_MODULE_1__["default"]);
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_collapse__WEBPACK_IMPORTED_MODULE_2__["default"]);
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
@@ -410,6 +414,7 @@ window.AOS = (aos__WEBPACK_IMPORTED_MODULE_7___default());
 window.markdownParse = marked__WEBPACK_IMPORTED_MODULE_9__.parse;
 window.Tagify = (_yaireo_tagify__WEBPACK_IMPORTED_MODULE_10___default());
 window.Prism = (prismjs__WEBPACK_IMPORTED_MODULE_11___default());
+window.Turbo = Turbo;
 
 /***/ }),
 
