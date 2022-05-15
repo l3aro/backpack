@@ -6,20 +6,20 @@
     display: none;
 }
 
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.CodeMirror,
+.CodeMirror-scroll {
+    max-height: 500px;
+}
+
 @layer components {
-    .map-responsive iframe {
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        position: absolute;
-    }
-
-    .CodeMirror,
-    .CodeMirror-scroll {
-        max-height: 500px;
-    }
-
     .prose pre {
         @apply relative;
     }
