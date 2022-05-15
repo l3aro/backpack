@@ -13,3 +13,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+public/.user.ini
+public/assets/js/*
+public/assets/css/*
