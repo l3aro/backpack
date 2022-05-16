@@ -30,8 +30,17 @@ class Create extends Component
 
     public function mount()
     {
+        $this->resetState();
+    }
+
+    private function resetState()
+    {
         $this->post = new Post;
         $this->propertiesFrom($this->post);
+        $this->selectedCategories = [];
+        $this->tags = [];
+        $this->photo = null;
+        $this->fill($this->post);
     }
 
     public function updatedTitle()
@@ -51,8 +60,7 @@ class Create extends Component
             $this->post->addMedia($this->photo)->toMediaCollection('cover');
         }
         $post = $this->post;
-        $this->photo = null;
-        $this->post = new Post;
+        $this->resetState();
         return $post;
     }
 
