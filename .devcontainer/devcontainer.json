@@ -33,7 +33,4 @@
 
     // Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && npm install && npm run dev",
-
-    // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-    "remoteUser": "sail"
 }
