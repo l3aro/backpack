@@ -11,6 +11,8 @@ services:
             APP_ENV: local
             PHP_EXTENSION_XDEBUG: 1
             APACHE_DOCUMENT_ROOT: /workspace/public
+        networks:
+            - app
     db:
         image: 'mysql/mysql-server:8.0'
         ports:
