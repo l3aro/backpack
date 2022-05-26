@@ -7,18 +7,20 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Pipeline\Pipeline;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Core\Enums\UserTypeEnum;
 use Modules\Core\Models\Plugins\HasBitwiseFlag;
 use Modules\Core\Models\Plugins\HasProfilePhoto;
-use PDO;
+use Baro\PipelineQueryCollection;
+use Baro\PipelineQueryCollection\Concerns\Filterable;
+use Baro\PipelineQueryCollection\Contracts\CanFilterContract;
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanFilterContract
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasBitwiseFlag;
     use HasProfilePhoto;
+    use Filterable;
 
     protected $fillable = [
         'name',
@@ -96,18 +98,15 @@ class User extends Authenticatable
         return !$this->hasFlag('type_flag', UserTypeEnum::DEACTIVATED->value);
     }
 
-    public function scopeFilter($query)
+    public function getFilters(): array
     {
-        return app(Pipeline::class)
-            ->send($query)
-            ->through([
-                new \Modules\Core\Models\Filters\ScopeFilter('search'),
-                new \Modules\Core\Models\Filters\BitwiseFilter('type_flag'),
-                (new \Modules\Core\Models\Filters\DateFromFilter),
-                (new \Modules\Core\Models\Filters\DateToFilter),
-                new \Modules\Core\Models\Filters\Sort(),
-            ])
-            ->thenReturn();
+        return [
+            new PipelineQueryCollection\ScopeFilter('search'),
+            new PipelineQueryCollection\BitwiseFilter('type_flag'),
+            new PipelineQueryCollection\DateFromFilter,
+            new PipelineQueryCollection\DateToFilter,
+            new PipelineQueryCollection\Sort,
+        ];
     }
 
     public function scopeSearch($query, $search)

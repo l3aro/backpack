@@ -11,6 +11,7 @@
         "doctrine/dbal": "^3.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "l3aro/pipeline-query-collection": "^1.0.0",
         "laravel/framework": "^9.0",
         "laravel/octane": "^1.2",
         "laravel/sanctum": "^2.14",
