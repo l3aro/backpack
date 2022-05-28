@@ -2,5 +2,6 @@
     "Core": true,
     "Portfolio": true,
     "Blog": true,
-    "Aoe2Notebook": true
+    "Aoe2Notebook": true,
+    "Opinion": true
 }

@@ -1,0 +1,13 @@
+{
+    "name": "Opinion",
+    "alias": "opinion",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Opinion\\Providers\\OpinionServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
