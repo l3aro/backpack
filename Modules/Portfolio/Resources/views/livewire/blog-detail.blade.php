@@ -22,36 +22,6 @@
 
             <hr>
 
-            <div class="flex justify-between content-center px-4 pb-12">
-                @if ($post->previous_post)
-                    <div class="text-left">
-                        <p>
-                            <a href="{{ route('portfolio.blogs.show', '$post->previous_post->slug') }}"
-                                class="break-normal text-base text-gray-600 font-bold no-underline hover:underline">
-                                &lt; Previous
-                            </a>
-                        </p>
-                        <span class="text-xs md:text-sm font-normal text-gray-600">
-                            {{ $post->previous_post->title }}
-                            Previous Post
-                        </span><br>
-                    </div>
-                @endif
-                @if ($post->next_post)
-                    <div class="text-right">
-                        <p>
-                            <a href="{{ route('portfolio.blogs.show', '$post->next_post->slug') }}"
-                                class="break-normal text-base text-gray-600 font-bold no-underline hover:underline">
-                                Next &gt;
-                            </a>
-                        </p>
-                        <span class="text-xs md:text-sm font-normal text-gray-600">
-                            {{ $post->next_post->title }}
-                            Next Post
-                        </span><br>
-                    </div>
-                @endif
-            </div>
         </div>
     </div>
 </div>

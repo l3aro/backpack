@@ -113,38 +113,13 @@ class Post extends Model implements HasMedia
     protected function nextPost(): Attribute
     {
         return Attribute::make(
-            set: fn () => self::query()
+            get: fn () => self::query()
                 ->published()
                 ->where('published_at', '>', $this->published_at)
                 ->orderBy('published_at', 'desc')
                 ->select('id', 'title', 'slug')
                 ->first(),
         );
-    }
-
-    protected function previousPost(): Attribute
-    {
-        return Attribute::make(
-            set: fn () => self::query()
-                ->published()
-                ->where('published_at', '<', $this->published_at)
-                ->orderBy('published_at', 'asc')
-                ->select('id', 'title', 'slug')
-                ->first(),
-        );
-    }
-
-    public function getStatusAttribute()
-    {
-        if (!isset($this->published_at)) {
-            return BlogStatusEnum::DRAFT;
-        }
-
-        if ($this->published_at->isFuture()) {
-            return BlogStatusEnum::SCHEDULED;
-        }
-
-        return BlogStatusEnum::PUBLISHED;
     }
 
     public function getStatusTextAttribute()
