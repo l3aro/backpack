@@ -102,7 +102,7 @@ class User extends Authenticatable implements CanFilterContract
     {
         return [
             new PipelineQueryCollection\ScopeFilter('search'),
-            new PipelineQueryCollection\BitwiseFilter('type_flag'),
+            (new PipelineQueryCollection\BitwiseFilter('type'))->filterOn('type_flag'),
             new PipelineQueryCollection\DateFromFilter,
             new PipelineQueryCollection\DateToFilter,
             new PipelineQueryCollection\Sort,
