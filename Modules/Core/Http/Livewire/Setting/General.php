@@ -22,6 +22,7 @@ class General extends Component
         'setting.site_phone' => '',
         'setting.site_address' => '',
         'setting.site_map' => '',
+        'setting.site_google_analytics' => '',
     ];
 
     public function mount()

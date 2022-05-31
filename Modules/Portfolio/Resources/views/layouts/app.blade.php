@@ -28,6 +28,20 @@
     <script src="{{ mix('assets/js/manifest.js') }}" defer></script>
     <script src="{{ mix('assets/js/vendor.js') }}" defer></script>
     <script src="{{ mix('assets/js/app.js') }}" defer></script>
+    @if (setting('site_google_analytics'))
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ setting('site_google_analytics') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', '{{ setting('site_google_analytics') }}');
+        </script>
+    @endif
 </head>
 
 <body class="font-['Montserrat'] leading-7 text-neutral-400">
