@@ -8,7 +8,7 @@
 
                 <x-core::field.form-row title="Slug" required>
                     <x-core::field.input type="text" wire:model.defer="slug" />
-                </x-core::field.form-row>/
+                </x-core::field.form-row>
 
                 <x-core::field.form-row title="Schedule Post">
                     <x-core::field.flatpickr type="text" wire:model.defer="published_at"
@@ -16,8 +16,7 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Cover photo">
-                    <x-core::field.image wire:model.defer="photo"
-                        :default="$photo?->temporaryUrl() ?? $post->getFirstMediaUrl('cover', 'thumb') ?? ''" />
+                    <x-core::field.image wire:model.defer="photo" :default="$photo?->temporaryUrl() ?? ($post->getFirstMediaUrl('cover', 'thumb') ?? '')" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Category" required>
@@ -42,8 +41,7 @@
                 </x-core::field.form-row>
             </x-core::field.form-section>
 
-            <x-core::field.form-section :title="__('SEO')" :description="__('Search Engine Optimization.')"
-                class="pt-5">
+            <x-core::field.form-section :title="__('SEO')" :description="__('Search Engine Optimization.')" class="pt-5">
                 <x-core::field.form-row title="Meta Title">
                     <x-core::field.input type="text" wire:model.debounce.500ms="meta_title" />
                 </x-core::field.form-row>

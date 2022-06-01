@@ -19,7 +19,7 @@ class Edit extends Component
         return [
             'postCategory.title' => 'required|string|max:255',
             'postCategory.description' => 'string',
-            'postCategory.slug' => 'required|string|max:255|unique:blog_categories,slug,' . $this->postCategory->id,
+            'postCategory.slug' => 'required|string|max:255|unique:blog__categories,slug,' . $this->postCategory->id,
             'postCategory.is_published' => '',
             'postCategory.meta_title' => '',
             'postCategory.meta_description' => '',
