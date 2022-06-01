@@ -49,8 +49,7 @@ class Category extends Model
         }
         return $query->where(function (Builder $query) use ($search) {
             $query->where('id', $search)
-                ->orWhere('name', 'like', "%{$search}%")
-                ->orWhere('name', 'like', "%{$search}%")
+                ->orWhere('title', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%");
         });
     }
