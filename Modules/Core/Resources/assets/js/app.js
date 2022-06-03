@@ -9,3 +9,6 @@ Alpine.start()
 AOS.init()
 Prism.highlightAll()
 Turbo.start()
+document.addEventListener('turbolinks:load', function () {
+    Prism.highlightAll()
+})
