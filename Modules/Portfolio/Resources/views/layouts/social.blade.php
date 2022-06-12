@@ -9,7 +9,7 @@
     </a>
 </li>
 <li>
-    <a target="_blank" href="https://www.linkedin.com/in/bao-duong-924717186/">
-        <x-fab-linkedin-in class="w-5 h-5 mx-5" />
+    <a target="_blank" href="https://github.com/l3aro">
+        <x-fab-github class="w-5 h-5 mx-5" />
     </a>
 </li>

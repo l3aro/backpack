@@ -36,7 +36,7 @@
                     <x-core::field.input type="text" wire:model.defer="description" />
                 </x-core::field.form-row>
 
-                <x-core::field.form-row title="Content" required>
+                <x-core::field.form-row title="Content" required class="col-span-2 max-w-none">
                     <x-core::field.markdown wire:model.defer="content" class="max-w-lg" />
                 </x-core::field.form-row>
             </x-core::field.form-section>

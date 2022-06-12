@@ -12,7 +12,8 @@
                     </div>
                 </div>
                 @forelse ($posts as $item)
-                    <a href="{{ route('portfolio.blogs.show', $item->slug) }}" class="border shadow hover:shadow-md px-4 transition hover:-translate-y-2">
+                    <a href="{{ route('portfolio.blogs.show', $item->slug) }}"
+                        class="border shadow hover:shadow-md px-4 transition hover:-translate-y-2">
                         <h3 class="text-black font-bold text-lg mt-4 leading-normal">
                             {{ Str::limit($item->title, 50) }}
                         </h3>
@@ -22,7 +23,8 @@
                         <div class="flex justify-end items-center mt-8 mb-4">
                             <div class="flex items-center">
                                 <x-heroicon-o-calendar class="h-5 w-5 text-gray-600" />
-                                <span class="ml-1 text-sm text-gray-600">{{ $item->published_at->format('d M Y') }}</span>
+                                <span
+                                    class="ml-1 text-sm text-gray-600">{{ $item->published_at->format('d M Y') }}</span>
                             </div>
                         </div>
                     </a>
@@ -83,7 +85,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="p-6 mb-8 bg-neutral-500">
+            {{-- <div class="p-6 mb-8 bg-neutral-500">
                 <h3 class="uppercase text-sm text-white tracking-wider font-bold mb-7">Newsletter</h3>
                 <p class="text-white text-sm font-medium">Subscribe to our newsletter and get notified when we update
                     it.</p>
@@ -94,7 +96,7 @@
                     <button type="submit"
                         class="w-full p-3 font-medium bg-white hover:bg-gray-100 text-gray-500 transition">Subscribe</button>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
