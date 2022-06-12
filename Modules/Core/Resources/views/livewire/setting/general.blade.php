@@ -32,6 +32,9 @@
                     <x-core::field.input type="text" wire:model.defer="setting.site_map" />
                 </x-core::field.form-row>
 
+                <x-core::field.form-row title="Site Google Analytics">
+                    <x-core::field.input type="text" wire:model.defer="setting.site_google_analytics" />
+                </x-core::field.form-row>
             </x-core::field.form-section>
 
             <div class="pt-5">

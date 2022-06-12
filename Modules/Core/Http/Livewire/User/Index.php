@@ -23,7 +23,7 @@ class Index extends Component
     public function mount()
     {
         $this->sort = ['id' => 'desc'];
-        $this->arrayFilters = ['type_flag' => []];
+        $this->arrayFilters = ['type' => []];
     }
 
     protected function getModel()

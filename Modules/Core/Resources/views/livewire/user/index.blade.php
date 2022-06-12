@@ -28,7 +28,7 @@
                     </div>
                     <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6 py-4">
                         <x-core::field.dropdown-row :title="__('Type')" class="sm:col-span-6">
-                            <x-core::field.select wire:model="arrayFilters.type_flag" multiple>
+                            <x-core::field.select wire:model="arrayFilters.type" multiple>
                                 <x-core::field.select.option value="" label="&nbsp;" />
                                 @foreach ($this->userTypeEnumLabels as $value => $label)
                                     <x-core::field.select.option value="{{ $value }}" :label="$label" />
