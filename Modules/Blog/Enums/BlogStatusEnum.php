@@ -21,17 +21,4 @@ enum BlogStatusEnum: string implements EnumHasLabel
             self::SCHEDULED => __('Scheduled'),
         };
     }
-
-    public function description(): string
-    {
-        if (!isset($this->published_at)) {
-            return 'On Drafting';
-        }
-
-        if ($this->published_at->isFuture()) {
-            return 'Post is scheduled for publishing on ' . $this->published_at->format('F j, Y H:i');
-        }
-
-        return 'Published on ' . $this->published_at->format('F j, Y H:i');
-    }
 }

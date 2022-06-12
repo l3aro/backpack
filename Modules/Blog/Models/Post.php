@@ -122,17 +122,26 @@ class Post extends Model implements HasMedia
         );
     }
 
-    public function getStatusTextAttribute()
+    protected function statusText(): Attribute
     {
-        if (!isset($this->published_at)) {
-            return 'On Drafting';
-        }
+        return Attribute::make(
+            get: fn () => match (true) {
+                !isset($this->published_at) => 'On Drafting',
+                $this->published_at->isFuture() => 'Post is scheduled for publishing on ' . $this->published_at->format('F j, Y H:i'),
+                default => 'Published on ' . $this->published_at->format('F j, Y H:i'),
+            },
+        );
+    }
 
-        if ($this->published_at->isFuture()) {
-            return 'Post is scheduled for publishing on ' . $this->published_at->format('F j, Y H:i');
-        }
-
-        return 'Published on ' . $this->published_at->format('F j, Y H:i');
+    protected function status(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => match (true) {
+                !isset($this->published_at) => BlogStatusEnum::DRAFT,
+                $this->published_at->isFuture() => BlogStatusEnum::SCHEDULED,
+                default => BlogStatusEnum::PUBLISHED,
+            },
+        );
     }
 
     public function isDraft(): bool
