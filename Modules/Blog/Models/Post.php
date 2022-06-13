@@ -144,6 +144,14 @@ class Post extends Model implements HasMedia
         );
     }
 
+    protected function publishedAt(): Attribute
+    {
+        return Attribute::make(
+            // get: fn () => $this->published_at ? $this->published_at->format('F j, Y H:i') : null,
+            set: fn ($value) => empty($value) ? null : $value,
+        );
+    }
+
     public function isDraft(): bool
     {
         return $this->status === BlogStatusEnum::DRAFT;
