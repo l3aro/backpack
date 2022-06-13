@@ -5,7 +5,7 @@
             <div class="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:border-none">
                 <div id="mobile-nav-button"></div>
                 <!-- Search bar -->
-                <div class="flex-1 px-4 flex justify-between sm:px-6 lg:mx-auto lg:px-8">
+                <div class="flex-1 px-4 flex justify-between sm:px-6 lg:mx-auto lg:px-8 z-0">
                     <div class="flex-1 flex">
                         <form class="w-full flex md:ml-0" action="#" method="GET">
                             <label for="search-field" class="sr-only">Search</label>
