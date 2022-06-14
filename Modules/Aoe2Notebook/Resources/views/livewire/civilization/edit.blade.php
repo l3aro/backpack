@@ -49,6 +49,7 @@
 
             <div class="pt-5">
                 <div class="flex justify-end">
+                    <button x-data x-mousetrap.global.command+s.ctrl+s wire:click.prevent="saveAndContinue"></button>
                     <x-core::button.secondary href="{{ route('admin.aoe2notebook.civilizations.index') }}">
                         Cancel
                     </x-core::button.secondary>
