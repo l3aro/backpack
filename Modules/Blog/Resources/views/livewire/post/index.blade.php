@@ -71,111 +71,99 @@
             </x-core::dropdown>
         </div>
     </div>
-    <div class="flex flex-col">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <x-core::data-table wire:sortable="reorder" draggable="true">
-                    <x-slot name="header">
-                        <x-core::data-table.heading class="w-1">
-                            &nbsp;
-                        </x-core::data-table.heading>
-                        <x-core::data-table.heading sortable wire:click="applySort('id')"
-                            :direction="$sort['id'] ?? null">
-                            ID
-                        </x-core::data-table.heading>
-                        <x-core::data-table.heading sortable wire:click="applySort('title')"
-                            :direction="$sort['title'] ?? null">
-                            Title
-                        </x-core::data-table.heading>
-                        <x-core::data-table.heading>
-                            Category
-                        </x-core::data-table.heading>
-                        <x-core::data-table.heading>
-                            Status
-                        </x-core::data-table.heading>
-                        <x-core::data-table.heading sortable wire:click="applySort('published_at')"
-                            :direction="$sort['published_at'] ?? null">
-                            Published At
-                        </x-core::data-table.heading>
-                        <x-core::data-table.heading class="text-right">
-                            #
-                        </x-core::data-table.heading>
-                    </x-slot>
-                    @forelse ($posts as $post)
-                        <tr wire:key="post-{{ $post->id }}" wire:sortable.item="{{ $post->id }}">
-                            <td wire:sortable.handle
-                                class="px-6 py-4 whitespace-nowrap text-sm text-gray-300 hover:text-gray-500 transition cursor-grab">
-                                <x-heroicon-s-switch-vertical class="h-6 w-6" />
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <a href="{{ route('admin.blog.posts.show', $post->id) }}" class="font-bold text-blue-600">
-                                    {{ $post->id }}
-                                </a>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $post->title }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex flex-col">
-                                @foreach ($post->categories as $category)
-                                    <a href="{{ route('admin.blog.categories.show', $category->id) }}"
-                                        class="font-bold text-blue-600 hover:text-green-600 transition">
-                                        {{ Str::limit($category->title, 20) }}
-                                    </a>
-                                @endforeach
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $post->status->label() }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $post->published_at ?? '__' }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
-                                <x-core::dropdown>
-                                    <x-slot name="trigger">
-                                        <button type="button"
-                                            class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
-                                            <x-heroicon-o-dots-vertical class="w-5 h-5" />
-                                        </button>
-                                    </x-slot>
-                                    <a href="{{ route('admin.blog.posts.show', $post->id) }}"
-                                        class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                                        role="menuitem" tabindex="-1" id="menu-item-0">
-                                        <x-heroicon-s-eye
-                                            class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
-                                        {{ __('View') }}
-                                    </a>
-                                    <a href="{{ route('admin.blog.posts.edit', $post->id) }}"
-                                        class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                                        role="menuitem" tabindex="-1" id="menu-item-0">
-                                        <x-heroicon-s-pencil-alt
-                                            class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
-                                        {{ __('Edit') }}
-                                    </a>
-                                    <a href="#" wire:click.prevent="destroy({{ $post->id }})"
-                                        class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                                        role="menuitem" tabindex="-1" id="menu-item-1">
-                                        <x-heroicon-s-trash
-                                            class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
-                                        {{ __('Delete') }}
-                                    </a>
-                                </x-core::dropdown>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="7" class="text-center p-6">
-                                <div class="text-gray-500">No posts found.</div>
-                            </td>
-                        </tr>
-                    @endforelse
+    <x-core::data-table wire:sortable="reorder" draggable="true">
+        <x-slot name="header">
+            <x-core::data-table.heading class="w-1">
+                &nbsp;
+            </x-core::data-table.heading>
+            <x-core::data-table.heading sortable wire:click="applySort('id')" :direction="$sort['id'] ?? null">
+                ID
+            </x-core::data-table.heading>
+            <x-core::data-table.heading sortable wire:click="applySort('title')" :direction="$sort['title'] ?? null">
+                Title
+            </x-core::data-table.heading>
+            <x-core::data-table.heading>
+                Category
+            </x-core::data-table.heading>
+            <x-core::data-table.heading>
+                Status
+            </x-core::data-table.heading>
+            <x-core::data-table.heading sortable wire:click="applySort('published_at')" :direction="$sort['published_at'] ?? null">
+                Published At
+            </x-core::data-table.heading>
+            <x-core::data-table.heading class="text-right">
+                #
+            </x-core::data-table.heading>
+        </x-slot>
+        @forelse ($posts as $post)
+            <tr wire:key="post-{{ $post->id }}" wire:sortable.item="{{ $post->id }}">
+                <td wire:sortable.handle
+                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-300 hover:text-gray-500 transition cursor-grab">
+                    <x-heroicon-s-switch-vertical class="h-6 w-6" />
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <a href="{{ route('admin.blog.posts.show', $post->id) }}" class="font-bold text-blue-600">
+                        {{ $post->id }}
+                    </a>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {{ $post->title }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex flex-col">
+                    @foreach ($post->categories as $category)
+                        <a href="{{ route('admin.blog.categories.show', $category->id) }}"
+                            class="font-bold text-blue-600 hover:text-green-600 transition">
+                            {{ Str::limit($category->title, 20) }}
+                        </a>
+                    @endforeach
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {{ $post->status->label() }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {{ $post->published_at ?? '__' }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
+                    <x-core::dropdown>
+                        <x-slot name="trigger">
+                            <button type="button"
+                                class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
+                                <x-heroicon-o-dots-vertical class="w-5 h-5" />
+                            </button>
+                        </x-slot>
+                        <a href="{{ route('admin.blog.posts.show', $post->id) }}"
+                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
+                            role="menuitem" tabindex="-1" id="menu-item-0">
+                            <x-heroicon-s-eye class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+                            {{ __('View') }}
+                        </a>
+                        <a href="{{ route('admin.blog.posts.edit', $post->id) }}"
+                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
+                            role="menuitem" tabindex="-1" id="menu-item-0">
+                            <x-heroicon-s-pencil-alt class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+                            {{ __('Edit') }}
+                        </a>
+                        <a href="#" wire:click.prevent="destroy({{ $post->id }})"
+                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
+                            role="menuitem" tabindex="-1" id="menu-item-1">
+                            <x-heroicon-s-trash class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+                            {{ __('Delete') }}
+                        </a>
+                    </x-core::dropdown>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="7" class="text-center p-6">
+                    <div class="text-gray-500">No posts found.</div>
+                </td>
+            </tr>
+        @endforelse
 
-                    <x-slot name="pagination">
-                        {{ $posts->onEachSide(1)->links() }}
-                    </x-slot>
-                </x-core::data-table>
-            </div>
-        </div>
-    </div>
+        <x-slot name="pagination">
+            {{ $posts->onEachSide(1)->links() }}
+        </x-slot>
+    </x-core::data-table>
 
     <x-core::modal.confirmation wire:model="confirmingDeletion">
         <x-slot name="title">

@@ -27,3 +27,19 @@
         @apply absolute text-gray-500 hover:text-gray-700 hover:shadow top-2 right-2 transition;
     }
 }
+
+.soft-scrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    cursor: pointer;
+}
+
+.soft-scrollbar::-webkit-scrollbar-track {
+    background-color: #e2e8f0;
+    cursor: pointer;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #94a3b8;
+    cursor: pointer;
+}
