@@ -13,7 +13,7 @@ $sidebar = app(\Modules\Core\Entities\AdminSidebar::class);
     <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 flex z-40 lg:hidden" role="dialog"
         aria-modal="true">
         <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
-        <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-green-700">
+        <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-green-700 dark:bg-gray-800">
             <div class="absolute top-0 right-0 -mr-12 pt-2">
                 <button type="button"
                     class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -59,7 +59,7 @@ $sidebar = app(\Modules\Core\Entities\AdminSidebar::class);
 </div>
 
 <div class="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
-    <div class="flex flex-col flex-grow bg-green-700 pt-5 pb-4 overflow-y-auto">
+    <div class="flex flex-col flex-grow bg-green-700 dark:bg-gray-800 pt-5 pb-4 overflow-y-auto">
         <div class="flex items-center flex-shrink-0 px-4">
             {{-- <img class="h-8 w-auto"
                             src="https://tailwindui.com/img/logos/easywire-logo-green-300-mark-white-text.svg"

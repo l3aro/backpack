@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full bg-gray-100" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="dark" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="h-full">
+<body class="h-full bg-gray-100 text-gray-900 dark:text-gray-100 dark:bg-gray-900">
 
     {{ $slot }}
 

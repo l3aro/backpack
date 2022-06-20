@@ -101,15 +101,15 @@
                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-300 hover:text-gray-500 transition cursor-grab">
                     <x-heroicon-s-switch-vertical class="h-6 w-6" />
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
                     <a href="{{ route('admin.blog.posts.show', $post->id) }}" class="font-bold text-blue-600">
                         {{ $post->id }}
                     </a>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
                     {{ $post->title }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex flex-col">
+                <td class="px-6 py-4 whitespace-nowrap text-sm flex flex-col">
                     @foreach ($post->categories as $category)
                         <a href="{{ route('admin.blog.categories.show', $category->id) }}"
                             class="font-bold text-blue-600 hover:text-green-600 transition">
@@ -117,10 +117,10 @@
                         </a>
                     @endforeach
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
                     {{ $post->status->label() }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
                     {{ $post->published_at ?? '__' }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
