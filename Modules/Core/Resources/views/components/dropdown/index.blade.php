@@ -33,7 +33,7 @@ switch ($align) {
         x-transition:leave-end="transform opacity-0 scale-95"
         class="absolute z-50 pt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
         x-cloak x-on:click.outside="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
+        <div class="dark:bg-gray-700 rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
             {{ $slot }}
         </div>
     </div>

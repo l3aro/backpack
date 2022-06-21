@@ -1,6 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import './simple-mde.css';
 
 [x-cloak] {
     display: none;
@@ -12,11 +13,6 @@
     height: 100%;
     width: 100%;
     position: absolute;
-}
-
-.CodeMirror,
-.CodeMirror-scroll {
-    max-height: 100vh;
 }
 
 @layer components {

@@ -100,7 +100,7 @@ $field ??= $attributes->wire('model')->value() ?? '';
             </div>
         @endif
 
-        <ul class="max-h-60 overflow-y-auto select-none" tabindex="-1" x-ref="optionsContainer"
+        <ul class="dark:bg-gray-700 dark:text-gray-300 max-h-60 overflow-y-auto select-none" tabindex="-1" x-ref="optionsContainer"
             x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
             x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"

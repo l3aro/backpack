@@ -28,11 +28,9 @@
             </x-core::button.primary>
             <x-core::dropdown width="w-72">
                 <x-slot name="trigger">
-                    <button type="button"
-                        class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-xs font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-green-500">
+                    <x-core::button.secondary>
                         <x-heroicon-o-filter class="w-5 h-5" />
-                    </button>
-                    </span>
+                    </x-core::button.secondary>
                 </x-slot>
                 <div class="space-y-4 divide-y divide-gray-200 px-4">
                     <div class="pt-2">
