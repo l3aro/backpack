@@ -10,8 +10,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <link href="{{ mix('assets/css/app.css') }}" rel="stylesheet" type="text/css" />
-    @livewireStyles
-
+    <livewire:styles />
+    <wireui:scripts />
     <script src="{{ mix('assets/js/manifest.js') }}" defer></script>
     <script src="{{ mix('assets/js/vendor.js') }}" defer></script>
     <script src="{{ mix('assets/js/app.js') }}" defer></script>
@@ -24,7 +24,7 @@
 
     <x-core::notification />
     {{-- @livewire('livewire-ui-spotlight') --}}
-    @livewireScripts
+    <livewire:scripts />
     <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"
         data-turbolinks-eval="false" data-turbo-eval="false"></script>
 </body>
