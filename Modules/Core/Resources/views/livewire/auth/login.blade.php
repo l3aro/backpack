@@ -9,7 +9,6 @@
             </label>
             <div class="mt-1">
                 <x-input wire:model.defer="email" autocomplete="email"></x-input>
-                <x-core::field.session-error field="email" />
             </div>
         </div>
 
@@ -19,7 +18,6 @@
             </label>
             <div class="mt-1">
                 <x-input type="password" wire:model.defer="password"></x-input>
-                <x-core::field.session-error field="password" />
             </div>
         </div>
 

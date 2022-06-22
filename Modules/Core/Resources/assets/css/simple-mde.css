@@ -4,9 +4,31 @@
 }
 
 .CodeMirror {
-    @apply bg-white dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white;
+    @apply bg-white dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white;
 }
 
 .editor-toolbar a {
     @apply dark:text-gray-200 !important;
+}
+
+.editor-toolbar a.active,
+.editor-toolbar a:hover {
+    @apply dark:bg-gray-900;
+}
+
+.editor-toolbar.disabled-for-preview a:not(.no-disable) {
+    @apply dark:bg-gray-700;
+}
+
+.editor-toolbar.fullscreen {
+    @apply dark:bg-gray-800;
+}
+
+.editor-toolbar.fullscreen::before,
+.editor-toolbar.fullscreen::after {
+    background: none !important;
+}
+
+.CodeMirror-cursor {
+    @apply dark:border-l-gray-200;
 }

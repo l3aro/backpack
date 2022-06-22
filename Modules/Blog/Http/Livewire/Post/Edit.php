@@ -56,6 +56,13 @@ class Edit extends Component
         return $this->post;
     }
 
+    public function hydratePublishedAt($value)
+    {
+        $this->published_at = isEmptyOrNull($value) || is_string($value)
+            ? $value
+            : $value->format('Y-m-d H:i');
+    }
+
     public function saveAndShow()
     {
         $post = $this->save();

@@ -17,21 +17,19 @@
                                         aria-haspopup="true">
                                         <img class="h-8 w-8 rounded-full"
                                             src="{{ auth()->user()->profile_photo_url }}" alt="">
-                                        <span class="hidden ml-3 text-gray-700 dark:text-gray-300 text-sm font-medium lg:block"><span
+                                        <span
+                                            class="hidden ml-3 text-gray-700 dark:text-gray-300 text-sm font-medium lg:block"><span
                                                 class="sr-only">Open user menu for
                                             </span>{{ auth()->user()->name }}</span>
                                         <x-heroicon-o-chevron-down
                                             class="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" />
                                     </x-core::button.secondary>
                                 </x-slot>
-                                <a href="{{ route('admin.me.profile.index') }}"
-                                    class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" role="menuitem"
-                                    tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                                    role="menuitem" tabindex="-1" id="user-menu-item-2" x-data
-                                    x-on:click.prevent="$dispatch('logout')">
+                                <x-core::dropdown.link href="{{ route('admin.me.profile.index') }}">Your Profile
+                                </x-core::dropdown.link>
+                                <x-core::dropdown.link href="#" x-on:click.prevent="$dispatch('logout')">
                                     <livewire:core::auth.logout />
-                                </a>
+                                </x-core::dropdown.link>
                             </x-core::dropdown>
 
                         </div>

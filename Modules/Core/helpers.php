@@ -11,3 +11,12 @@ if (!function_exists('setting')) {
         }) ?: $default;
     }
 }
+
+if (!function_exists('isEmptyOrNull')) {
+    function isEmptyOrNull($value): bool
+    {
+        if (!isset($value)) return true;
+        if (empty($value)) return true;
+        return false;
+    }
+}

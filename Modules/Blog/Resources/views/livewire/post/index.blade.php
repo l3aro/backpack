@@ -2,23 +2,16 @@
     <div class="flex justify-between mb-3 mt-5">
         <div class="max-w-lg w-full lg:max-w-md flex">
             <div class="mr-2">
-                <x-core::field.select.native wire:model="perPage">
+                <x-native-select wire:model="perPage">
                     @foreach ($perPageOptions as $option)
                         <option value="{{ $option }}">{{ $option }}</option>
                     @endforeach
-                </x-core::field.select.native>
+                </x-native-select>
             </div>
             <div>
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative text-gray-400 focus-within:text-gray-500">
-                    <x-core::field.input type="search" name="search" wire:model.debounce.500ms="filter.search"
-                        class="block w-full py-2 pl-10 pr-3" placeholder="ID, Name">
-                        <x-slot name="prepend">
-                            <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                                <x-heroicon-s-document-search class="h-5 w-5" />
-                            </div>
-                        </x-slot>
-                    </x-core::field.input>
+                    <x-input icon="document-search" type="search" name="search" wire:model.debounce.500ms="filter.search" placeholder="ID, Name" />
                 </div>
             </div>
         </div>
@@ -37,33 +30,33 @@
                         <b>Filter Options</b>
                     </div>
                     <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6 py-4">
-                        <x-core::field.dropdown-row :title="__('Category')" class="sm:col-span-6">
-                            <x-core::field.select.native wire:model="filter.categories_id">
+                        <x-core::dropdown.row :title="__('Category')" class="sm:col-span-6">
+                            <x-native-select wire:model="filter.categories_id">
                                 <option value="">&nbsp;</option>
                                 @foreach ($postCategories as $item)
                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
                                 @endforeach
-                            </x-core::field.select.native>
-                        </x-core::field.dropdown-row>
-                        <x-core::field.dropdown-row :title="__('Tag')" class="sm:col-span-6">
-                            <x-core::field.select.native wire:model="filter.tag">
+                            </x-native-select>
+                        </x-core::dropdown.row>
+                        <x-core::dropdown.row :title="__('Tag')" class="sm:col-span-6">
+                            <x-native-select wire:model="filter.tag">
                                 <option value="">&nbsp;</option>
                                 @foreach ($postTags as $item)
                                     <option value="{{ $item->name }}">{{ $item->name }}</option>
                                 @endforeach
-                            </x-core::field.select.native>
-                        </x-core::field.dropdown-row>
-                        <x-core::field.dropdown-row :title="__('Published From')" class="sm:col-span-6">
+                            </x-native-select>
+                        </x-core::dropdown.row>
+                        <x-core::dropdown.row :title="__('Published From')" class="sm:col-span-6">
                             <x-core::field.flatpickr type="text" wire:model="filter.published_at_from" />
-                        </x-core::field.dropdown-row>
-                        <x-core::field.dropdown-row :title="__('Published To')" class="sm:col-span-6">
+                        </x-core::dropdown.row>
+                        <x-core::dropdown.row :title="__('Published To')" class="sm:col-span-6">
                             <x-core::field.flatpickr type="text" wire:model="filter.published_at_to" />
-                        </x-core::field.dropdown-row>
-                        <x-core::field.dropdown-row class="sm:col-span-6 text-right">
+                        </x-core::dropdown.row>
+                        <x-core::dropdown.row class="sm:col-span-6 text-right">
                             <x-core::button.secondary type="button" wire:click="resetFilter" class="text-xs">
                                 Reset
                             </x-core::button.secondary>
-                        </x-core::field.dropdown-row>
+                        </x-core::dropdown.row>
                     </div>
                 </div>
             </x-core::dropdown>
@@ -121,32 +114,26 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                     {{ $post->published_at ?? '__' }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-right">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex justify-end">
                     <x-core::dropdown>
                         <x-slot name="trigger">
                             <button type="button"
-                                class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
+                                class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 focus:outline-none focus:text-gray-900">
                                 <x-heroicon-o-dots-vertical class="w-5 h-5" />
                             </button>
                         </x-slot>
-                        <a href="{{ route('admin.blog.posts.show', $post->id) }}"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-0">
+                        <x-core::dropdown.link href="{{ route('admin.blog.posts.show', $post->id) }}">
                             <x-heroicon-s-eye class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('View') }}
-                        </a>
-                        <a href="{{ route('admin.blog.posts.edit', $post->id) }}"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-0">
+                        </x-core::dropdown.link>
+                        <x-core::dropdown.link href="{{ route('admin.blog.posts.edit', $post->id) }}">
                             <x-heroicon-s-pencil-alt class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Edit') }}
-                        </a>
-                        <a href="#" wire:click.prevent="destroy({{ $post->id }})"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-1">
+                        </x-core::dropdown.link>
+                        <x-core::dropdown.link href="#" wire:click.prevent="destroy({{ $post->id }})">
                             <x-heroicon-s-trash class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Delete') }}
-                        </a>
+                        </x-core::dropdown.link>
                     </x-core::dropdown>
                 </td>
             </tr>
