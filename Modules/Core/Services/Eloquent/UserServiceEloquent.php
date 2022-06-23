@@ -42,7 +42,9 @@ class UserServiceEloquent implements UserService
         $data = $this->preparePassword($data);
 
         $model->fill($data);
-        $model->type = $data['type'];
+        if (isset($data['type'])) {
+            $model->type = $data['type'];
+        }
         $model->save();
 
         return $model;
