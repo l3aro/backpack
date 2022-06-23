@@ -5,7 +5,7 @@
             <x-heroicon-o-pencil-alt class="w-5 h-5" />
         </a>
     </div>
-    <div class="bg-white dark:bg-gray-800 dark:divide-gray-700 shadow rounded mb-6 py-3 px-6 divide-y">
+    <x-core::card>
         <x-core::visual.row :title="__('Title')">
             {{ $post->title }}
         </x-core::visual.row>
@@ -59,5 +59,5 @@
         <x-core::visual.row :title="__('Updated At')" no-border-bottom>
             {{ $post->updated_at }}
         </x-core::visual.row>
-    </div>
+    </x-core::card>
 </x-core::container>

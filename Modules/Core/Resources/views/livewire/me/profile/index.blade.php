@@ -5,34 +5,15 @@
             <x-heroicon-o-pencil-alt class="w-5 h-5" />
         </a>
     </div>
-    <div class="bg-white shadow rounded mb-6 py-3 px-6 divide-y">
-        <div class="flex border-b border-40 -mx-6 px-6">
-            <div class="w-1/4 py-4">
-                <h4 class="font-normal text-80">Name</h4>
-            </div>
-            <div class="w-3/4 py-4 break-words">
-                <p class="text-90">
-                    {{ $user->name }}
-                </p>
-            </div>
-        </div>
-        <div class="flex border-b border-40 -mx-6 px-6">
-            <div class="w-1/4 py-4">
-                <h4 class="font-normal text-80">Email</h4>
-            </div>
-            <div class="w-3/4 py-4 break-words">
-                <p class="text-90">
-                    {{ $user->email }}
-                </p>
-            </div>
-        </div>
-        <div class="flex -mx-6 px-6">
-            <div class="w-1/4 py-4">
-                <h4 class="font-normal text-80">Avatar</h4>
-            </div>
-            <div class="w-3/4 py-4 break-words">
-                <img class="inline-block h-14 w-14 rounded-full" src="{{ $user->profile_photo_url }}" alt="">
-            </div>
-        </div>
-    </div>
+    <x-core::card>
+        <x-core::visual.row :title="__('Name')">
+            {{ $user->name }}
+        </x-core::visual.row>
+        <x-core::visual.row :title="__('Email')">
+            {{ $user->email }}
+        </x-core::visual.row>
+        <x-core::visual.row :title="__('Avatar')">
+            <x-core::visual.image :src="$user->profile_photo_url" />
+        </x-core::visual.row>
+    </x-core::card>
 </x-core::container>

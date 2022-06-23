@@ -4,7 +4,7 @@
             <x-heroicon-o-pencil-alt class="w-5 h-5" />
         </x-core::button.primary>
     </div>
-    <div class="bg-white dark:bg-gray-800 dark:divide-gray-700 shadow rounded mb-6 py-3 px-6 divide-y">
+    <x-core::card class="space-y-8">
         <x-core::visual.row :title="__('Name')">
             {{ $unit->name }}
         </x-core::visual.row>
@@ -90,5 +90,5 @@
         <x-core::visual.row :title="__('Upgrade time')">
             {{ $unit->upgrade_time }}
         </x-core::visual.row>
-    </div>
+    </x-core::card>
 </x-core::container>
