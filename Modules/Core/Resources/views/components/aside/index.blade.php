@@ -1,7 +1,3 @@
-@php
-$sidebar = app(\Modules\Core\Entities\AdminSidebar::class);
-@endphp
-
 <div x-data="{ open: false }">
     <template x-teleport="#mobile-nav-button">
         <button type="button" x-on:click="open = ! open"
@@ -21,33 +17,15 @@ $sidebar = app(\Modules\Core\Entities\AdminSidebar::class);
                     <x-heroicon-o-x class="h-6 w-6 text-white" />
                 </button>
             </div>
-
-            <div class="flex-shrink-0 flex items-center px-4">
-                {{-- <img class="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/easywire-logo-cyan-300-mark-white-text.svg"
-                            alt="Easywire logo"> --}}
-            </div>
             <nav x-on:click.away="open = false" aria-label="Sidebar"
                 class="mt-5 flex-shrink-0 h-full divide-y divide-green-800 overflow-y-auto">
                 <div class="px-2 space-y-1">
-                    @foreach ($sidebar->getItems() as $item)
-                        @switch ($item[$sidebar::PROPERTY_TYPE])
-                            @case($sidebar::TYPE_ITEM)
-                                <x-core::aside.link-mobile href="{{ $item[$sidebar::PROPERTY_LINK] }}" :active="$item[$sidebar::PROPERTY_ACTIVE]">
-                                    <x-dynamic-component :component="$item['icon']" class="mr-4 flex-shrink-0 h-6 w-6" />
-                                    {{ $item['title'] }}
-                                </x-core::aside.link-mobile>
-                            @break
-
-                            @case($sidebar::TYPE_DIVIDER)
-                                <x-core::aside.divider :title="$item[$sidebar::PROPERTY_TITLE] ?? ''" />
-                            @break
-                        @endswitch
-                    @endforeach
-
-
+                    <x-core::aside.section-mobile :items="$menu" />
                 </div>
             </nav>
+            <div class="flex items-center justify-center flex-shrink-0 px-4">
+                <livewire:core::misc.toggle-dark-mode />
+            </div>
         </div>
 
         <div class="flex-shrink-0 w-14" aria-hidden="true">
@@ -59,22 +37,10 @@ $sidebar = app(\Modules\Core\Entities\AdminSidebar::class);
 
 <div class="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
     <div class="flex flex-col flex-grow bg-green-700 dark:bg-gray-800 pt-5 pb-4 overflow-y-auto">
-        <nav class="mt-5 flex-1 flex flex-col divide-y divide-green-800 overflow-y-auto" aria-label="Sidebar">
+        <nav class="soft-scrollbar mt-5 flex-1 flex flex-col divide-y divide-green-800 overflow-y-auto"
+            aria-label="Sidebar">
             <div class="px-2 space-y-1">
-                @foreach ($sidebar->getItems() as $item)
-                    @switch ($item[$sidebar::PROPERTY_TYPE])
-                        @case($sidebar::TYPE_ITEM)
-                            <x-core::aside.link href="{{ $item[$sidebar::PROPERTY_LINK] }}" :active="$item[$sidebar::PROPERTY_ACTIVE]">
-                                <x-dynamic-component :component="$item['icon']" class="mr-4 flex-shrink-0 h-6 w-6" />
-                                {{ $item['title'] }}
-                            </x-core::aside.link>
-                        @break
-
-                        @case($sidebar::TYPE_DIVIDER)
-                            <x-core::aside.divider :title="$item[$sidebar::PROPERTY_TITLE] ?? ''" />
-                        @break
-                    @endswitch
-                @endforeach
+                <x-core::aside.section :items="$menu" />
         </nav>
         <div class="flex items-center justify-center flex-shrink-0 px-4">
             <livewire:core::misc.toggle-dark-mode />
