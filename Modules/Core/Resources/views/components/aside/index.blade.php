@@ -33,8 +33,7 @@ $sidebar = app(\Modules\Core\Entities\AdminSidebar::class);
                     @foreach ($sidebar->getItems() as $item)
                         @switch ($item[$sidebar::PROPERTY_TYPE])
                             @case($sidebar::TYPE_ITEM)
-                                <x-core::aside.link-mobile href="{{ $item[$sidebar::PROPERTY_LINK] }}"
-                                    :active="$item[$sidebar::PROPERTY_ACTIVE]">
+                                <x-core::aside.link-mobile href="{{ $item[$sidebar::PROPERTY_LINK] }}" :active="$item[$sidebar::PROPERTY_ACTIVE]">
                                     <x-dynamic-component :component="$item['icon']" class="mr-4 flex-shrink-0 h-6 w-6" />
                                     {{ $item['title'] }}
                                 </x-core::aside.link-mobile>
@@ -60,18 +59,12 @@ $sidebar = app(\Modules\Core\Entities\AdminSidebar::class);
 
 <div class="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
     <div class="flex flex-col flex-grow bg-green-700 dark:bg-gray-800 pt-5 pb-4 overflow-y-auto">
-        <div class="flex items-center flex-shrink-0 px-4">
-            {{-- <img class="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/easywire-logo-green-300-mark-white-text.svg"
-                            alt="Easywire logo"> --}}
-        </div>
         <nav class="mt-5 flex-1 flex flex-col divide-y divide-green-800 overflow-y-auto" aria-label="Sidebar">
             <div class="px-2 space-y-1">
                 @foreach ($sidebar->getItems() as $item)
                     @switch ($item[$sidebar::PROPERTY_TYPE])
                         @case($sidebar::TYPE_ITEM)
-                            <x-core::aside.link href="{{ $item[$sidebar::PROPERTY_LINK] }}"
-                                :active="$item[$sidebar::PROPERTY_ACTIVE]">
+                            <x-core::aside.link href="{{ $item[$sidebar::PROPERTY_LINK] }}" :active="$item[$sidebar::PROPERTY_ACTIVE]">
                                 <x-dynamic-component :component="$item['icon']" class="mr-4 flex-shrink-0 h-6 w-6" />
                                 {{ $item['title'] }}
                             </x-core::aside.link>
@@ -83,5 +76,8 @@ $sidebar = app(\Modules\Core\Entities\AdminSidebar::class);
                     @endswitch
                 @endforeach
         </nav>
+        <div class="flex items-center justify-center flex-shrink-0 px-4">
+            <livewire:core::misc.toggle-dark-mode />
+        </div>
     </div>
 </div>
