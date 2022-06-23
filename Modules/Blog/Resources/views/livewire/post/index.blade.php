@@ -1,4 +1,4 @@
-<div class="mx-auto px-4 sm:px-6 lg:px-8">
+<x-core::container>
     <div class="flex justify-between mb-3 mt-5">
         <div class="max-w-lg w-full lg:max-w-md flex">
             <div class="mr-2">
@@ -167,4 +167,4 @@
             </x-core::button.danger>
         </x-slot>
     </x-core::modal.confirmation>
-</div>
+</x-core::container>

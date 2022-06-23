@@ -1,4 +1,4 @@
-<div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
+<x-core::container>
     <div class="bg-white rounded shadow px-8 py-6">
         <form class="space-y-8 divide-y divide-gray-200">
             <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
@@ -114,4 +114,4 @@
             </div>
         </form>
     </div>
-</div>
+</x-core::container>

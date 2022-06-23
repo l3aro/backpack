@@ -1,4 +1,4 @@
-<div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
+<x-core::container>
     <div class="flex justify-end mb-3">
         <x-core::button.primary href="{{ route('admin.users.edit', $user->id) }}">
             <x-heroicon-o-pencil-alt class="w-5 h-5" />
@@ -23,4 +23,4 @@
             <x-core::visual.boolean :value="$user->isVerified()" />
         </x-core::visual.row>
     </div>
-</div>
+</x-core::container>

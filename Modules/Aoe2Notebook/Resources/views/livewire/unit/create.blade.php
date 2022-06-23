@@ -1,4 +1,4 @@
-<div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
+<x-core::container>
     <div class="bg-white dark:bg-gray-800 rounded shadow px-8 py-6">
         <form class="space-y-8 divide-y dark:divide-gray-500 divide-gray-200 gap-y-8">
             <x-core::field.form-section :title="__('Create')" :description="__('Add new unit.')">
@@ -157,4 +157,4 @@
             </div>
         </form>
     </div>
-</div>
+</x-core::container>

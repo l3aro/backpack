@@ -1,4 +1,4 @@
-<div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
+<x-core::container>
     <div class="flex justify-end mb-3">
         <x-core::button.primary href="{{ route('admin.aoe2notebook.units.edit', $unit->id) }}">
             <x-heroicon-o-pencil-alt class="w-5 h-5" />
@@ -91,4 +91,4 @@
             {{ $unit->upgrade_time }}
         </x-core::visual.row>
     </div>
-</div>
+</x-core::container>
