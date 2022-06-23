@@ -5,7 +5,7 @@ $width = match ($size) { 'full' => 'w-3/4',  'half' => 'w-1/2',  'small' => 'w-1
 @endphp
 
 
-<div {{ $attributes->class(['flex -mx-6 px-6']) }}>
+<div {{ $attributes->class(['flex -mx-6 px-6 dark:text-gray-400']) }}>
     <div class="w-1/4 py-4">
         <h4 class="font-normal text-80">{{ $title }}</h4>
     </div>

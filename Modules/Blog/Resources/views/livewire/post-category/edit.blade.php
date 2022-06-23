@@ -1,36 +1,36 @@
 <div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
-    <div class="bg-white rounded shadow px-8 py-6">
-        <form class="space-y-8 divide-y divide-gray-200">
+    <div class="bg-white dark:bg-gray-800 rounded shadow px-8 py-6">
+        <form class="space-y-8 divide-y divide-gray-200 dark:divide-gray-500">
             <x-core::field.form-section :title="__('Edit')" :description="__('Update post category.')">
                 <x-core::field.form-row title="Title" required>
-                    <x-core::field.input type="text" wire:model.debounce.500ms="postCategory.title" />
+                    <x-input type="text" wire:model.debounce.500ms="postCategory.title" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Slug" required>
-                    <x-core::field.input type="text" wire:model.defer="postCategory.slug" />
+                    <x-input type="text" wire:model.defer="postCategory.slug" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Description">
-                    <x-core::field.input type="text" wire:model.defer="postCategory.description" />
+                    <x-input type="text" wire:model.defer="postCategory.description" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Published">
-                    <x-core::field.check type="checkbox" wire:model.defer="postCategory.is_published" />
+                    <x-checkbox wire:model.defer="postCategory.is_published" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 
             <x-core::field.form-section :title="__('SEO')" :description="__('Search Engine Optimization.')"
                 class="pt-5">
                 <x-core::field.form-row title="Meta Title">
-                    <x-core::field.input type="text" wire:model.debounce.500ms="postCategory.meta_title" />
+                    <x-input type="text" wire:model.debounce.500ms="postCategory.meta_title" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Meta Description">
-                    <x-core::field.input type="text" wire:model.defer="postCategory.meta_description" />
+                    <x-input type="text" wire:model.defer="postCategory.meta_description" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Meta Keyword">
-                    <x-core::field.input type="text" wire:model.defer="postCategory.meta_keyword" />
+                    <x-input type="text" wire:model.defer="postCategory.meta_keyword" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 

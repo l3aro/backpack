@@ -1,39 +1,39 @@
 <div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
-    <div class="bg-white rounded shadow px-8 py-6">
-        <form class="space-y-8 divide-y divide-gray-200">
+    <div class="bg-white dark:bg-gray-800 rounded shadow px-8 py-6">
+        <form class="space-y-8 divide-y divide-gray-200 dark:divide-gray-500">
             <x-core::field.form-section :title="__('General Setting')"
                 :description="__('Update general site settings.')">
 
                 <x-core::field.form-row title="Site Name" required>
-                    <x-core::field.input type="text" wire:model.defer="setting.site_name" />
+                    <x-input type="text" wire:model.defer="setting.site_name" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Site Description">
-                    <x-core::field.input type="text" wire:model.defer="setting.site_description" />
+                    <x-input type="text" wire:model.defer="setting.site_description" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Site Keywords">
-                    <x-core::field.input type="text" wire:model.defer="setting.site_keywords" />
+                    <x-input type="text" wire:model.defer="setting.site_keywords" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Site Email">
-                    <x-core::field.input type="text" wire:model.defer="setting.site_email" />
+                    <x-input type="text" wire:model.defer="setting.site_email" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Site Phone">
-                    <x-core::field.input type="text" wire:model.defer="setting.site_phone" />
+                    <x-input type="text" wire:model.defer="setting.site_phone" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Site Address">
-                    <x-core::field.input type="text" wire:model.defer="setting.site_address" />
+                    <x-input type="text" wire:model.defer="setting.site_address" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Site Map">
-                    <x-core::field.input type="text" wire:model.defer="setting.site_map" />
+                    <x-input type="text" wire:model.defer="setting.site_map" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Site Google Analytics">
-                    <x-core::field.input type="text" wire:model.defer="setting.site_google_analytics" />
+                    <x-input type="text" wire:model.defer="setting.site_google_analytics" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 

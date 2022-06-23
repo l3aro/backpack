@@ -82,7 +82,7 @@ $field ??= $attributes->wire('model')->value() ?? '';
 
     <div class="
         absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-secondary-200
-        dark:bg-secondary-800 dark:border-secondary-600
+        dark:bg-gray-800 dark:border-secondary-600
     "
         x-show="popover" x-cloak x-on:click.outside="closePopover" x-on:keydown.escape.window="closePopover">
         @if ($searchable)
@@ -100,7 +100,7 @@ $field ??= $attributes->wire('model')->value() ?? '';
             </div>
         @endif
 
-        <ul class="dark:bg-gray-700 dark:text-gray-300 max-h-60 overflow-y-auto select-none" tabindex="-1" x-ref="optionsContainer"
+        <ul class="dark:bg-gray-800 dark:text-gray-300 max-h-60 overflow-y-auto select-none" tabindex="-1" x-ref="optionsContainer"
             x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
             x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"

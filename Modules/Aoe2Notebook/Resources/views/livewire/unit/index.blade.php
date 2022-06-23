@@ -2,23 +2,17 @@
     <div class="flex justify-between mb-3 mt-5">
         <div class="max-w-lg w-full lg:max-w-md flex">
             <div class="mr-2">
-                <x-core::field.select.native wire:model="perPage">
+                <x-native-select wire:model="perPage">
                     @foreach ($perPageOptions as $option)
                         <option value="{{ $option }}">{{ $option }}</option>
                     @endforeach
-                </x-core::field.select.native>
+                </x-native-select>
             </div>
             <div>
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative text-gray-400 focus-within:text-gray-500">
                     <x-core::field.input type="search" name="search" wire:model.debounce.500ms="filter.search"
-                        class="block w-full py-2 pl-10 pr-3" placeholder="ID, Name">
-                        <x-slot name="prepend">
-                            <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                                <x-heroicon-s-document-search class="h-5 w-5" />
-                            </div>
-                        </x-slot>
-                    </x-core::field.input>
+                        icon="search" placeholder="ID, Name" />
                 </div>
             </div>
         </div>
@@ -72,28 +66,25 @@
                     <x-core::dropdown class="flex justify-end">
                         <x-slot name="trigger">
                             <button type="button"
-                                class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
+                                class="dark:text-gray-300 flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
                                 <x-heroicon-o-dots-vertical class="w-5 h-5" />
                             </button>
                         </x-slot>
-                        <a href="{{ route('admin.aoe2notebook.units.show', $unit->id) }}"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-0">
+                        <x-core::dropdown.link href="{{ route('admin.aoe2notebook.units.show', $unit->id) }}"
+                            role="menuitem" tabindex="-1">
                             <x-heroicon-s-eye class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('View') }}
-                        </a>
-                        <a href="{{ route('admin.aoe2notebook.units.edit', $unit->id) }}"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-0">
+                        </x-core::dropdown.link>
+                        <x-core::dropdown.link href="{{ route('admin.aoe2notebook.units.edit', $unit->id) }}"
+                            role="menuitem" tabindex="-1">
                             <x-heroicon-s-pencil-alt class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Edit') }}
-                        </a>
-                        <a href="#" wire:click.prevent="destroy({{ $unit->id }})"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-1">
+                        </x-core::dropdown.link>
+                        <x-core::dropdown.link href="#" wire:click.prevent="destroy({{ $unit->id }})"
+                            role="menuitem" tabindex="-1">
                             <x-heroicon-s-trash class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Delete') }}
-                        </a>
+                        </x-core::dropdown.link>
                     </x-core::dropdown>
                 </td>
             </tr>

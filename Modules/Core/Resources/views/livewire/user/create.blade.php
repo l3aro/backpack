@@ -1,13 +1,13 @@
 <div class="mx-auto px-4 sm:px-6 lg:px-8 mt-5">
-    <div class="bg-white rounded shadow px-8 py-6">
-        <form class="space-y-8 divide-y divide-gray-200">
+    <div class="bg-white dark:bg-gray-800 rounded shadow px-8 py-6">
+        <form class="space-y-8 divide-y divide-gray-200 dark:divide-gray-500">
             <x-core::field.form-section :title="__('Create')" :description="__('Add new account.')">
                 <x-core::field.form-row title="Name" required>
-                    <x-core::field.input type="text" wire:model.defer="name" />
+                    <x-input type="text" wire:model.defer="name" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Email" required>
-                    <x-core::field.input type="text" wire:model.defer="email" />
+                    <x-input type="text" wire:model.defer="email" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Avatar">
@@ -15,19 +15,19 @@
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Type" required>
-                    <x-core::field.select wire:model.defer="type" :placeholder="__('Select type')" multiple>
+                    <x-select wire:model.defer="type" :placeholder="__('Select type')" multiselect>
                         @foreach ($this->userTypeEnumLabels as $key => $label)
-                            <x-core::field.select.option value="{{ $key }}" :label="$label" />
+                            <x-select.option value="{{ $key }}" :label="$label" />
                         @endforeach
-                    </x-core::field.select>
+                    </x-select>
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Password" required>
-                    <x-core::field.input type="password" wire:model.defer="password" />
+                    <x-input type="password" wire:model.defer="password" />
                 </x-core::field.form-row>
 
                 <x-core::field.form-row title="Password Confirmation" required>
-                    <x-core::field.input type="password" wire:model.defer="password_confirmation" />
+                    <x-input type="password" wire:model.defer="password_confirmation" />
                 </x-core::field.form-row>
             </x-core::field.form-section>
 

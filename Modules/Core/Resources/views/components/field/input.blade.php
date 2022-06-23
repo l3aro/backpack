@@ -8,7 +8,7 @@ $field ??= $attributes->wire('model')->value() ?? '';
     <div class="relative">
         {{ $prepend ?? '' }}
         <input
-            {{ $attributes->merge(['type' => 'text', 'autocomplete' => 'off'])->class(['block w-full shadow-sm sm:text-sm rounded-md', 'border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white' => !$errors->has($field), 'border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red-300' => $errors->has($field)]) }}>
+            {{ $attributes->merge(['type' => 'text', 'autocomplete' => 'off'])->class(['block w-full shadow-sm sm:text-sm rounded-md', 'border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white' => !$errors->has($field), 'border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red-300' => $errors->has($field)]) }}>
 
         @if (isset($suffix) || isset($rightIcon))
             <div

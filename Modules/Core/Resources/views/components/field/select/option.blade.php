@@ -5,7 +5,7 @@
     'value' => '',
 ])
 
-<li {{ $attributes->class(['py-2 px-3 focus:outline-none transition-colors ease-in-out duration-50 relative group text-gray-600', 'dark:text-gray-300 cursor-pointer focus:bg-green-100 focus:text-green-800 hover:text-white' => !($readonly || $disabled), 'opacity-60 cursor-not-allowed' => $disabled])->merge([
+<li {{ $attributes->class(['py-2 px-3 focus:outline-none transition-colors ease-in-out duration-50 relative group text-gray-600', 'dark:text-gray-300 cursor-pointer focus:bg-gray-700 focus:text-green-800 hover:text-white' => !($readonly || $disabled), 'opacity-60 cursor-not-allowed' => $disabled])->merge([
     'data-label' => $label,
     'data-value' => $value,
 ]) }}

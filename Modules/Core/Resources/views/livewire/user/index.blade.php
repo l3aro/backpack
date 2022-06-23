@@ -2,13 +2,7 @@
     <div class="flex justify-between mb-3 mt-5">
         <div class="max-w-lg w-full lg:max-w-xs">
             <label for="search" class="sr-only">Search</label>
-            <div class="relative text-gray-400 focus-within:text-gray-500">
-                <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                    <x-heroicon-s-search class="h-5 w-5" />
-                </div>
-                <x-core::field.input type="search" name="search" wire:model="filter.search"
-                    class="block w-full py-2 pl-10 pr-3" placeholder="ID, Name, Email" />
-            </div>
+            <x-input icon="search" type="search" name="search" wire:model="filter.search" placeholder="ID, Name, Email" />
         </div>
         <div class="ml-2 flex">
             <x-core::button.primary :href="route('admin.users.create')" class="mr-2">
@@ -16,10 +10,9 @@
             </x-core::button.primary>
             <x-core::dropdown width="w-72">
                 <x-slot name="trigger">
-                    <button type="button"
-                        class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-xs font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-green-500">
+                    <x-core::button.secondary type="button">
                         <x-heroicon-o-filter class="w-5 h-5" />
-                    </button>
+                    </x-core::button.secondary>
                     </span>
                 </x-slot>
                 <div class="space-y-4 divide-y divide-gray-200 px-4">
@@ -28,12 +21,12 @@
                     </div>
                     <div class="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-6 py-4">
                         <x-core::dropdown.row :title="__('Type')" class="sm:col-span-6">
-                            <x-core::field.select wire:model="arrayFilters.type" multiple>
-                                <x-core::field.select.option value="" label="&nbsp;" />
+                            <x-select wire:model="arrayFilters.type" multiselect>
+                                <x-select.option value="" label="&nbsp;" />
                                 @foreach ($this->userTypeEnumLabels as $value => $label)
-                                    <x-core::field.select.option value="{{ $value }}" :label="$label" />
+                                    <x-select.option value="{{ $value }}" :label="$label" />
                                 @endforeach
-                            </x-core::field.select>
+                            </x-select>
                         </x-core::dropdown.row>
                         <x-core::dropdown.row :title="__('Created From')" class="sm:col-span-6">
                             <x-core::field.flatpickr type="text" wire:model="filter.created_at_from" />
@@ -82,7 +75,7 @@
                             <img class="h-10 w-10 rounded-full" src="{{ $user->profile_photo_url }}" alt="">
                         </div>
                         <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">
+                            <div class="text-sm font-medium text-gray-900 dark:text-gray-200">
                                 {{ $user->name }}
                             </div>
                             <div class="text-sm text-gray-500">
@@ -103,28 +96,23 @@
                     <x-core::dropdown>
                         <x-slot name="trigger">
                             <button type="button"
-                                class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
+                                class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 focus:outline-none focus:text-gray-900">
                                 <x-heroicon-o-dots-vertical class="w-5 h-5" />
                             </button>
                         </x-slot>
-                        <a href="{{ route('admin.users.show', $user->id) }}"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-0">
+                        <x-core::dropdown.link href="{{ route('admin.users.show', $user->id) }}" role="menuitem">
                             <x-heroicon-s-eye class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('View') }}
-                        </a>
-                        <a href="{{ route('admin.users.edit', $user->id) }}"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-0">
+                        </x-core::dropdown.link>
+                        <x-core::dropdown.link href="{{ route('admin.users.edit', $user->id) }}" role="menuitem">
                             <x-heroicon-s-pencil-alt class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Edit') }}
-                        </a>
-                        <a href="#" wire:click.prevent="destroy({{ $user->id }})"
-                            class="bg-white hover:bg-gray-100 text-gray-700 group flex items-center px-4 py-2 text-sm"
-                            role="menuitem" tabindex="-1" id="menu-item-1">
+                        </x-core::dropdown.link>
+                        <x-core::dropdown.link href="#" wire:click.prevent="destroy({{ $user->id }})"
+                            role="menuitem">
                             <x-heroicon-s-trash class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Delete') }}
-                        </a>
+                        </x-core::dropdown.link>
                     </x-core::dropdown>
                 </td>
             </tr>

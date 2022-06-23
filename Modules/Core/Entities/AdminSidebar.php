@@ -86,20 +86,6 @@ class AdminSidebar
                 self::PROPERTY_ICON => 'heroicon-s-cog',
                 self::PROPERTY_ACTIVE => request()->routeIs('admin.settings.general'),
             ],
-            [
-                self::PROPERTY_TYPE => self::TYPE_ITEM,
-                self::PROPERTY_TITLE => __('Home'),
-                self::PROPERTY_LINK => route('admin.settings.home'),
-                self::PROPERTY_ICON => 'heroicon-s-home',
-                self::PROPERTY_ACTIVE => request()->routeIs('admin.settings.home'),
-            ],
-            [
-                self::PROPERTY_TYPE => self::TYPE_ITEM,
-                self::PROPERTY_TITLE => __('About'),
-                self::PROPERTY_LINK => route('admin.settings.about'),
-                self::PROPERTY_ICON => 'heroicon-s-user-circle',
-                self::PROPERTY_ACTIVE => request()->routeIs('admin.settings.about'),
-            ],
         ];
     }
 

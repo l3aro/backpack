@@ -24,10 +24,6 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('settings/general', \Modules\Core\Http\Livewire\Setting\General::class)
         ->name('admin.settings.general');
-    Route::get('settings/home', \Modules\Core\Http\Livewire\Setting\Home::class)
-        ->name('admin.settings.home');
-    Route::get('settings/about', \Modules\Core\Http\Livewire\Setting\About::class)
-        ->name('admin.settings.about');
 });
 
 Route::middleware('guest:admin')->group(function () {
