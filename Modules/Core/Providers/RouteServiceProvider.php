@@ -4,6 +4,7 @@ namespace Modules\Core\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Modules\Core\Http\Middleware\SetupSessionLanguage;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -20,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->group(module_path('Core', '/Routes/api.php'));
 
-        Route::middleware('web')
+        Route::middleware('web', SetupSessionLanguage::class)
             ->prefix('admin')
             ->group(module_path('Core', '/Routes/web.php'));
     }

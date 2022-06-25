@@ -8,7 +8,8 @@
                 <!-- Search bar -->
                 <div class="flex-1 px-4 flex justify-between sm:px-6 lg:mx-auto lg:px-8 z-0">
                     <div></div>
-                    <div class="ml-4 flex items-center md:ml-6">
+                    <div class="ml-4 flex items-end md:ml-6 pb-2">
+                        <livewire:core::misc.switch-language />
                         <!-- Profile dropdown -->
                         <div class="ml-3 relative">
                             <x-core::dropdown>
@@ -31,7 +32,6 @@
                                     <livewire:core::auth.logout />
                                 </x-core::dropdown.link>
                             </x-core::dropdown>
-
                         </div>
                     </div>
                 </div>
