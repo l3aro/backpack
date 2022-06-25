@@ -30,6 +30,11 @@ class Create extends Component
 
     public function mount()
     {
+        $this->resetState();
+    }
+
+    protected function resetState()
+    {
         $this->propertiesFrom((new User()));
         $this->type = [];
     }
@@ -47,8 +52,7 @@ class Create extends Component
             $userService->uploadProfilePhoto($user, $this->photo);
         }
 
-        $this->user = new User;
-        $this->reset();
+        $this->resetState();
 
         return $user;
     }
