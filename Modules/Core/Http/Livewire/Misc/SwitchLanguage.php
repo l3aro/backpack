@@ -27,5 +27,6 @@ class SwitchLanguage extends Component
     {
         session()->put('locale', $locale);
         app()->setLocale($locale);
+        $this->emit('languageSwitched');
     }
 }
