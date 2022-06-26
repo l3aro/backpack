@@ -9,7 +9,7 @@
     <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 flex z-40 lg:hidden" role="dialog"
         aria-modal="true">
         <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
-        <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-green-700 dark:bg-gray-800">
+        <div x-on:click.away="open = false" class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-green-700 dark:bg-gray-800">
             <div class="absolute top-0 right-0 -mr-12 pt-2">
                 <button type="button"
                     class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -17,13 +17,12 @@
                     <x-heroicon-o-x class="h-6 w-6 text-white" />
                 </button>
             </div>
-            <nav x-on:click.away="open = false" aria-label="Sidebar"
-                class="mt-5 flex-shrink-0 h-full divide-y divide-green-800 overflow-y-auto">
-                <div class="px-2 space-y-1">
+            <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto soft-scroll">
+                <nav aria-label="Sidebar" class="mt-5 px-2 space-y-1">
                     <x-core::aside.section-mobile :items="$menu" />
-                </div>
-            </nav>
-            <div class="flex items-center justify-center flex-shrink-0 px-4">
+                </nav>
+            </div>
+            <div class="flex-shrink-0 flex border-t border-gray-200 dark:border-gray-600 p-4 justify-center items-center">
                 <livewire:core::misc.toggle-dark-mode />
             </div>
         </div>
@@ -37,7 +36,7 @@
 
 <div class="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
     <div class="flex flex-col flex-grow bg-green-700 dark:bg-gray-800 pt-5 pb-4 overflow-y-auto">
-        <nav class="soft-scrollbar mt-5 flex-1 flex flex-col divide-y divide-green-800 overflow-y-auto"
+        <nav class="soft-scroll mt-5 flex-1 flex flex-col divide-y divide-green-800 overflow-y-auto"
             aria-label="Sidebar">
             <div class="px-2 space-y-1">
                 <x-core::aside.section :items="$menu" />

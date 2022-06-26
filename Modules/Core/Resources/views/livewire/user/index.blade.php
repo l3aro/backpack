@@ -1,8 +1,20 @@
-<core::container>
+<x-core::container>
     <div class="flex justify-between mb-3 mt-5">
-        <div class="max-w-lg w-full lg:max-w-xs">
-            <label for="search" class="sr-only">Search</label>
-            <x-input icon="search" type="search" name="search" wire:model="filter.search" placeholder="ID, Name, Email" />
+        <div class="max-w-lg w-full lg:max-w-xs flex">
+            <div class="mr-2">
+                <x-native-select wire:model="perPage">
+                    @foreach ($perPageOptions as $option)
+                        <option value="{{ $option }}">{{ $option }}</option>
+                    @endforeach
+                </x-native-select>
+            </div>
+            <div>
+                <label for="search" class="sr-only">Search</label>
+                <div class="relative text-gray-400 focus-within:text-gray-500">
+                    <x-input icon="document-search" type="search" name="search"
+                        wire:model.debounce.500ms="filter.search" placeholder="ID, Name" />
+                </div>
+            </div>
         </div>
         <div class="ml-2 flex">
             <x-core::button.primary :href="route('admin.users.create')" class="mr-2">
@@ -146,4 +158,4 @@
             </x-core::button.danger>
         </x-slot>
     </x-core::modal.confirmation>
-</core::container>
+</x-core::container>

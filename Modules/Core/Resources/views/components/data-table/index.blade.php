@@ -1,5 +1,5 @@
 <div class="border border-gray-200 rounded-xl dark:border-gray-700">
-    <div class="shadow overflow-x-auto border-b sm:rounded-lg soft-scrollbar dark:border-b-gray-700">
+    <div class="shadow overflow-x-auto border-b sm:rounded-lg soft-scroll dark:border-b-gray-700">
         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto overflow-x-auto">
             <thead class="bg-gray-50 dark:bg-gray-500/10">
                 <tr>
