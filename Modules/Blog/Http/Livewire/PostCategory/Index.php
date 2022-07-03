@@ -8,6 +8,7 @@ use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
+use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 
 class Index extends Component
 {
@@ -15,9 +16,21 @@ class Index extends Component
     use HasDataTable;
     use CanDestroyRecord;
     use CanReorderRecord;
+    use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post-category.index';
     protected $recordListName = 'postCategories';
+    protected $listeners = ['languageSwitched'];
+
+    public function mount()
+    {
+        $this->fetchLocale();
+    }
+
+    public function languageSwitched()
+    {
+        $this->fetchLocale();
+    }
 
     public function viewData(): array
     {

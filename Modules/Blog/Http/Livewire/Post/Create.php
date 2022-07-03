@@ -10,18 +10,21 @@ use Livewire\WithFileUploads;
 use MichaelRubel\LoopFunctions\Traits\LoopFunctions;
 use Modules\Blog\Http\Requests\CreatePostRequest;
 use Modules\Blog\Models\Category;
+use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 
 class Create extends Component
 {
     use LoadLayoutView;
     use WithFileUploads;
     use LoopFunctions;
+    use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post.create';
     public Post $post;
     public $selectedCategories = [];
     public $photo;
     public $tags = [];
+    protected $listeners = ['languageSwitched'];
 
     protected function rules(): array
     {
@@ -30,7 +33,18 @@ class Create extends Component
 
     public function mount()
     {
+        $this->fetchLocale();
         $this->resetState();
+    }
+
+    public function languageSwitched()
+    {
+        $this->fetchLocale();
+    }
+
+    public function hydrate()
+    {
+        $this->applyLocale();
     }
 
     private function resetState()
@@ -43,10 +57,10 @@ class Create extends Component
         $this->fill($this->post);
     }
 
-    public function updatedTitle()
+    public function updatedTitle($value)
     {
         $this->validateOnly('title');
-        $this->slug = Str::slug($this->title);
+        $this->slug = Str::slug($value) . '-' . now()->format('Ymd');
     }
 
     public function save()

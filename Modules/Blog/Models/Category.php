@@ -7,18 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Pipeline\Pipeline;
 use Modules\Core\Models\Plugins\Orderable;
+use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
     use HasFactory;
+    use HasTranslations;
     use Orderable;
 
     protected $table = "blog__categories";
+    public $translatable = ['title', 'slug', 'description', 'meta_title', 'meta_description', 'meta_keyword'];
 
     protected $guarded = ['id'];
 
     protected $attributes = [
+        'title' => null,
+        'slug' => null,
+        'description' => null,
         'is_published' => true,
+        'meta_title' => null,
+        'meta_description' => null,
+        'meta_keyword' => null,
     ];
 
     protected static function newFactory()

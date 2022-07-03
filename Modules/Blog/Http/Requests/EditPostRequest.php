@@ -33,7 +33,7 @@ class EditPostRequest extends FormRequest
             'title' => 'required|string|max:255',
             'description' => 'string',
             'content' => 'required|string',
-            'slug' => "required|string|max:256|unique:{$post->getTable()},slug," . $post->id,
+            'slug' => "required|string|max:256",
             'published_at' => 'nullable|date',
             'meta_title' => '',
             'meta_description' => '',

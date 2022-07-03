@@ -6,40 +6,63 @@ use Livewire\Component;
 use Modules\Blog\Models\Category;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
+use Modules\Core\Http\Livewire\Plugins\LoopFunctions;
+use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 
 class Create extends Component
 {
     use LoadLayoutView;
+    use LoopFunctions;
+    use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post-category.create';
     public Category $postCategory;
-
+    protected $listeners = ['languageSwitched'];
     protected $rules = [
-        'postCategory.title' => 'required|string|max:255',
-        'postCategory.description' => 'string',
-        'postCategory.slug' => 'required|string|max:255',
-        'postCategory.is_published' => '',
-        'postCategory.meta_title' => '',
-        'postCategory.meta_description' => '',
-        'postCategory.meta_keyword' => '',
+        'title' => 'required|max:255',
+        'description' => 'string',
+        'slug' => 'required',
+        'is_published' => '',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keyword' => '',
     ];
 
     public function mount()
     {
-        $this->postCategory = new Category;
+        $this->fetchLocale();
+        $this->resetState();
     }
 
-    public function updatedPostCategoryTitle()
+    public function resetState()
     {
-        $this->postCategory->slug = Str::slug($this->postCategory->title);
+        $this->postCategory = new Category;
+        $this->propertiesFrom($this->postCategory);
+    }
+
+    public function languageSwitched()
+    {
+        $this->fetchLocale();
+    }
+
+    public function hydrate()
+    {
+        $this->applyLocale();
+    }
+
+    public function updatedTitle($value)
+    {
+        $this->validateOnly('title');
+        $this->slug = Str::slug($value) . '-' . now()->format('Ymd');
     }
 
     public function save()
     {
-        $this->validate($this->rules);
+        $validated = $this->validate($this->rules);
+        $this->postCategory->fill($validated);
         $this->postCategory->save();
         $postCategory = $this->postCategory;
-        $this->postCategory = new Category;
+        $this->resetState();
         return $postCategory;
     }
 

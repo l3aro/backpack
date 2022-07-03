@@ -13,6 +13,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasTags;
+use Spatie\Translatable\HasTranslations;
 
 class Post extends Model implements HasMedia
 {
@@ -20,9 +21,10 @@ class Post extends Model implements HasMedia
     use HasTags;
     use InteractsWithMedia;
     use Orderable;
+    use HasTranslations;
 
     protected $table = "blog__posts";
-
+    public $translatable = ['title', 'content', 'slug', 'description', 'meta_title', 'meta_description', 'meta_keyword'];
     protected $guarded = ['id'];
 
     protected $casts = [

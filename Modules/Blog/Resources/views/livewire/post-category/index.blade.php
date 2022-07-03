@@ -99,7 +99,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6" class="text-center p-6">
+                <td colspan="7" class="text-center p-6">
                     <div class="text-gray-500">No categories found.</div>
                 </td>
             </tr>

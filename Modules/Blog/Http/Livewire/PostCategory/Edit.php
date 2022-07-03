@@ -6,42 +6,70 @@ use Livewire\Component;
 use Modules\Blog\Models\Category;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
+use Modules\Core\Http\Livewire\Plugins\LoopFunctions;
+use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 
 class Edit extends Component
 {
     use LoadLayoutView;
+    use LoopFunctions;
+    use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post-category.edit';
     public Category $postCategory;
 
+    public $listeners = [
+        'languageSwitched',
+    ];
+
     protected function rules()
     {
         return [
-            'postCategory.title' => 'required|string|max:255',
-            'postCategory.description' => 'string',
-            'postCategory.slug' => 'required|string|max:255|unique:blog__categories,slug,' . $this->postCategory->id,
-            'postCategory.is_published' => '',
-            'postCategory.meta_title' => '',
-            'postCategory.meta_description' => '',
-            'postCategory.meta_keyword' => '',
-            'postCategory.priority' => '',
+            'title' => 'required|string|max:255',
+            'description' => 'string',
+            'slug' => 'required',
+            'is_published' => '',
+            'meta_title' => '',
+            'meta_description' => '',
+            'meta_keyword' => '',
+            'priority' => '',
         ];
     }
 
     public function mount(Category $postCategory)
     {
         $this->postCategory = $postCategory;
+        $this->fetchLocale();
+        $this->resetState();
     }
 
-    public function updatedPostCategoryTitle()
+    public function languageSwitched()
     {
-        $this->validateOnly('postCategory.title');
-        $this->postCategory->slug = Str::slug($this->postCategory->title);
+        $this->fetchLocale();
+        $this->resetState();
+    }
+
+    public function hydrate()
+    {
+        $this->applyLocale();
+    }
+
+    public function resetState()
+    {
+        $this->postCategory->refresh();
+        $this->propertiesFrom($this->postCategory);
+    }
+
+    public function updatedTitle($value)
+    {
+        $this->validateOnly('title');
+        $this->slug = Str::slug($value) . '-' . now()->format('Ymd');
     }
 
     public function save()
     {
-        $this->validate();
+        $validated = $this->validate();
+        $this->postCategory->fill($validated);
         $this->postCategory->save();
         return $this->postCategory;
     }

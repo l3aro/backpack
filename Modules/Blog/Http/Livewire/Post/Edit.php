@@ -7,39 +7,63 @@ use Modules\Blog\Models\Post;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use MichaelRubel\LoopFunctions\Traits\LoopFunctions;
 use Modules\Blog\Http\Requests\EditPostRequest;
 use Modules\Blog\Models\Category;
+use Modules\Core\Http\Livewire\Plugins\LoopFunctions;
+use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 
 class Edit extends Component
 {
     use LoadLayoutView;
     use WithFileUploads;
     use LoopFunctions;
+    use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post.edit';
     public Post $post;
     public $selectedPostCategories = [];
     public $photo;
     public $tags;
+    protected $listeners = ['languageSwitched'];
 
     protected function rules(): array
     {
         return EditPostRequest::baseRules($this->post);
     }
 
+    public function languageSwitched()
+    {
+        $this->fetchLocale();
+        $this->resetState();
+    }
+
     public function mount(Post $post)
     {
         $this->post = $post;
+        $this->fetchLocale();
+        $this->resetState();
+    }
+
+    public function resetState()
+    {
+        $this->post->refresh();
         $this->propertiesFrom($this->post);
-        $this->tags = $post->tags->pluck('name')->toArray();
+        $this->tags = $this->post->tags->pluck('name')->toArray();
         $this->selectedPostCategories = $this->post->categories->pluck('id')->toArray();
     }
 
-    public function updatedTitle()
+    public function hydrate()
+    {
+        $this->published_at = isEmptyOrNull($this->published_at) || is_string($this->published_at)
+            ? $this->published_at
+            : $this->published_at->format('Y-m-d H:i');
+        $this->applyLocale();
+    }
+
+    public function updatedTitle($value)
     {
         $this->validateOnly('title');
-        $this->slug = Str::slug($this->title);
+        $this->slug = Str::slug($value) . '-' . now()->format('Ymd');
     }
 
     public function save()
@@ -56,12 +80,6 @@ class Edit extends Component
         return $this->post;
     }
 
-    public function hydratePublishedAt($value)
-    {
-        $this->published_at = isEmptyOrNull($value) || is_string($value)
-            ? $value
-            : $value->format('Y-m-d H:i');
-    }
 
     public function saveAndShow()
     {
