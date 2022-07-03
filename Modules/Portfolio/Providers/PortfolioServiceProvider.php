@@ -4,6 +4,7 @@ namespace Modules\Portfolio\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Blade;
 
 class PortfolioServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,8 @@ class PortfolioServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+
+        Blade::component("{$this->moduleNameLower}::aside", \Modules\Portfolio\View\Components\Aside\Index::class);
     }
 
     /**
@@ -51,7 +54,8 @@ class PortfolioServiceProvider extends ServiceProvider
             module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower . '.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
+            module_path($this->moduleName, 'Config/config.php'),
+            $this->moduleNameLower
         );
     }
 

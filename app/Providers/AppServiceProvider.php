@@ -23,10 +23,13 @@ class AppServiceProvider extends ServiceProvider
         );
         $this->app->when(\Modules\Core\View\Components\Aside\Index::class)
             ->needs(Navigation::class)
-            ->give($this->declareAdminSidebar());
+            ->give($this->declareAdminNavigation());
+        $this->app->when(\Modules\Portfolio\View\Components\Aside\Index::class)
+            ->needs(Navigation::class)
+            ->give($this->declarePortfolioNavigation());
     }
 
-    protected function declareAdminSidebar(): Closure
+    protected function declareAdminNavigation(): Closure
     {
         return function () {
             return Navigation::make()
@@ -79,6 +82,22 @@ class AppServiceProvider extends ServiceProvider
                             ->setUrl(route('admin.settings.general'))
                             ->setIcon('heroicon-s-cog')
                             ->activeWhen(fn () => request()->routeIs('admin.settings.general')))));
+        };
+    }
+
+    protected function declarePortfolioNavigation(): Closure
+    {
+        return function() {
+            $locale = session()->get('locale', config('app.locale'));
+            return Navigation::make()
+                ->add(fn (Item $item) => $item
+                    ->setTitle(__('Home'))
+                    ->setUrl(route('portfolio.home', $locale))
+                    ->activeWhen(fn() => request()->routeIs('portfolio.home')))
+                ->add(fn (Item $item) => $item
+                    ->setTitle(__('Blog'))
+                    ->setUrl(route('portfolio.blogs.index', $locale))
+                    ->activeWhen(fn() => request()->routeIs('portfolio.blogs.*')));
         };
     }
 

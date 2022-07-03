@@ -4,6 +4,8 @@ namespace Modules\Portfolio\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Modules\Blog\Models\Post;
+use Modules\Core\Http\Middleware\SetupRouteLanguage;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,11 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+        $locale = request()->segment(1);
+
+        Route::bind('postSlug', function ($slug) use ($locale) {
+            return Post::where('slug->' . $locale, $slug)->first() ?? abort(404);
+        });
     }
 
     /**
@@ -33,37 +40,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        // $this->mapApiRoutes();
-
-        $this->mapWebRoutes();
-    }
-
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes()
-    {
-        Route::middleware('web')
-            // ->namespace($this->moduleNamespace)
+        Route::middleware(['web', SetupRouteLanguage::class])
+            ->prefix('{locale}')
             ->group(module_path('Portfolio', '/Routes/web.php'));
-    }
-
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapApiRoutes()
-    {
-        Route::prefix('api')
-            ->middleware('api')
-            // ->namespace($this->moduleNamespace)
-            ->group(module_path('Portfolio', '/Routes/api.php'));
     }
 }

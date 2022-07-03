@@ -13,8 +13,8 @@ class BlogDetail extends Component
     protected $viewPath = 'portfolio::livewire.blog-detail';
     public Post $post;
 
-    public function mount(Post $post)
+    public function mount(Post $postSlug)
     {
-        $this->post = $post;
+        $this->post = $postSlug;
     }
 }

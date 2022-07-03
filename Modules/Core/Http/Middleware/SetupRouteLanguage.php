@@ -17,7 +17,14 @@ class SetupRouteLanguage
      */
     public function handle(Request $request, Closure $next)
     {
-        app()->setLocale($request->segment(1));
-        return $next($request);
+        $locale = $request->segment(1);
+        app()->setLocale($locale);
+        if (array_key_exists($locale, config('app.locales'))) {
+            return $next($request);
+        }
+        $segments = $request->segments();
+        Arr::pull($segments, 0);
+        $segments = Arr::prepend($segments, config('app.fallback_locale'));
+        return redirect()->to(implode('/', $segments));
     }
 }

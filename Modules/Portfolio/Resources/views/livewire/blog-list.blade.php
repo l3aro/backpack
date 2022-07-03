@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 @forelse ($posts as $item)
-                    <a href="{{ route('portfolio.blogs.show', $item->slug) }}"
+                    <a href="{{ route('portfolio.blogs.show', ['locale' => app()->getLocale(), 'postSlug' => $item->slug]) }}"
                         class="border shadow hover:shadow-md px-4 transition hover:-translate-y-2">
                         <h3 class="text-black font-bold text-lg mt-4 leading-normal">
                             {{ Str::limit($item->title, 50) }}

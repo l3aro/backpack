@@ -1,9 +1,5 @@
-@php
-$sidebar = app(\Modules\Portfolio\Enums\AsideEnum::class);
-@endphp
-
 <div class="relative lg:hidden mx-auto px-6 flex">
-    <div x-data="{showMenu: false}" class="flex items-center justify-end">
+    <div x-data="{ showMenu: false }" class="flex items-center justify-end">
         <!-- menu button -->
         <button x-on:click="showMenu = true" class="fixed top-0 left-0 mt-8 ml-6 z-10">
             <x-fas-bars class="w-8 h-8 text-black/80" />
@@ -20,10 +16,9 @@ $sidebar = app(\Modules\Portfolio\Enums\AsideEnum::class);
                 x-transition:leave="transition ease-in duration-300"
                 x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 -translate-x-10"
                 x-show="showMenu">
-                @foreach ($sidebar->getItems() as $item)
-                    <x-portfolio::aside.item-mobile href="{{ $item[$sidebar::PROPERTY_LINK] }}"
-                        :active="$item[$sidebar::PROPERTY_ACTIVE]">
-                        {{ $item[$sidebar::PROPERTY_TITLE] }}
+                @foreach ($menu as $item)
+                    <x-portfolio::aside.item-mobile href="{{ $item->url() }}" :active="$item->active()">
+                        {{ $item->title() }}
                     </x-portfolio::aside.item-mobile>
                 @endforeach
             </div>
@@ -55,10 +50,9 @@ $sidebar = app(\Modules\Portfolio\Enums\AsideEnum::class);
     </a>
     <nav role="navigation">
         <ul class="m-0 p-0">
-            @foreach ($sidebar->getItems() as $item)
-                <x-portfolio::aside.item href="{{ $item[$sidebar::PROPERTY_LINK] }}"
-                    :active="$item[$sidebar::PROPERTY_ACTIVE]">
-                    {{ $item[$sidebar::PROPERTY_TITLE] }}
+            @foreach ($menu as $item)
+                <x-portfolio::aside.item href="{{ $item->url() }}" :active="$item->active()">
+                    {{ $item->title() }}
                 </x-portfolio::aside.item>
             @endforeach
         </ul>
