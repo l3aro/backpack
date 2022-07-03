@@ -3,8 +3,8 @@
 namespace Modules\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Facades\Blade;
+use Spatie\Translatable\Facades\Translatable;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -30,6 +30,9 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
         require_once(module_path($this->moduleName, 'helpers.php'));
+        Translatable::fallback(
+            fallbackAny: true,
+        );
     }
 
     /**
@@ -90,7 +93,6 @@ class CoreServiceProvider extends ServiceProvider
         });
 
         Blade::component("{$this->moduleNameLower}::aside", \Modules\Core\View\Components\Aside\Index::class);
-
     }
 
     /**

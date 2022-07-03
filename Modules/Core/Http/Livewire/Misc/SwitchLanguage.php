@@ -10,7 +10,7 @@ class SwitchLanguage extends Component
 
     public function mount()
     {
-        $this->listLocale = config('app.locales');
+        $this->listLocale = config('app.locales', []);
     }
 
     public function render()

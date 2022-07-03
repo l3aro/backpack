@@ -28,6 +28,7 @@
         "l3aro/pipeline-query-collection": "^1.1",
         "spatie/laravel-medialibrary": "^10.3",
         "mhmiton/laravel-modules-livewire": "^1.5",
-        "wireui/wireui": "^1.6"
+        "wireui/wireui": "^1.6",
+        "spatie/laravel-translatable": "^6.0"
     }
 }
