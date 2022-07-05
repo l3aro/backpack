@@ -21,13 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900"
         rel="stylesheet">
-    <link href="{{ mix('assets/css/app.css') }}" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
     @livewireStyles
-
-    <script src="{{ mix('assets/js/manifest.js') }}" defer></script>
-    <script src="{{ mix('assets/js/vendor.js') }}" defer></script>
-    <script src="{{ mix('assets/js/app.js') }}" defer></script>
+    @vite(['Modules/Core/Resources/assets/js/app.js', 'Modules/Core/Resources/assets/css/app.css'])
     @if (setting('site_google_analytics'))
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id={{ setting('site_google_analytics') }}"></script>
@@ -54,9 +50,10 @@
 
     <div id="ftco-loader" class="hidden fullscreen">
         <svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4"
+                stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4"
+                stroke-miterlimit="10" stroke="#F96D00" />
         </svg>
     </div>
 

@@ -12,3 +12,5 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::redirect('/', '/' . session('locale', config('app.fallback_locale')))->name('home');

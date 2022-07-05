@@ -1,4 +1,4 @@
-require('./bootstrap')
+import './bootstrap'
 import select from './alpine-components/select'
 import prose from './alpine-components/prose'
 import Mousetrap from '@danharrin/alpine-mousetrap'

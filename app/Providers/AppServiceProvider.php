@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
                     ->activeWhen(fn () => request()->routeIs('admin.dashboard')))
                 ->add(fn (Item $item) => $item
                     ->setTitle(__('Home'))
-                    ->setUrl(route('portfolio.home'))
+                    ->setUrl(route('home'))
                     ->setIcon('heroicon-o-home')
                     ->setOpenNewTab(true))
                 ->add(fn (Item $item) => $item

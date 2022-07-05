@@ -12,10 +12,7 @@
     <link href="{{ mix('assets/css/app.css') }}" rel="stylesheet" type="text/css" />
     <livewire:styles />
     <wireui:scripts />
-    <script src="{{ mix('assets/js/manifest.js') }}" defer></script>
-    <script src="{{ mix('assets/js/vendor.js') }}" defer></script>
-    <script src="{{ mix('assets/js/app.js') }}" defer></script>
-
+    @vite(['Modules/Core/Resources/assets/js/app.js', 'Modules/Core/Resources/assets/css/app.css'])
 </head>
 
 <body class="h-full bg-gray-100 text-gray-900 dark:text-gray-100 dark:bg-gray-900">
