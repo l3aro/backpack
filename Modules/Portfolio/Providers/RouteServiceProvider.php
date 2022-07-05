@@ -26,8 +26,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        $locale = request()->segment(1);
-
+        $locale = app()->getLocale();
         Route::bind('postSlug', function ($slug) use ($locale) {
             return Post::where('slug->' . $locale, $slug)->first() ?? abort(404);
         });
