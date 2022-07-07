@@ -10,5 +10,6 @@ class ConfirmPassword extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'core::livewire.auth.confirm-password';
+
     protected $layoutPath = 'core::components.layout-guest';
 }

@@ -2,16 +2,17 @@
 
 namespace Modules\Core\Http\Livewire\Setting;
 
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Models\Setting;
-use Illuminate\Support\Str;
 
 class General extends Component
 {
     use LoadLayoutView;
 
     public $viewPath = 'core::livewire.setting.general';
+
     public $setting = [];
 
     protected $rules = [

@@ -10,6 +10,7 @@ trait CanAddItem
     {
         $item = $callback(app(Item::class));
         $this->navigation[] = $item;
+
         return $this;
     }
 }

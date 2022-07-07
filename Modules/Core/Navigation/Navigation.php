@@ -10,7 +10,7 @@ class Navigation implements Arrayable, Section
     use CanAddItem;
 
     /**
-     * @var Item[] $navigation
+     * @var Item[]
      */
     private array $navigation;
 

@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/' . session('locale', config('app.fallback_locale')))->name('home');
+Route::redirect('/', '/'.session('locale', config('app.fallback_locale')))->name('home');

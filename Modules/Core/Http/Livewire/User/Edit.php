@@ -18,10 +18,15 @@ class Edit extends Component
     use LoopFunctions;
 
     public $viewPath = 'core::livewire.user.edit';
+
     public User $user;
+
     public $photo;
+
     public $password;
+
     public $password_confirmation;
+
     public $type;
 
     protected function rules()
@@ -59,10 +64,11 @@ class Edit extends Component
     public function saveAndShow()
     {
         $user = $this->save();
+
         return redirect()->route('admin.users.show', $user->id);
     }
 
-    public function  saveAndContinue()
+    public function saveAndContinue()
     {
         $this->save();
         $this->dispatchBrowserEvent('success', [

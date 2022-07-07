@@ -14,7 +14,8 @@ class Technology extends Model implements HasMedia
     use InteractsWithMedia;
     use Filterable;
 
-    protected $table = "aoe2notebook_technologies";
+    protected $table = 'aoe2notebook_technologies';
+
     protected $guarded = ['id'];
 
     public function getFilters()
@@ -27,7 +28,7 @@ class Technology extends Model implements HasMedia
 
     public function scopeSearch(Builder $query, string $keyword)
     {
-        return $query->where(function (Builder $query)  use ($keyword) {
+        return $query->where(function (Builder $query) use ($keyword) {
             $query->where('id', $keyword)
                 ->orWhere('name', 'like', "%{$keyword}%");
         });

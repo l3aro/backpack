@@ -2,10 +2,10 @@
 
 namespace Modules\Blog\Http\Livewire\PostCategory;
 
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Modules\Blog\Models\Category;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
-use Illuminate\Support\Str;
 use Modules\Core\Http\Livewire\Plugins\LoopFunctions;
 use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 
@@ -16,6 +16,7 @@ class Edit extends Component
     use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post-category.edit';
+
     public Category $postCategory;
 
     public $listeners = [
@@ -63,7 +64,7 @@ class Edit extends Component
     public function updatedTitle($value)
     {
         $this->validateOnly('title');
-        $this->slug = Str::slug($value) . '-' . now()->format('Ymd');
+        $this->slug = Str::slug($value).'-'.now()->format('Ymd');
     }
 
     public function save()
@@ -71,12 +72,14 @@ class Edit extends Component
         $validated = $this->validate();
         $this->postCategory->fill($validated);
         $this->postCategory->save();
+
         return $this->postCategory;
     }
 
     public function saveAndShow()
     {
         $postCategory = $this->save();
+
         return redirect()->route('admin.blog.categories.show', $postCategory->id);
     }
 

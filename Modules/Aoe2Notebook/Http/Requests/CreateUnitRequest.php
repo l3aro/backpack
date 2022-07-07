@@ -30,6 +30,7 @@ class CreateUnitRequest extends FormRequest
     public static function baseRules(): array
     {
         $tableName = (new Unit())->getTable();
+
         return [
             'name' => "required|string|max:100|unique:{$tableName},name",
             'expansion' => 'nullable|string|max:100',

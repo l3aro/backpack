@@ -12,7 +12,9 @@ class Show extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'aoe2notebook::livewire.unit.show';
+
     public Unit $unit;
+
     public $resources = [];
 
     public function mount(Unit $unit)

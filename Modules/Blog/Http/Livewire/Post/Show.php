@@ -13,7 +13,9 @@ class Show extends Component
     use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post.show';
+
     public Post $post;
+
     protected $listeners = ['languageSwitched'];
 
     public function languageSwitched()

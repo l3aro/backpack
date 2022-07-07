@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Baro\PipelineQueryCollection;
+use Baro\PipelineQueryCollection\Concerns\Filterable;
+use Baro\PipelineQueryCollection\Contracts\CanFilterContract;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,9 +13,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Modules\Core\Enums\UserTypeEnum;
 use Modules\Core\Models\Plugins\HasBitwiseFlag;
 use Modules\Core\Models\Plugins\HasProfilePhoto;
-use Baro\PipelineQueryCollection;
-use Baro\PipelineQueryCollection\Concerns\Filterable;
-use Baro\PipelineQueryCollection\Contracts\CanFilterContract;
 
 class User extends Authenticatable implements CanFilterContract
 {
@@ -95,7 +94,7 @@ class User extends Authenticatable implements CanFilterContract
 
     public function isActive()
     {
-        return !$this->hasFlag('type_flag', UserTypeEnum::DEACTIVATED->value);
+        return ! $this->hasFlag('type_flag', UserTypeEnum::DEACTIVATED->value);
     }
 
     public function getFilters(): array

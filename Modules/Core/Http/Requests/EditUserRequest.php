@@ -31,7 +31,7 @@ class EditUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => "required|string|email|max:255|unique:{$user->getTable()},email," . $user->id,
+            'email' => "required|string|email|max:255|unique:{$user->getTable()},email,".$user->id,
             'type' => 'nullable|array',
             'password' => 'nullable|string|min:6|confirmed',
             'photo' => 'nullable|image|max:2048|dimensions:ratio=1/1',

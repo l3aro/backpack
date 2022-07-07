@@ -20,9 +20,13 @@ class Edit extends Component
     use LoopFunctions;
 
     protected $viewPath = 'aoe2notebook::livewire.unit.edit';
+
     public Unit $unit;
+
     public $photo;
+
     public $trainingCosts;
+
     public $upgradeCosts;
 
     protected function rules()
@@ -56,12 +60,14 @@ class Edit extends Component
             $this->unit->addMedia($this->photo)->toMediaCollection();
         }
         $this->photo = null;
+
         return $this->unit;
     }
 
     public function saveAndShow()
     {
         $unit = $this->save();
+
         return redirect()->route('aoe2notebook.units.show', $unit->id);
     }
 
@@ -69,7 +75,7 @@ class Edit extends Component
     {
         $this->save();
         $this->dispatchBrowserEvent('success', [
-            'message' => __('The unit has been updated successfully.')
+            'message' => __('The unit has been updated successfully.'),
         ]);
     }
 

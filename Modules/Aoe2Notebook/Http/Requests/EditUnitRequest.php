@@ -30,7 +30,7 @@ class EditUnitRequest extends FormRequest
     public static function baseRules(Unit $unit): array
     {
         return [
-            'name' => "required|string|max:100|unique:{$unit->getTable()},name," . $unit->id,
+            'name' => "required|string|max:100|unique:{$unit->getTable()},name,".$unit->id,
             'expansion' => 'nullable|string|max:100',
             'type' => 'nullable|array|max:100',
             'civilization' => 'nullable|string|max:100',

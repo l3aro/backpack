@@ -28,10 +28,12 @@ class UserServiceEloquent implements UserService
     {
         if (isset($data['password']) && $data['password'] !== '') {
             $data['password'] = bcrypt($data['password']);
+
             return $data;
         }
 
         unset($data['password']);
+
         return $data;
     }
 

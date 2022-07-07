@@ -19,7 +19,9 @@ class Index extends Component
     use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post-category.index';
+
     protected $recordListName = 'postCategories';
+
     protected $listeners = ['languageSwitched'];
 
     public function mount()

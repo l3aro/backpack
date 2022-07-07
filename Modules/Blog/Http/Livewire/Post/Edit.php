@@ -2,13 +2,13 @@
 
 namespace Modules\Blog\Http\Livewire\Post;
 
-use Livewire\Component;
-use Modules\Blog\Models\Post;
-use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
+use Livewire\Component;
 use Livewire\WithFileUploads;
 use Modules\Blog\Http\Requests\EditPostRequest;
 use Modules\Blog\Models\Category;
+use Modules\Blog\Models\Post;
+use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Http\Livewire\Plugins\LoopFunctions;
 use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 
@@ -20,10 +20,15 @@ class Edit extends Component
     use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post.edit';
+
     public Post $post;
+
     public $selectedPostCategories = [];
+
     public $photo;
+
     public $tags;
+
     protected $listeners = ['languageSwitched'];
 
     protected function rules(): array
@@ -63,7 +68,7 @@ class Edit extends Component
     public function updatedTitle($value)
     {
         $this->validateOnly('title');
-        $this->slug = Str::slug($value) . '-' . now()->format('Ymd');
+        $this->slug = Str::slug($value).'-'.now()->format('Ymd');
     }
 
     public function save()
@@ -77,13 +82,14 @@ class Edit extends Component
             $this->post->addMedia($this->photo)->toMediaCollection('cover');
         }
         $this->photo = null;
+
         return $this->post;
     }
-
 
     public function saveAndShow()
     {
         $post = $this->save();
+
         return redirect()->route('admin.blog.posts.show', $post->id);
     }
 

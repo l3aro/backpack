@@ -28,8 +28,8 @@ class Setting extends Model
         parent::boot();
 
         $flushCache = function ($setting) {
-            Cache::forget('setting.' . $setting->key);
-            Cache::rememberForever('setting.' . $setting->key, fn () => $setting->value);
+            Cache::forget('setting.'.$setting->key);
+            Cache::rememberForever('setting.'.$setting->key, fn () => $setting->value);
         };
 
         static::saved($flushCache);

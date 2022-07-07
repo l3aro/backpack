@@ -16,9 +16,9 @@ trait LoopFunctions
     }
 
     /**
-     * @param int|string $key
-     *
+     * @param  int|string  $key
      * @return bool
+     *
      * @throws \ReflectionException
      */
     private function canAssignValue(int|string $key): bool

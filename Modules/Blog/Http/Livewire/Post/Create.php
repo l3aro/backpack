@@ -2,14 +2,14 @@
 
 namespace Modules\Blog\Http\Livewire\Post;
 
-use Livewire\Component;
-use Modules\Blog\Models\Post;
-use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Illuminate\Support\Str;
+use Livewire\Component;
 use Livewire\WithFileUploads;
 use MichaelRubel\LoopFunctions\Traits\LoopFunctions;
 use Modules\Blog\Http\Requests\CreatePostRequest;
 use Modules\Blog\Models\Category;
+use Modules\Blog\Models\Post;
+use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 
 class Create extends Component
@@ -20,10 +20,15 @@ class Create extends Component
     use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post.create';
+
     public Post $post;
+
     public $selectedCategories = [];
+
     public $photo;
+
     public $tags = [];
+
     protected $listeners = ['languageSwitched'];
 
     protected function rules(): array
@@ -60,7 +65,7 @@ class Create extends Component
     public function updatedTitle($value)
     {
         $this->validateOnly('title');
-        $this->slug = Str::slug($value) . '-' . now()->format('Ymd');
+        $this->slug = Str::slug($value).'-'.now()->format('Ymd');
     }
 
     public function save()
@@ -75,12 +80,14 @@ class Create extends Component
         }
         $post = $this->post;
         $this->resetState();
+
         return $post;
     }
 
     public function saveAndShow()
     {
         $post = $this->save();
+
         return redirect()->route('admin.blog.posts.show', $post->id);
     }
 

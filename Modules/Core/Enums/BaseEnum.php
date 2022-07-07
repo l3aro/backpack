@@ -5,12 +5,13 @@ namespace Modules\Core\Enums;
 abstract class BaseEnum
 {
     protected $items;
+
     protected $labels;
 
     public function __construct()
     {
         $this->items = $this->getClassConstants();
-        $this->labels = $this->defineLabels(); 
+        $this->labels = $this->defineLabels();
     }
 
     abstract protected function defineLabels(): array;
@@ -18,6 +19,7 @@ abstract class BaseEnum
     protected function getClassConstants()
     {
         $reflection = new \ReflectionClass($this);
+
         return $reflection->getConstants();
     }
 

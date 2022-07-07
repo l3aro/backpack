@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Modules\Core\Enums\UserTypeEnum;
 use Modules\Core\Services\Contracts\AuthenticationService;
-use PhpParser\Node\Stmt\Continue_;
 
 class AuthenticationServiceEloquent implements AuthenticationService
 {
@@ -17,12 +16,12 @@ class AuthenticationServiceEloquent implements AuthenticationService
     public function __construct()
     {
         $this->setGuard(null);
-        $this->setThrottleKey('admin|' . request()->ip());
+        $this->setThrottleKey('admin|'.request()->ip());
     }
 
     public function ensureIsNotRateLimited(): void
     {
-        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -46,6 +45,7 @@ class AuthenticationServiceEloquent implements AuthenticationService
     public function setThrottleKey(string $key): static
     {
         $this->throttleKey = $key;
+
         return $this;
     }
 
@@ -54,7 +54,7 @@ class AuthenticationServiceEloquent implements AuthenticationService
         bool $remember = false,
         UserTypeEnum|array $types = UserTypeEnum::USER
     ): void {
-        if (!$this->auth->attempt($credentials, $remember)) {
+        if (! $this->auth->attempt($credentials, $remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -69,22 +69,23 @@ class AuthenticationServiceEloquent implements AuthenticationService
 
     protected function checkUserType(UserTypeEnum|array $types): void
     {
-        if (!is_array($types)) {
+        if (! is_array($types)) {
             $types = [$types];
         }
         foreach ($types as $type) {
             $checker = $this->auth->user()->checkType($type);
-            if ($checker) continue;
+            if ($checker) {
+                continue;
+            }
             throw ValidationException::withMessages([
                 'email' => __('auth.invalid_user_type'),
             ]);
         }
     }
 
-
     protected function ensureAuthenticatedIsActive(): void
     {
-        if (!$this->auth->user()->isActive()) {
+        if (! $this->auth->user()->isActive()) {
             $this->auth->logout();
 
             throw ValidationException::withMessages([
@@ -96,6 +97,7 @@ class AuthenticationServiceEloquent implements AuthenticationService
     public function setGuard(?string $guard): static
     {
         $this->auth = Auth::guard($guard);
+
         return $this;
     }
 

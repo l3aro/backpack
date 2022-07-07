@@ -14,8 +14,11 @@ class Edit extends Component
     use LoadLayoutView;
 
     public User $user;
+
     public $photo;
+
     public $password;
+
     public $password_confirmation;
 
     public $viewPath = 'core::livewire.me.profile.edit';

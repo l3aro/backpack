@@ -17,7 +17,9 @@ class Edit extends Component
     use WithFileUploads;
 
     protected $viewPath = 'aoe2notebook::livewire.civilization.edit';
+
     public $photo;
+
     public $civilization;
 
     protected function rules(): array
@@ -43,12 +45,14 @@ class Edit extends Component
         }
 
         $this->photo = null;
+
         return $this->civilization;
     }
 
     public function saveAndShow()
     {
         $this->save();
+
         return redirect()->route('admin.aoe2notebook.civilizations.show', $this->civilization->id);
     }
 

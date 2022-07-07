@@ -11,6 +11,7 @@ class Show extends Component
     use LoadLayoutView;
 
     public $viewPath = 'core::livewire.user.show';
+
     public User $user;
 
     public function mount(User $user)

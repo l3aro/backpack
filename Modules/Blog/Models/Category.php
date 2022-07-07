@@ -4,8 +4,8 @@ namespace Modules\Blog\Models;
 
 use Baro\PipelineQueryCollection\Concerns\Filterable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Core\Models\Plugins\Orderable;
 use Spatie\Translatable\HasTranslations;
 
@@ -16,7 +16,8 @@ class Category extends Model
     use Orderable;
     use Filterable;
 
-    protected $table = "blog__categories";
+    protected $table = 'blog__categories';
+
     public $translatable = ['title', 'slug', 'description', 'meta_title', 'meta_description', 'meta_keyword'];
 
     protected $guarded = ['id'];
@@ -52,6 +53,7 @@ class Category extends Model
     public function scopeSearch(Builder $query, $search)
     {
         $locale = app()->getLocale();
+
         return $query->where(
             fn (Builder $query) => $query
                 ->where('id', $search)

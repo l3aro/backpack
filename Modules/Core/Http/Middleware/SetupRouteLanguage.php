@@ -25,6 +25,7 @@ class SetupRouteLanguage
         $segments = $request->segments();
         Arr::pull($segments, 0);
         $segments = Arr::prepend($segments, config('app.fallback_locale'));
+
         return redirect()->to(implode('/', $segments));
     }
 }

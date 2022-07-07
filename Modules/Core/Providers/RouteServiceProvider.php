@@ -2,8 +2,8 @@
 
 namespace Modules\Core\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Modules\Core\Http\Middleware\SetupSessionLanguage;
 
 class RouteServiceProvider extends ServiceProvider

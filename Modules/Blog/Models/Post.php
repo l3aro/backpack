@@ -5,9 +5,8 @@ namespace Modules\Blog\Models;
 use Baro\PipelineQueryCollection\Concerns\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Pipeline\Pipeline;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Blog\Enums\BlogStatusEnum;
 use Modules\Core\Models\Plugins\Orderable;
 use Spatie\Image\Manipulations;
@@ -25,8 +24,10 @@ class Post extends Model implements HasMedia
     use HasTranslations;
     use Filterable;
 
-    protected $table = "blog__posts";
+    protected $table = 'blog__posts';
+
     public $translatable = ['title', 'content', 'slug', 'description', 'meta_title', 'meta_description', 'meta_keyword'];
+
     protected $guarded = ['id'];
 
     protected $casts = [
@@ -86,6 +87,7 @@ class Post extends Model implements HasMedia
     public function scopeSearch(Builder $query, $search)
     {
         $locale = app()->getLocale();
+
         return $query->where(
             fn (Builder $query) => $query
                 ->where('id', $search)
@@ -115,6 +117,7 @@ class Post extends Model implements HasMedia
         if ($status === 'scheduled') {
             return $query->scheduled();
         }
+
         return $query;
     }
 
@@ -134,9 +137,9 @@ class Post extends Model implements HasMedia
     {
         return Attribute::make(
             get: fn () => match (true) {
-                !isset($this->published_at) => 'On Drafting',
-                $this->published_at->isFuture() => 'Post is scheduled for publishing on ' . $this->published_at->format('F j, Y H:i'),
-                default => 'Published on ' . $this->published_at->format('F j, Y H:i'),
+                ! isset($this->published_at) => 'On Drafting',
+                $this->published_at->isFuture() => 'Post is scheduled for publishing on '.$this->published_at->format('F j, Y H:i'),
+                default => 'Published on '.$this->published_at->format('F j, Y H:i'),
             },
         );
     }
@@ -145,7 +148,7 @@ class Post extends Model implements HasMedia
     {
         return Attribute::make(
             get: fn () => match (true) {
-                !isset($this->published_at) => BlogStatusEnum::DRAFT,
+                ! isset($this->published_at) => BlogStatusEnum::DRAFT,
                 $this->published_at->isFuture() => BlogStatusEnum::SCHEDULED,
                 default => BlogStatusEnum::PUBLISHED,
             },

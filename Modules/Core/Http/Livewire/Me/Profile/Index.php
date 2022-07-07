@@ -11,6 +11,7 @@ class Index extends Component
     use LoadLayoutView;
 
     public $viewPath = 'core::livewire.me.profile.index';
+
     public User $user;
 
     public function mount()

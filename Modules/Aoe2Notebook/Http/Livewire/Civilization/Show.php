@@ -11,6 +11,7 @@ class Show extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'aoe2notebook::livewire.civilization.show';
+
     public Civilization $civilization;
 
     public function mount(Civilization $civilization)

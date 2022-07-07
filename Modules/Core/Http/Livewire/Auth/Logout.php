@@ -11,11 +11,13 @@ class Logout extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'core::livewire.auth.logout';
+
     protected $layoutPath = 'core::components.layout-guest';
 
     public function logout(AuthenticationService $authenticationService)
     {
         $authenticationService->setGuard('admin')->logout();
+
         return redirect()->route('admin.login');
     }
 }

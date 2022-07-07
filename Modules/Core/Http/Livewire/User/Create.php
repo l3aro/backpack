@@ -18,9 +18,13 @@ class Create extends Component
     use LoopFunctions;
 
     public $viewPath = 'core::livewire.user.create';
+
     public $photo;
+
     public $password;
+
     public $password_confirmation;
+
     public $type;
 
     protected function rules(): array
@@ -59,7 +63,8 @@ class Create extends Component
 
     public function saveAndShow()
     {
-        $user  = $this->save();
+        $user = $this->save();
+
         return redirect()->route('admin.users.show', $user->id);
     }
 

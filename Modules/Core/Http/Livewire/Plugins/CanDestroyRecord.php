@@ -5,6 +5,7 @@ namespace Modules\Core\Http\Livewire\Plugins;
 trait CanDestroyRecord
 {
     public $confirmingDeletion = false;
+
     public $confirmingId;
 
     public function destroy($id)

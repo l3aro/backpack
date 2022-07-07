@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'name' => 'Aoe2Notebook'
+    'name' => 'Aoe2Notebook',
 ];

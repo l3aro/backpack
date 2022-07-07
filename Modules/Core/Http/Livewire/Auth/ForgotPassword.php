@@ -13,7 +13,9 @@ class ForgotPassword extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'core::livewire.auth.forgot-password';
+
     protected $layoutPath = 'core::components.layout-guest';
+
     public $email;
 
     public function sendResetLink(ResetPasswordService $resetPasswordService)
@@ -32,6 +34,7 @@ class ForgotPassword extends Component
 
         if ($response == Password::RESET_LINK_SENT) {
             session()->flash('success', trans($response));
+
             return;
         }
 

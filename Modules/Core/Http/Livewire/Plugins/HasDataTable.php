@@ -10,9 +10,13 @@ trait HasDataTable
     use WithPagination;
 
     public $perPage = 10;
+
     public $filter = [];
+
     public $sort = [];
+
     public $arrayFilters = [];
+
     public $perPageOptions = [10, 25, 50, 100];
 
     public function queryStringHasDataTable()
@@ -82,12 +86,14 @@ trait HasDataTable
     public function applySort($field)
     {
         $this->resetPage();
-        if (!isset($this->sort[$field])) {
+        if (! isset($this->sort[$field])) {
             $this->sort[$field] = 'desc';
+
             return;
         }
         if ($this->sort[$field] === 'desc') {
             $this->sort[$field] = 'asc';
+
             return;
         }
         unset($this->sort[$field]);
@@ -101,6 +107,7 @@ trait HasDataTable
         if (empty($subject) && method_exists($this, 'getModel')) {
             return app($this->getModel())->query();
         }
+
         return $subject[0];
     }
 

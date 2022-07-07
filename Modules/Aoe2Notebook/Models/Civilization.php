@@ -15,11 +15,14 @@ class Civilization extends Model implements HasMedia
     use InteractsWithMedia;
     use Filterable;
 
-    protected $table = "aoe2notebook_civilizations";
+    protected $table = 'aoe2notebook_civilizations';
+
     protected $guarded = ['id'];
+
     protected $casts = [
         'expansion' => ExpansionEnum::class,
     ];
+
     protected $attributes = [
         'name' => '',
         'expansion' => ExpansionEnum::DEFINITIVE_EDITION,
@@ -37,7 +40,7 @@ class Civilization extends Model implements HasMedia
 
     public function scopeSearch(Builder $query, string $keyword)
     {
-        return $query->where(function (Builder $query)  use ($keyword) {
+        return $query->where(function (Builder $query) use ($keyword) {
             $query->where('id', $keyword)
                 ->orWhere('name', 'like', "%{$keyword}%");
         });

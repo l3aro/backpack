@@ -30,6 +30,7 @@ class CreateUserRequest extends FormRequest
     public static function baseRules()
     {
         $tableName = (new User())->getTable();
+
         return [
             'name' => 'required|string|max:255',
             'email' => "required|string|email|max:255|unique:{$tableName},email",

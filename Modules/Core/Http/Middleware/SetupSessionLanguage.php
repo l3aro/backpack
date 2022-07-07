@@ -17,6 +17,7 @@ class SetupSessionLanguage
     public function handle(Request $request, Closure $next)
     {
         app()->setLocale(session()->get('locale', config('app.locale')));
+
         return $next($request);
     }
 }

@@ -18,8 +18,10 @@ class Unit extends Model implements HasMedia
     use InteractsWithMedia;
     use Filterable;
 
-    protected $table = "aoe2notebook_units";
+    protected $table = 'aoe2notebook_units';
+
     protected $guarded = ['id'];
+
     protected $casts = [
         'training_cost' => 'array',
         'upgrade_cost' => 'array',
@@ -27,6 +29,7 @@ class Unit extends Model implements HasMedia
         'expansion' => ExpansionEnum::class,
         'age' => AgeEnum::class,
     ];
+
     protected $attributes = [
         'name' => '',
         'expansion' => ExpansionEnum::DEFINITIVE_EDITION,
@@ -66,7 +69,7 @@ class Unit extends Model implements HasMedia
 
     public function scopeSearch(Builder $query, string $keyword)
     {
-        return $query->where(function (Builder $query)  use ($keyword) {
+        return $query->where(function (Builder $query) use ($keyword) {
             $query->where('id', $keyword)
                 ->orWhere('name', 'like', "%{$keyword}%");
         });

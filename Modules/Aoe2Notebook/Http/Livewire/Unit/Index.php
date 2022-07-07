@@ -12,7 +12,7 @@ class Index extends Component
     use LoadLayoutView;
     use HasDataTable;
     use CanDestroyRecord;
-    
+
     protected $viewPath = 'aoe2notebook::livewire.unit.index';
 
     public function viewData(): array

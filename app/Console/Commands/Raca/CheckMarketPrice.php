@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Raca;
 
-use App\Enums\Raca\CategoryEnum;
 use App\Http\Client\DiscordWebhook;
 use App\Services\Contracts\MarkdownTableService;
 use Illuminate\Console\Command;
@@ -12,6 +11,7 @@ use Illuminate\Support\Facades\Http;
 class CheckMarketPrice extends Command
 {
     const PER_PAGE = 20;
+
     /**
      * The name and signature of the console command.
      *
@@ -63,18 +63,18 @@ class CheckMarketPrice extends Command
         foreach ($response as $response) {
             $list = $response->collect('list')->filter(fn ($item) => $item['status'] === 'active');
             $total = $response->json('total');
-            if (!$total) {
+            if (! $total) {
                 continue;
             }
-            $message = "Total: {$total} | Pages: " . ceil($total / self::PER_PAGE) . PHP_EOL;
+            $message = "Total: {$total} | Pages: ".ceil($total / self::PER_PAGE).PHP_EOL;
             $message .= $markdownTableService
                 ->rows($list->sortBy('fixed_price')->take(5)->map(function ($item) {
                     return [
                         $item['name'],
                         number_format($item['fixed_price'] / $item['count']),
-                        " x" . $item['count'],
+                        ' x'.$item['count'],
                         number_format($item['fixed_price']),
-                        "https://market.radiocaca.com/#/market-place/" . $item['id'],
+                        'https://market.radiocaca.com/#/market-place/'.$item['id'],
                     ];
                 })->toArray())
                 ->render();
@@ -88,8 +88,7 @@ class CheckMarketPrice extends Command
 
     protected function buildQueryUrl($sortBy, $order, $category)
     {
-        $url = 'https://market-api.radiocaca.com/nft-sales?pageNo=1&pageSize=20&sortBy=' . $sortBy . '&name=&order=' . $order . '&saleType&category=' . $category . '&tokenType';
-
+        $url = 'https://market-api.radiocaca.com/nft-sales?pageNo=1&pageSize=20&sortBy='.$sortBy.'&name=&order='.$order.'&saleType&category='.$category.'&tokenType';
 
         return $url;
     }

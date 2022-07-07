@@ -2,8 +2,8 @@
 
 namespace Modules\Portfolio\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Modules\Blog\Models\Post;
 use Modules\Core\Http\Middleware\SetupRouteLanguage;
 
@@ -28,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider
         parent::boot();
         $locale = app()->getLocale();
         Route::bind('postSlug', function ($slug) use ($locale) {
-            return Post::where('slug->' . $locale, $slug)->first() ?? abort(404);
+            return Post::where('slug->'.$locale, $slug)->first() ?? abort(404);
         });
     }
 

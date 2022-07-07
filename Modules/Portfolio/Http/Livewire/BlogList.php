@@ -3,10 +3,10 @@
 namespace Modules\Portfolio\Http\Livewire;
 
 use Livewire\Component;
-use Modules\Blog\Models\Post;
 use Modules\Blog\Models\Category;
-use Modules\Portfolio\Http\Livewire\Plugins\LoadWebLayout;
+use Modules\Blog\Models\Post;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
+use Modules\Portfolio\Http\Livewire\Plugins\LoadWebLayout;
 use Spatie\Tags\Tag;
 
 class BlogList extends Component

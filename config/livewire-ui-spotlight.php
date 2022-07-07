@@ -29,7 +29,7 @@ return [
     */
 
     'commands' => [
-        \Modules\Core\Spotlight\Logout::class
+        \Modules\Core\Spotlight\Logout::class,
     ],
 
     /*
@@ -42,7 +42,6 @@ return [
     |
     */
     'include_css' => false,
-
 
     /*
     |--------------------------------------------------------------------------

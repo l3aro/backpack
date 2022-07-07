@@ -25,6 +25,7 @@ class ItemDefault implements Item
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -36,6 +37,7 @@ class ItemDefault implements Item
     public function setIcon(string $icon): static
     {
         $this->icon = $icon;
+
         return $this;
     }
 
@@ -47,6 +49,7 @@ class ItemDefault implements Item
     public function setUrl(string $url): static
     {
         $this->url = $url;
+
         return $this;
     }
 
@@ -58,6 +61,7 @@ class ItemDefault implements Item
     public function setChildren(callable $callback): static
     {
         $this->children = $callback(app(Section::class))->toArray();
+
         return $this;
     }
 
@@ -74,6 +78,7 @@ class ItemDefault implements Item
     public function activeWhen(callable $callback): static
     {
         $this->active = $callback();
+
         return $this;
     }
 
@@ -85,6 +90,7 @@ class ItemDefault implements Item
     public function setOpenNewTab(bool $condition): static
     {
         $this->shouldOpenNewTab = $condition;
+
         return $this;
     }
 }

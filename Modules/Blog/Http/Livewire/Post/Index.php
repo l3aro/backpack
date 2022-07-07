@@ -3,8 +3,8 @@
 namespace Modules\Blog\Http\Livewire\Post;
 
 use Livewire\Component;
-use Modules\Blog\Models\Post;
 use Modules\Blog\Models\Category;
+use Modules\Blog\Models\Post;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
@@ -21,9 +21,13 @@ class Index extends Component
     use WatchLanguageChange;
 
     protected $viewPath = 'blog::livewire.post.index';
+
     protected $recordListName = 'posts';
+
     public $postCategories;
+
     public $postTags;
+
     protected $listeners = ['languageSwitched'];
 
     public function languageSwitched()

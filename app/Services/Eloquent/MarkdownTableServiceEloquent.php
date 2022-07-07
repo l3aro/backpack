@@ -58,10 +58,10 @@ class MarkdownTableServiceEloquent implements MarkdownTableService
 
         $result = '| ';
         for ($i = 0; $i < count($this->headers); $i++) {
-            $result .= $this->renderCell($this->headers[$i], $this->columnAlign($i), $widths[$i]) . ' | ';
+            $result .= $this->renderCell($this->headers[$i], $this->columnAlign($i), $widths[$i]).' | ';
         }
 
-        $result = rtrim($result, ' ') . PHP_EOL . $this->renderAlignments($widths) . PHP_EOL;
+        $result = rtrim($result, ' ').PHP_EOL.$this->renderAlignments($widths).PHP_EOL;
 
         return $result;
     }
@@ -72,9 +72,9 @@ class MarkdownTableServiceEloquent implements MarkdownTableService
         foreach ($this->rows as $row) {
             $result .= '| ';
             for ($i = 0; $i < count($row); $i++) {
-                $result .= $this->renderCell($row[$i], $this->columnAlign($i), $widths[$i]) . ' | ';
+                $result .= $this->renderCell($row[$i], $this->columnAlign($i), $widths[$i]).' | ';
             }
-            $result = rtrim($result, ' ') . PHP_EOL;
+            $result = rtrim($result, ' ').PHP_EOL;
         }
 
         return $result;
@@ -103,8 +103,8 @@ class MarkdownTableServiceEloquent implements MarkdownTableService
 
         foreach (array_merge([$this->headers], $this->rows) as $row) {
             for ($i = 0; $i < count($row); $i++) {
-                $iWidth = strlen((string)$row[$i]);
-                if ((!array_key_exists($i, $widths)) || $iWidth > $widths[$i]) {
+                $iWidth = strlen((string) $row[$i]);
+                if ((! array_key_exists($i, $widths)) || $iWidth > $widths[$i]) {
                     $widths[$i] = $iWidth;
                 }
             }
@@ -115,7 +115,6 @@ class MarkdownTableServiceEloquent implements MarkdownTableService
             return $width >= 3 ? $width : 3;
         }, $widths);
 
-
         return $widths;
     }
 
@@ -123,18 +122,18 @@ class MarkdownTableServiceEloquent implements MarkdownTableService
     {
         $row = '|';
         for ($i = 0; $i < count($widths); $i++) {
-            $cell  = str_repeat('-', $widths[$i] + 2);
+            $cell = str_repeat('-', $widths[$i] + 2);
             $align = $this->columnAlign($i);
 
             if ($align == 'C') {
-                $cell = ':' . substr($cell, 2) . ':';
+                $cell = ':'.substr($cell, 2).':';
             }
 
             if ($align == 'R') {
-                $cell = substr($cell, 1) . ':';
+                $cell = substr($cell, 1).':';
             }
 
-            $row .= $cell . '|';
+            $row .= $cell.'|';
         }
 
         return $row;

@@ -18,9 +18,13 @@ class Login extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'core::livewire.auth.login';
+
     protected $layoutPath = 'core::components.layout-guest';
+
     public $email;
+
     public $password;
+
     public $remember = false;
 
     public function login()
@@ -51,6 +55,6 @@ class Login extends Component
 
     public function getThrottleKeyProperty()
     {
-        return Str::lower($this->email) . ':' . request()->ip();
+        return Str::lower($this->email).':'.request()->ip();
     }
 }

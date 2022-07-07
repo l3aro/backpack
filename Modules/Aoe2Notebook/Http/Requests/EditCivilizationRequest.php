@@ -17,6 +17,7 @@ class EditCivilizationRequest extends FormRequest
     public function rules(Civilization $civilization)
     {
         dd($civilization);
+
         return static::baseRules($this->civilization);
     }
 
@@ -37,7 +38,7 @@ class EditCivilizationRequest extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                "unique:{$civilization->getTable()},name," . $civilization->id,
+                "unique:{$civilization->getTable()},name,".$civilization->id,
             ],
             'expansion' => [new Enum(ExpansionEnum::class)],
             'army_type' => 'string|max:100',

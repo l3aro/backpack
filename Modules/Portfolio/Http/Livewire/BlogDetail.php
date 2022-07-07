@@ -11,6 +11,7 @@ class BlogDetail extends Component
     use LoadWebLayout;
 
     protected $viewPath = 'portfolio::livewire.blog-detail';
+
     public Post $post;
 
     public function mount(Post $postSlug)

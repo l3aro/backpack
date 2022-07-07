@@ -87,17 +87,18 @@ class AppServiceProvider extends ServiceProvider
 
     protected function declarePortfolioNavigation(): Closure
     {
-        return function() {
+        return function () {
             $locale = session()->get('locale', config('app.locale'));
+
             return Navigation::make()
                 ->add(fn (Item $item) => $item
                     ->setTitle(__('Home'))
                     ->setUrl(route('portfolio.home', $locale))
-                    ->activeWhen(fn() => request()->routeIs('portfolio.home')))
+                    ->activeWhen(fn () => request()->routeIs('portfolio.home')))
                 ->add(fn (Item $item) => $item
                     ->setTitle(__('Blog'))
                     ->setUrl(route('portfolio.blogs.index', $locale))
-                    ->activeWhen(fn() => request()->routeIs('portfolio.blogs.*')));
+                    ->activeWhen(fn () => request()->routeIs('portfolio.blogs.*')));
         };
     }
 

@@ -35,7 +35,6 @@ Route::middleware('guest:admin')->group(function () {
         ->name('admin.password.reset');
 });
 
-
 Route::middleware('auth:admin')->group(function () {
     Route::any('adminer', [\Aranyasen\LaravelAdminer\AdminerAutologinController::class, 'index']);
 });

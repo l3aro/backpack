@@ -17,7 +17,9 @@ class Create extends Component
     use LoopFunctions;
 
     protected $viewPath = 'aoe2notebook::livewire.civilization.create';
+
     public $civilization;
+
     public $photo;
 
     protected function rules()
@@ -52,12 +54,14 @@ class Create extends Component
             $state->addMedia($this->photo)->toMediaCollection();
         }
         $this->resetState();
+
         return $state;
     }
 
     public function saveAndShow()
     {
         $civilization = $this->save();
+
         return redirect()->route('admin.aoe2notebook.civilizations.show', $civilization->id);
     }
 

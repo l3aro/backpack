@@ -15,6 +15,7 @@ trait LoadLayoutView
         if (method_exists($this, 'viewPath')) {
             return $this->viewPath();
         }
+
         return property_exists($this, 'viewPath') ? $this->viewPath : null;
     }
 
@@ -23,6 +24,7 @@ trait LoadLayoutView
         if (method_exists($this, 'layoutPath')) {
             return $this->layoutPath();
         }
+
         return property_exists($this, 'layoutPath') ? $this->layoutPath : config('core.layout-auth');
     }
 
@@ -31,6 +33,7 @@ trait LoadLayoutView
         if (method_exists($this, 'viewData')) {
             return $this->viewData();
         }
+
         return property_exists($this, 'viewData') ? $this->viewData : [];
     }
 
@@ -39,6 +42,7 @@ trait LoadLayoutView
         if (method_exists($this, 'layoutData')) {
             return $this->layoutData();
         }
+
         return property_exists($this, 'layoutData') ? $this->layoutData : [];
     }
 }

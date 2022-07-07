@@ -3,8 +3,8 @@
 namespace Modules\Core\Services\Eloquent;
 
 use Illuminate\Auth\Events\PasswordReset;
-use Modules\Core\Services\Contracts\ResetPasswordService;
 use Illuminate\Contracts\Auth\PasswordBroker;
+use Modules\Core\Services\Contracts\ResetPasswordService;
 use Password;
 
 class ResetPasswordServiceEloquent implements ResetPasswordService

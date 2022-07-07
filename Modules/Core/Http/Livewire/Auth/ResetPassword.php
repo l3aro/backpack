@@ -12,10 +12,15 @@ class ResetPassword extends Component
     use LoadLayoutView;
 
     protected $viewPath = 'core::livewire.auth.reset-password';
+
     protected $layoutPath = 'core::components.layout-guest';
+
     public $email;
+
     public $password;
+
     public $password_confirmation;
+
     public $token;
 
     public function mount($token)
@@ -36,6 +41,7 @@ class ResetPassword extends Component
 
         if ($response == Password::PASSWORD_RESET) {
             session()->flash('success', trans($response));
+
             return redirect()->route('admin.login');
         }
 

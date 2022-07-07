@@ -3,8 +3,6 @@
 namespace Modules\Core\Models\Plugins;
 
 use ArrayAccess;
-use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
 use Modules\Core\Models\Scopes\PriorityScope;
@@ -31,6 +29,7 @@ trait Orderable
     protected function getNextOrder(): int
     {
         $currentOrder = (int) (static::query()->max($this->getOrderColumn()) ?? 0);
+
         return $currentOrder + 1;
     }
 
@@ -46,7 +45,7 @@ trait Orderable
 
     public static function setNewOrder($ids): void
     {
-        if (!is_array($ids) && !$ids instanceof ArrayAccess) {
+        if (! is_array($ids) && ! $ids instanceof ArrayAccess) {
             throw new InvalidArgumentException('You must pass an array or ArrayAccess object to setNewOrder');
         }
         $orderColumn = (new static)->getOrderColumn();
