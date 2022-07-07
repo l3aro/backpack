@@ -14,6 +14,7 @@
 @task('clone_repository')
     echo '* Cloning repository'
     cd {{ $app_dir }}
+    git reset --hard HEAD && git clean -fd
     git pull origin main
 @endtask
 
