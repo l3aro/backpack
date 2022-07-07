@@ -2,6 +2,7 @@
 
 namespace Modules\Blog\Models;
 
+use Baro\PipelineQueryCollection\Concerns\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,7 @@ class Post extends Model implements HasMedia
     use InteractsWithMedia;
     use Orderable;
     use HasTranslations;
+    use Filterable;
 
     protected $table = "blog__posts";
     public $translatable = ['title', 'content', 'slug', 'description', 'meta_title', 'meta_description', 'meta_keyword'];
@@ -67,30 +69,34 @@ class Post extends Model implements HasMedia
         return $query->where('published_at', '>', now());
     }
 
-    public function scopeFilter(Builder $query)
+    public function getFilters()
     {
-        return app(Pipeline::class)
-            ->send($query)
-            ->through([
-                new \Modules\Core\Models\Filters\ScopeFilter('search'),
-                new \Modules\Core\Models\Filters\ScopeFilter('status'),
-                new \Modules\Core\Models\Filters\ScopeFilter('tag'),
-                new \Modules\Core\Models\Filters\DateFromFilter('published_at'),
-                new \Modules\Core\Models\Filters\DateToFilter('published_at'),
-                new \Modules\Core\Models\Filters\RelationFilter('categories', 'id'),
-                new \Modules\Core\Models\Filters\RelationFilter('categories', 'slug'),
-                new \Modules\Core\Models\Filters\Sort,
-            ])
-            ->thenReturn();
+        return [
+            new \Baro\PipelineQueryCollection\ScopeFilter('search'),
+            new \Baro\PipelineQueryCollection\ScopeFilter('status'),
+            new \Baro\PipelineQueryCollection\ScopeFilter('tag'),
+            new \Baro\PipelineQueryCollection\DateFromFilter('published_at'),
+            new \Baro\PipelineQueryCollection\DateToFilter('published_at'),
+            new \Baro\PipelineQueryCollection\RelationFilter('categories', 'id'),
+            (new \Baro\PipelineQueryCollection\ScopeFilter('categories_slug'))->filterOn('searchCategorySlug'),
+            new \Baro\PipelineQueryCollection\Sort,
+        ];
     }
 
-    public function scopeSearch(Builder $query, string $keyword)
+    public function scopeSearch(Builder $query, $search)
     {
-        return $query->where(function (Builder $query)  use ($keyword) {
-            $query->where('id', $keyword)
-                ->orWhere('title', 'like', "%{$keyword}%")
-                ->orWhere('description', 'like', "%{$keyword}%");
-        });
+        $locale = app()->getLocale();
+        return $query->where(
+            fn (Builder $query) => $query
+                ->where('id', $search)
+                ->orWhere("title->$locale", 'like', "%{$search}%")
+                ->orWhere("description->$locale", 'like', "%{$search}%")
+        );
+    }
+
+    public function scopeSearchCategorySlug(Builder $query, $slug)
+    {
+        return $query->whereRelation('categories', 'slug', 'like', "%$slug%");
     }
 
     public function scopeTag(Builder $query, string $tag)

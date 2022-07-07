@@ -2,9 +2,9 @@
 
 namespace Modules\Aoe2Notebook\Models;
 
+use Baro\PipelineQueryCollection\Concerns\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pipeline\Pipeline;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -12,20 +12,17 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Structure extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use Filterable;
 
     protected $table = "aoe2notebook_structures";
-
     protected $guarded = ['id'];
 
-    public function scopeFilter(Builder $query)
+    public function getFilters()
     {
-        return app(Pipeline::class)
-            ->send($query)
-            ->through([
-                new \Modules\Core\Models\Filters\ScopeFilter('search'),
-                new \Modules\Core\Models\Filters\Sort,
-            ])
-            ->thenReturn();
+        return [
+            new \Baro\PipelineQueryCollection\ScopeFilter('search'),
+            new \Baro\PipelineQueryCollection\Sort,
+        ];
     }
 
     public function scopeSearch(Builder $query, string $keyword)

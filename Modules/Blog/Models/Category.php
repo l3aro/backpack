@@ -2,10 +2,10 @@
 
 namespace Modules\Blog\Models;
 
+use Baro\PipelineQueryCollection\Concerns\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Pipeline\Pipeline;
 use Modules\Core\Models\Plugins\Orderable;
 use Spatie\Translatable\HasTranslations;
 
@@ -14,6 +14,7 @@ class Category extends Model
     use HasFactory;
     use HasTranslations;
     use Orderable;
+    use Filterable;
 
     protected $table = "blog__categories";
     public $translatable = ['title', 'slug', 'description', 'meta_title', 'meta_description', 'meta_keyword'];
@@ -40,27 +41,23 @@ class Category extends Model
         return $this->belongsToMany(Post::class, 'blog__post_category', 'category_id', 'post_id');
     }
 
-    public function scopeFilter(Builder $query)
+    public function getFilters()
     {
-        return app(Pipeline::class)
-            ->send($query)
-            ->through([
-                new \Modules\Core\Models\Filters\ScopeFilter('search'),
-                new \Modules\Core\Models\Filters\Sort,
-            ])
-            ->thenReturn();
+        return [
+            new \Baro\PipelineQueryCollection\ScopeFilter('search'),
+            new \Baro\PipelineQueryCollection\Sort,
+        ];
     }
 
     public function scopeSearch(Builder $query, $search)
     {
-        if (!$search) {
-            return $query;
-        }
-        return $query->where(function (Builder $query) use ($search) {
-            $query->where('id', $search)
-                ->orWhere('title', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%");
-        });
+        $locale = app()->getLocale();
+        return $query->where(
+            fn (Builder $query) => $query
+                ->where('id', $search)
+                ->orWhere("title->$locale", 'like', "%{$search}%")
+                ->orWhere("description->$locale", 'like', "%{$search}%")
+        );
     }
 
     public function scopePublished(Builder $query)

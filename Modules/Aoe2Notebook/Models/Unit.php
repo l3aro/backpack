@@ -2,10 +2,10 @@
 
 namespace Modules\Aoe2Notebook\Models;
 
+use Baro\PipelineQueryCollection\Concerns\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pipeline\Pipeline;
 use Modules\Aoe2Notebook\Enums\AgeEnum;
 use Modules\Aoe2Notebook\Enums\ExpansionEnum;
 use Modules\Aoe2Notebook\Enums\UnitTypeEnum;
@@ -16,11 +16,10 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Unit extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use Filterable;
 
     protected $table = "aoe2notebook_units";
-
     protected $guarded = ['id'];
-
     protected $casts = [
         'training_cost' => 'array',
         'upgrade_cost' => 'array',
@@ -28,7 +27,6 @@ class Unit extends Model implements HasMedia
         'expansion' => ExpansionEnum::class,
         'age' => AgeEnum::class,
     ];
-
     protected $attributes = [
         'name' => '',
         'expansion' => ExpansionEnum::DEFINITIVE_EDITION,
@@ -58,15 +56,12 @@ class Unit extends Model implements HasMedia
         'upgrade_time' => null,
     ];
 
-    public function scopeFilter(Builder $query)
+    public function getFilters()
     {
-        return app(Pipeline::class)
-            ->send($query)
-            ->through([
-                new \Modules\Core\Models\Filters\ScopeFilter('search'),
-                new \Modules\Core\Models\Filters\Sort,
-            ])
-            ->thenReturn();
+        return [
+            new \Baro\PipelineQueryCollection\ScopeFilter('search'),
+            new \Baro\PipelineQueryCollection\Sort,
+        ];
     }
 
     public function scopeSearch(Builder $query, string $keyword)

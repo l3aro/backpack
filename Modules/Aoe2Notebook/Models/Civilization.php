@@ -2,9 +2,9 @@
 
 namespace Modules\Aoe2Notebook\Models;
 
+use Baro\PipelineQueryCollection\Concerns\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pipeline\Pipeline;
 use Modules\Aoe2Notebook\Enums\ExpansionEnum;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
@@ -13,15 +13,13 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Civilization extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use Filterable;
 
     protected $table = "aoe2notebook_civilizations";
-
     protected $guarded = ['id'];
-
     protected $casts = [
         'expansion' => ExpansionEnum::class,
     ];
-
     protected $attributes = [
         'name' => '',
         'expansion' => ExpansionEnum::DEFINITIVE_EDITION,
@@ -29,15 +27,12 @@ class Civilization extends Model implements HasMedia
         'team_bonus' => '',
     ];
 
-    public function scopeFilter(Builder $query)
+    public function getFilters()
     {
-        return app(Pipeline::class)
-            ->send($query)
-            ->through([
-                new \Modules\Core\Models\Filters\ScopeFilter('search'),
-                new \Modules\Core\Models\Filters\Sort,
-            ])
-            ->thenReturn();
+        return [
+            new \Baro\PipelineQueryCollection\ScopeFilter('search'),
+            new \Baro\PipelineQueryCollection\Sort,
+        ];
     }
 
     public function scopeSearch(Builder $query, string $keyword)
