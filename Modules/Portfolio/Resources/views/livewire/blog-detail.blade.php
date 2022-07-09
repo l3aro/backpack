@@ -8,7 +8,7 @@
         </a>
         <div class="prose mx-auto">
             <div class="font-sans">
-                <h1 class="font-bold break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">
+                <h1 class="font-bold break-normal text-gray-900 dark:text-gray-50 pt-6 pb-2 text-3xl md:text-4xl">
                     {{ $post->title }}
                 </h1>
                 <p class="text-sm md:text-base font-normal text-gray-600">
@@ -17,7 +17,7 @@
             </div>
 
             <div class="mt-3">
-                <x-core::visual.markdown :content="$post->content" class="prose-headings:text-lg" />
+                <x-core::visual.markdown :content="$post->content" class="prose-headings:text-lg dark:prose-invert" />
             </div>
 
             <hr>

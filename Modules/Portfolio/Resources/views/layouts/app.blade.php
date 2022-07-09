@@ -40,7 +40,7 @@
     @endif
 </head>
 
-<body class="font-['Montserrat'] leading-7 text-neutral-400">
+<body class="font-['Montserrat'] leading-7 text-neutral-400 bg-gray-100 dark:bg-zinc-900">
     <div class="w-full overflow-hidden relative">
         <x-portfolio::aside />
         <div class="w-full lg:w-4/5 float-right transition-all relative z-0">

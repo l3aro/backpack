@@ -1,13 +1,13 @@
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen">
     <x-slot name="metaTitle">Home</x-slot>
-    <div class="absolute top-0 left-0 right-0 bottom-0 opacity-50 bg-white z-0"></div>
+    <div class="absolute top-0 left-0 right-0 bottom-0 z-0"></div>
     <div class="h-screen flex justify-center items-center">
         <div class="w-3/4 md:w-2/3 mx-auto text-center z-10">
             <div class="w-48 h-48 mx-auto my-0 rounded-full bg-cover mb-6"
                 style="background-image: url(assets/images/ava.jpg);"></div>
             <div class="desc">
                 <h2 class="text-2xl text-gray-400 font-light mb-6">
-                    Hey I'm <span class="font-black tracking-wider text-black/80">Baro</span>
+                    Hey I'm <span class="font-black tracking-wider text-black/80 dark:text-white/80">Baro</span>
                 </h2>
 
                 <p class="mb-4 font-medium text-lg">

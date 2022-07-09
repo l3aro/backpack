@@ -22,9 +22,9 @@
 
     $watch('dark', dark => this.syncDarkMode())
 }">
-    <x-icon class="w-5 h-5 cursor-pointer text-gray-100 dark:text-secondary-200" x-on:click="disable" name="sun" />
+    <x-icon class="w-5 h-5 cursor-pointer text-gray-900 dark:text-secondary-200" x-on:click="disable" name="sun" />
 
     <x-toggle x-model="dark" id="dark-mode-toggle.{{ $this->id }}" />
 
-    <x-icon class="w-5 h-5 cursor-pointer text-gray-100 dark:text-secondary-200" x-on:click="enable" name="moon" />
+    <x-icon class="w-5 h-5 cursor-pointer text-gray-900 dark:text-secondary-200" x-on:click="enable" name="moon" />
 </div>

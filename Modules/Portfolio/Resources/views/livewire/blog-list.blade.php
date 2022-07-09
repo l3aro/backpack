@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen">
     <x-slot name="metaTitle">Blog</x-slot>
     <div class="container py-24 px-10 flex flex-col md:flex-row mx-auto">
         <div class="w-full lg:w-2/3">
@@ -14,7 +14,7 @@
                 @forelse ($posts as $item)
                     <a href="{{ route('portfolio.blogs.show', ['locale' => app()->getLocale(), 'postSlug' => $item->slug]) }}"
                         class="border shadow hover:shadow-md px-4 transition hover:-translate-y-2">
-                        <h3 class="text-black font-bold text-lg mt-4 leading-normal">
+                        <h3 class="text-black dark:text-white font-bold text-lg mt-4 leading-normal">
                             {{ Str::limit($item->title, 50) }}
                         </h3>
                         <p class="mt-4 font-medium text-sm leading-normal">
@@ -62,24 +62,24 @@
         </div>
         <div class="w-full lg:w-1/3 md:ml-10 border-gray-600 border-t md:border-t-0 mt-10 md:mt-0">
             <div class="p-6 mb-8">
-                <h3 class="uppercase text-sm text-black/80 tracking-wider font-bold mb-7">Categories</h3>
+                <h3 class="uppercase text-sm text-black/80 dark:text-white/80 tracking-wider font-bold mb-7">Categories</h3>
                 <ul class="divide-y">
                     @foreach ($categories as $item)
                         <li class="flex justify-between items-center py-3 font-medium">
                             <a href="javascript:void(0)"
                                 wire:click.prevent="$set('filter.categories_slug', '{{ $item->slug }}')"
-                                class="text-black/80">{{ Str::limit($item->title, 34) }}</a>
+                                class="text-black/80 dark:text-white/80">{{ Str::limit($item->title, 34) }}</a>
                             <span>({{ $item->posts_count }})</span>
                         </li>
                     @endforeach
                 </ul>
             </div>
             <div class="p-6 mb-8">
-                <h3 class="uppercase text-sm text-black/80 tracking-wider font-bold mb-7">Tags</h3>
+                <h3 class="uppercase text-sm text-black/80 dark:text-white/80 tracking-wider font-bold mb-7">Tags</h3>
                 <div class="flex flex-wrap gap-2">
                     @foreach ($tags as $item)
                         <a href="javascript:void(0)" wire:click.prevent="$set('filter.tag', '{{ $item->name }}')"
-                            class="inline-block text-sm font-medium text-black/80 px-3 py-1 rounded border border-gray-300 hover:border-gray-500 transition hover:bg-gray-200">
+                            class="inline-block text-sm font-medium text-black/80 dark:text-white/80 px-3 py-1 rounded border border-gray-300 hover:border-gray-500 transition hover:bg-gray-200">
                             {{ $item->name }}
                         </a>
                     @endforeach
