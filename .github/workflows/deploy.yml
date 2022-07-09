@@ -32,4 +32,4 @@ jobs:
           ssh-add <(echo "$SSH_PRIVATE_KEY")
           install -Dv /dev/null ~/.ssh/config
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-          ./vendor/bin/envoy run deploy --endpoint='"$ENDPOINT"'
+          ./vendor/bin/envoy run deploy --endpoint="$ENDPOINT"
