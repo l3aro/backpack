@@ -23,6 +23,8 @@ jobs:
         uses: ramsey/composer-install@v1
 
       - name: Run deploy
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
           eval $(ssh-agent -s)
