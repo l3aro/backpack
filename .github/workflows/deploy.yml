@@ -23,6 +23,10 @@ jobs:
         uses: ramsey/composer-install@v1
 
       - name: Run deploy
-        run: php artisan deploy
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+          eval $(ssh-agent -s)
+          ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")
+          mkdir -p ~/.ssh
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+          php artisan deploy
