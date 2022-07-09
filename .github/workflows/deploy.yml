@@ -1,8 +1,5 @@
 name: Deploy
 
-permissions:
-  contents: write
-
 on:
   push:
     branches:
@@ -27,3 +24,5 @@ jobs:
 
       - name: Run deploy
         run: php artisan deploy
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
