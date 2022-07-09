@@ -25,10 +25,11 @@ jobs:
       - name: Run deploy
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ENDPOINT: ${{ secrets.REZONIA_ENDPOINT }}
         run: |
           which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
           eval $(ssh-agent -s)
           ssh-add <(echo "$SSH_PRIVATE_KEY")
           install -Dv /dev/null ~/.ssh/config
           echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-          php artisan deploy
+          ./vendor/bin/envoy run deploy --endpoint='"$ENDPOINT"'

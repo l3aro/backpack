@@ -1,4 +1,4 @@
-@servers(['web' => 'root@dev.rezonia.net -p 2254'])
+@servers(['web' => $endpoint])
 
 @setup
     $repository = 'git@github.com-baro:l3aro/backpack.git';
