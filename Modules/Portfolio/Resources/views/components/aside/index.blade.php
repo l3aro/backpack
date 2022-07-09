@@ -6,7 +6,7 @@
         </button>
 
         <div x-show="showMenu" x-trap.inert.noscroll="showMenu"
-            class="fixed inset-0 w-screen h-full bg-white dark:bg-gray-800 z-30" x-cloak>
+            class="fixed inset-0 w-screen h-full bg-white dark:bg-zinc-800 z-30" x-cloak>
             <button x-on:click="showMenu = false" class="z-20 absolute top-0 left-0 mt-8 ml-6">
                 <x-fas-times class="w-8 h-8 text-black/80 dark:text-white/80" />
             </button>
