@@ -28,5 +28,4 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add <(echo ${{ secrets.SSH_PRIVATE_KEY }})
           install -Dv /dev/null ~/.ssh/config
-          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
           php artisan deploy
