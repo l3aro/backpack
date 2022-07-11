@@ -39,6 +39,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        Route::middleware(['web'])
+            ->group(module_path('Portfolio', '/Routes/neutral.php'));
+
         Route::middleware(['web', SetupRouteLanguage::class])
             ->prefix('{locale}')
             ->group(module_path('Portfolio', '/Routes/web.php'));
