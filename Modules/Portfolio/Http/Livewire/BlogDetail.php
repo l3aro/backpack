@@ -14,8 +14,8 @@ class BlogDetail extends Component
 
     public Post $post;
 
-    public function mount(Post $postSlug)
+    public function mount(string $postSlug)
     {
-        $this->post = $postSlug;
+        $this->post = Post::where('slug->'.app()->getLocale(), $postSlug)->firstOrFail();
     }
 }

@@ -1,9 +1,5 @@
-@php
-$listLocale = config('app.locales', []);
-$shouldShowSwitcher = count($listLocale) ? true : false;
-@endphp
 <div>
-    @if ($shouldShowSwitcher)
+    @if ($this->shouldShowSwitcher)
         <x-portfolio::dropdown>
             <x-slot name="trigger">
                 <x-portfolio::button.secondary id="language-switcher" aria-expanded="false" aria-haspopup="true">
@@ -12,7 +8,7 @@ $shouldShowSwitcher = count($listLocale) ? true : false;
                 </x-portfolio::button.secondary>
             </x-slot>
             @foreach ($listLocale as $key => $label)
-                <x-portfolio::dropdown.link href="{{ route('portfolio.switch-locale', $key) }}" class="px-5"
+                <x-portfolio::dropdown.link wire:click.prevent="setLocale('{{ $key }}')" class="px-5"
                     :active="$key === app()->getLocale()">
                     {{ $label }}
                 </x-portfolio::dropdown.link>
