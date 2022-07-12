@@ -6,13 +6,12 @@
                 style="background-image: url(assets/images/ava.jpg);"></div>
             <div class="desc">
                 <h2 class="text-2xl text-gray-400 font-light mb-6">
-                    Hey I'm <span class="font-black tracking-wider text-black/80 dark:text-white/80">Baro</span>
+                    {{ setting('portfolio_greeting') }} <span
+                        class="font-black tracking-wider text-black/80 dark:text-white/80">Baro</span>
                 </h2>
 
                 <p class="mb-4 font-medium text-lg">
-                    I am A Full-Stack Developer, I have a passion for creating and learning new things.<br />
-                    On this site, you can find my projects, my resume, and my contact information.<br />
-                    I also have a blog where I write about my life and my experiences.
+                    {{ setting('portfolio_intro') }}
                 </p>
                 {{-- <a href="#" class="text-neutral-400 border-b-2 border-b-neutral-400 text-lg">
                     More About Me

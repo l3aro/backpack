@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Translatable\HasTranslations;
 
 class Setting extends Model
 {
+    use HasTranslations;
+
     const UPLOAD_DISK = 'public';
 
     protected $table = 'core__settings';
@@ -19,6 +22,8 @@ class Setting extends Model
         'locked',
     ];
 
+    public $translatable = ['value'];
+
     protected $casts = [
         'value' => 'json',
     ];
@@ -28,8 +33,9 @@ class Setting extends Model
         parent::boot();
 
         $flushCache = function ($setting) {
-            Cache::forget('setting.'.$setting->key);
-            Cache::rememberForever('setting.'.$setting->key, fn () => $setting->value);
+            $locale = app()->getLocale();
+            Cache::forget("$locale-setting.".$setting->key);
+            Cache::rememberForever("$locale-setting.".$setting->key, fn () => $setting->value);
         };
 
         static::saved($flushCache);

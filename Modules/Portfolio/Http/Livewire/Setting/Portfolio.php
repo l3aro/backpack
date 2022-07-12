@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Core\Http\Livewire\Setting;
+namespace Modules\Portfolio\Http\Livewire\Setting;
 
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -8,24 +8,18 @@ use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Http\Livewire\Plugins\WatchLanguageChange;
 use Modules\Core\Models\Setting;
 
-class General extends Component
+class Portfolio extends Component
 {
     use LoadLayoutView;
     use WatchLanguageChange;
 
-    public $viewPath = 'core::livewire.setting.general';
+    public $viewPath = 'portfolio::livewire.setting.portfolio';
 
     public $setting = [];
 
     protected $rules = [
-        'setting.site_name' => 'required',
-        'setting.site_description' => '',
-        'setting.site_keywords' => '',
-        'setting.site_email' => '',
-        'setting.site_phone' => '',
-        'setting.site_address' => '',
-        'setting.site_map' => '',
-        'setting.site_google_analytics' => '',
+        'setting.portfolio_greeting' => 'required',
+        'setting.portfolio_intro' => 'required',
     ];
 
     protected $listeners = ['languageSwitched'];

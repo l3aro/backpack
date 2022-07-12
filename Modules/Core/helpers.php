@@ -6,9 +6,9 @@ use Modules\Core\Models\Setting;
 if (! function_exists('setting')) {
     function setting($key, $default = null)
     {
-        return Cache::rememberForever('setting.'.$key, function () use ($key) {
-            return Setting::firstWhere('key', $key)?->value;
-        }) ?: $default;
+        $locale = app()->getLocale();
+
+        return Cache::rememberForever("$locale-setting.".$key, fn () => Setting::firstWhere('key', $key)?->translate('value', $locale)) ?: $default;
     }
 }
 
