@@ -1,5 +1,5 @@
 <div class="h-full flex-auto flex justify-center flex-col">
-    <x-slot name="metaTitle">Home</x-slot>
+    <x-slot name="metaTitle">{{ __('Home') }}</x-slot>
     <div class="flex justify-center items-center">
         <div class="w-3/4 md:w-2/3 mx-auto text-center z-10">
             <div class="w-48 h-48 mx-auto my-0 rounded-full bg-cover mb-6"

@@ -6,7 +6,7 @@
                 <div class="mt-1 relative rounded-md shadow-sm">
                     <input type="search" name="account-number" id="account-number"
                         class="focus:ring-0 focus:border-gray-500 block w-full pr-10 sm:text-sm border-gray-300 rounded text-gray-700"
-                        placeholder="Search..." wire:model.debounce.500ms="filter.search">
+                        placeholder="{{ __('Search') }}..." wire:model.debounce.500ms="filter.search">
                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                         <x-heroicon-o-search class="h-5 w-5 text-gray-600" />
                     </div>
@@ -24,14 +24,14 @@
                             <div class="flex items-center">
                                 <x-heroicon-o-calendar class="h-5 w-5 text-gray-600" />
                                 <span
-                                    class="ml-1 text-sm text-gray-600">{{ $item->published_at->format('d M Y') }}</span>
+                                    class="ml-1 text-sm text-gray-600">{{ $item->published_at->translatedFormat('d M Y') }}</span>
                             </div>
                         </div>
                     </a>
                 @empty
                     <div class="flex justify-center content-center px-4 pb-12 col-span-1">
                         <div class="text-center">
-                            <h6 class="text-xl font-bold">No Posts Found</h6>
+                            <h6 class="text-xl font-bold">{{ __('No Posts Found') }}</h6>
                         </div>
                     </div>
                 @endforelse
@@ -44,7 +44,7 @@
                             'cursor-not-allowed text-gray-400' => $posts->onFirstPage(),
                         ])>
                             <x-heroicon-s-chevron-left class="w-5 h-5" />
-                            Previous
+                            {{ __('Previous') }}
                         </a>
                     </div>
                     <div class="text-right">
@@ -53,7 +53,7 @@
                             'hover:underline text-gray-600' => $posts->hasMorePages(),
                             'cursor-not-allowed text-gray-400' => !$posts->hasMorePages(),
                         ])>
-                            Next
+                            {{ __('Next') }}
                             <x-heroicon-s-chevron-right class="w-5 h-5" />
                         </a>
                     </div>
@@ -62,7 +62,9 @@
         </div>
         <div class="w-full lg:w-1/3 md:ml-10 border-gray-600 border-t md:border-t-0 mt-10 md:mt-0">
             <div class="p-6 mb-8">
-                <h3 class="uppercase text-sm text-black/80 dark:text-white/80 tracking-wider font-bold mb-7">Categories</h3>
+                <h3 class="uppercase text-sm text-black/80 dark:text-white/80 tracking-wider font-bold mb-7">
+                    {{ __('Categories') }}
+                </h3>
                 <ul class="divide-y">
                     @foreach ($categories as $item)
                         <li class="flex justify-between items-center py-3 font-medium">
@@ -75,7 +77,8 @@
                 </ul>
             </div>
             <div class="p-6 mb-8">
-                <h3 class="uppercase text-sm text-black/80 dark:text-white/80 tracking-wider font-bold mb-7">Tags</h3>
+                <h3 class="uppercase text-sm text-black/80 dark:text-white/80 tracking-wider font-bold mb-7">
+                    {{ __('Tags') }}</h3>
                 <div class="flex flex-wrap gap-2">
                     @foreach ($tags as $item)
                         <a href="javascript:void(0)" wire:click.prevent="$set('filter.tag', '{{ $item->name }}')"

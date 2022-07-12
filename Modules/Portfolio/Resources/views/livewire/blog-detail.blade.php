@@ -2,9 +2,9 @@
     <x-slot name="metaTitle">{{ $post->meta_title ?? $post->title }}</x-slot>
     <div class="w-full px-4 md:px-6 text-xl text-gray-800 leading-normal mt-20 lg:mt-10">
         <a href="{{ route('portfolio.blogs.index', app()->getLocale()) }}"
-            class="text-base md:text-sm text-orange-600 font-bold no-underline transition flex items-center">
+            class="text-base uppercase md:text-sm text-orange-600 font-bold no-underline transition flex items-center">
             <x-heroicon-s-arrow-left class="inline-block w-5 h-5 mr-2" />
-            BACK TO BLOG
+            {{ __('back to blog') }}
         </a>
         <div class="prose mx-auto">
             <div class="font-sans">
@@ -12,7 +12,7 @@
                     {{ $post->title }}
                 </h1>
                 <p class="text-sm md:text-base font-normal text-gray-600">
-                    Published {{ $post->published_at }}
+                    {{ __('Published') }} {{ $post->published_at->translatedFormat('H:i jS F Y') }}
                 </p>
             </div>
 
