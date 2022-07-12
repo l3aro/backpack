@@ -81,7 +81,12 @@ class AppServiceProvider extends ServiceProvider
                             ->setTitle(__('General'))
                             ->setUrl(route('admin.settings.general'))
                             ->setIcon('heroicon-s-cog')
-                            ->activeWhen(fn () => request()->routeIs('admin.settings.general')))));
+                            ->activeWhen(fn () => request()->routeIs('admin.settings.general')))
+                        ->add(fn (Item $item) => $item
+                            ->setTitle(__('Portfolio'))
+                            ->setUrl(route('admin.settings.portfolio'))
+                            ->setIcon('heroicon-s-annotation')
+                            ->activeWhen(fn () => request()->routeIs('admin.settings.portfolio')))));
         };
     }
 
