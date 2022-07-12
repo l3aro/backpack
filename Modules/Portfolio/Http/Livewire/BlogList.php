@@ -25,7 +25,7 @@ class BlogList extends Component
                 ->with(['categories' => fn ($query) => $query->published()])
                 ->simplePaginate($this->perPage),
             'categories' => Category::published()
-                ->withCount('posts')
+                ->withCount('publishedPosts')
                 ->get(['id', 'title', 'slug']),
             'tags' => Tag::getWithType($this->getModel()),
         ];

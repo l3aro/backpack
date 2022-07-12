@@ -42,6 +42,11 @@ class Category extends Model
         return $this->belongsToMany(Post::class, 'blog__post_category', 'category_id', 'post_id');
     }
 
+    public function publishedPosts()
+    {
+        return $this->posts()->published();
+    }
+
     public function getFilters()
     {
         return [
