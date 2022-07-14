@@ -1893,16 +1893,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.19.0",
+            "version": "v9.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "bbce25bd823133f6a5a724f2d62680b711f1d0df"
+                "reference": "c99868f1c9bf2f5d250993121838db905591864f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bbce25bd823133f6a5a724f2d62680b711f1d0df",
-                "reference": "bbce25bd823133f6a5a724f2d62680b711f1d0df",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c99868f1c9bf2f5d250993121838db905591864f",
+                "reference": "c99868f1c9bf2f5d250993121838db905591864f",
                 "shasum": ""
             },
             "require": {
@@ -2068,20 +2068,20 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-06-28T14:33:19+00:00"
+            "time": "2022-07-13T13:26:22+00:00"
         },
         {
             "name": "laravel/octane",
-            "version": "v1.2.14",
+            "version": "v1.2.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/octane.git",
-                "reference": "a746fd50aa973da8c07cffa7da49630ae884dde1"
+                "reference": "a64ac182e3f19de276b19580a926de8a172b8346"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/octane/zipball/a746fd50aa973da8c07cffa7da49630ae884dde1",
-                "reference": "a746fd50aa973da8c07cffa7da49630ae884dde1",
+                "url": "https://api.github.com/repos/laravel/octane/zipball/a64ac182e3f19de276b19580a926de8a172b8346",
+                "reference": "a64ac182e3f19de276b19580a926de8a172b8346",
                 "shasum": ""
             },
             "require": {
@@ -2143,7 +2143,7 @@
                 "issues": "https://github.com/laravel/octane/issues",
                 "source": "https://github.com/laravel/octane"
             },
-            "time": "2022-06-27T13:29:02+00:00"
+            "time": "2022-07-05T02:50:33+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -4296,16 +4296,16 @@
         },
         {
             "name": "ralphjsmit/livewire-urls",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ralphjsmit/livewire-urls.git",
-                "reference": "35ec708d0d9ba2459fbe213cb8681e7cec632b71"
+                "reference": "8e161d0d3aa8624d1aefbc97cca328bd007208e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ralphjsmit/livewire-urls/zipball/35ec708d0d9ba2459fbe213cb8681e7cec632b71",
-                "reference": "35ec708d0d9ba2459fbe213cb8681e7cec632b71",
+                "url": "https://api.github.com/repos/ralphjsmit/livewire-urls/zipball/8e161d0d3aa8624d1aefbc97cca328bd007208e8",
+                "reference": "8e161d0d3aa8624d1aefbc97cca328bd007208e8",
                 "shasum": ""
             },
             "require": {
@@ -4316,7 +4316,7 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.8",
-                "nunomaduro/collision": "^6.0",
+                "nunomaduro/collision": "^5.0|^6.0",
                 "orchestra/testbench": "^6.0|^7.0",
                 "pestphp/pest": "^1.21",
                 "pestphp/pest-plugin-laravel": "^1.1",
@@ -4359,9 +4359,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ralphjsmit/livewire-urls/issues",
-                "source": "https://github.com/ralphjsmit/livewire-urls/tree/1.1.1"
+                "source": "https://github.com/ralphjsmit/livewire-urls/tree/1.1.2"
             },
-            "time": "2022-06-17T19:42:28+00:00"
+            "time": "2022-07-14T19:42:05+00:00"
         },
         {
             "name": "ramsey/collection",
@@ -7565,16 +7565,16 @@
         },
         {
             "name": "wireui/wireui",
-            "version": "v1.11.1",
+            "version": "v1.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wireui/wireui.git",
-                "reference": "059d69f194b4fb22fa111fbe23922b48382816ad"
+                "reference": "e0f6bbdc4334dc8ee66baf530abaff5d543af122"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wireui/wireui/zipball/059d69f194b4fb22fa111fbe23922b48382816ad",
-                "reference": "059d69f194b4fb22fa111fbe23922b48382816ad",
+                "url": "https://api.github.com/repos/wireui/wireui/zipball/e0f6bbdc4334dc8ee66baf530abaff5d543af122",
+                "reference": "e0f6bbdc4334dc8ee66baf530abaff5d543af122",
                 "shasum": ""
             },
             "require": {
@@ -7627,7 +7627,7 @@
             ],
             "support": {
                 "issues": "https://github.com/wireui/wireui/issues",
-                "source": "https://github.com/wireui/wireui/tree/v1.11.1"
+                "source": "https://github.com/wireui/wireui/tree/v1.12.3"
             },
             "funding": [
                 {
@@ -7635,7 +7635,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-05T02:44:17+00:00"
+            "time": "2022-07-13T16:31:09+00:00"
         }
     ],
     "packages-dev": [
@@ -7953,16 +7953,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v0.2.3",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "d0829631687c1238abdd660daac3d7218254b65c"
+                "reference": "45c9fe899abfeeb7794c5a8c4074c140250a84c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/d0829631687c1238abdd660daac3d7218254b65c",
-                "reference": "d0829631687c1238abdd660daac3d7218254b65c",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/45c9fe899abfeeb7794c5a8c4074c140250a84c2",
+                "reference": "45c9fe899abfeeb7794c5a8c4074c140250a84c2",
                 "shasum": ""
             },
             "require": {
@@ -8015,7 +8015,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2022-07-04T16:04:06+00:00"
+            "time": "2022-07-13T17:57:52+00:00"
         },
         {
             "name": "laravel/sail",
