@@ -15,8 +15,11 @@ import 'aos/dist/aos.css'
 
 import 'livewire-sortable'
 
-import SimpleMDE from 'simplemde'
-import 'simplemde/dist/simplemde.min.css'
+// import SimpleMDE from 'simplemde'
+// import 'simplemde/dist/simplemde.min.css'
+
+import EasyMDE from 'easymde'
+import 'easymde/dist/easymde.min.css'
 
 import { parse } from 'marked'
 
@@ -37,7 +40,7 @@ window.Alpine = Alpine
 window.flatpickr = flatpickr
 window.createPopper = createPopper
 window.Fancybox = Fancybox
-window.SimpleMDE = SimpleMDE
+window.SimpleMDE = EasyMDE
 window.AOS = AOS
 window.markdownParse = parse
 window.Tagify = Tagify

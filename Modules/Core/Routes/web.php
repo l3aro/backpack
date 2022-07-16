@@ -24,6 +24,9 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('settings/general', \Modules\Core\Http\Livewire\Setting\General::class)
         ->name('admin.settings.general');
+
+    Route::post('upload-image', \Modules\Core\Http\Controllers\UploadImageController::class)
+        ->name('admin.upload-image');
 });
 
 Route::middleware('guest:admin')->group(function () {

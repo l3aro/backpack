@@ -17,5 +17,6 @@ class BlogDetail extends Component
     public function mount(string $postSlug)
     {
         $this->post = Post::where('slug', 'like', "%$postSlug%")->firstOrFail();
+        dd($this->post);
     }
 }

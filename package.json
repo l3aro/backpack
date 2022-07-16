@@ -25,11 +25,11 @@
         "alpinejs": "^3.10.2",
         "aos": "^2.3.4",
         "autoprefixer": "^10.4.7",
+        "easymde": "^2.16.2-129.0",
         "flatpickr": "^4.6.13",
         "livewire-sortable": "^0.2.2",
         "marked": "^4.0.14",
         "prismjs": "^1.28.0",
-        "simplemde": "^1.11.2",
         "swiper": "^7.4.1",
         "tailwindcss": "^3.1.4",
         "turbolinks": "^5.2.0"

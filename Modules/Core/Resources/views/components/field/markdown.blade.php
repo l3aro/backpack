@@ -8,6 +8,11 @@ $field ??= $attributes->wire('model')->value() ?? '';
     <textarea x-data="{ content: @entangle($attributes->wire('model')), editor: null, id: $id('markdown-editor') }" x-init="editor = new SimpleMDE({
         element: $el,
         initialValue: content,
+        uploadImage: true,
+        imageUploadEndpoint: '{{ route('admin.upload-image') }}',
+        imageCSRFName: '_token',
+        imageCSRFToken: '{{ csrf_token() }}',
+        imagePathAbsolute: true,
         previewRender: function(plainText) { // Async method
             return `<div class='prose'>${markdownParse(plainText)}</div>`;
         },
