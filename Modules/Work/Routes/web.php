@@ -1,16 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Support\Facades\Route;
 
-Route::prefix('work')->group(function() {
-    Route::get('/', 'WorkController@index');
-});
+Route::get('project-categories', \Modules\Work\Http\Livewire\ProjectCategory::class)->name('admin.work.categories');
+Route::get('projects', \Modules\Work\Http\Livewire\ProjectCategory::class)->name('admin.work.projects');

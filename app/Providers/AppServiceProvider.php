@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
                     ->setIcon('heroicon-o-home')
                     ->setOpenNewTab(true))
                 ->add(fn (Item $item) => $item
-                    ->setTitle('Blogs')
+                    ->setTitle('Blog')
                     ->setChildren(fn (Section $section) => $section
                         ->add(fn (Item $item) => $item
                             ->setTitle(__('Blog Categories'))
@@ -56,6 +56,19 @@ class AppServiceProvider extends ServiceProvider
                             ->setUrl(route('admin.blog.posts.index'))
                             ->setIcon('heroicon-o-document-text')
                             ->activeWhen(fn () => request()->routeIs('admin.blog.posts.*')))))
+                ->add(fn (Item $item) => $item
+                    ->setTitle('Work')
+                    ->setChildren(fn (Section $section) => $section
+                        ->add(fn (Item $item) => $item
+                            ->setTitle(__('Work Categories'))
+                            ->setUrl(route('admin.work.categories'))
+                            ->setIcon('heroicon-o-archive')
+                            ->activeWhen(fn () => request()->routeIs('admin.work.categories')))
+                        ->add(fn (Item $item) => $item
+                            ->setTitle(__('Work Projects'))
+                            ->setUrl(route('admin.work.projects'))
+                            ->setIcon('heroicon-o-briefcase')
+                            ->activeWhen(fn () => request()->routeIs('admin.work.projects')))))
                 ->add(fn (Item $item) => $item
                     ->setTitle(__('Aoe2 Notebook'))
                     ->setChildren(fn (Section $section) => $section
