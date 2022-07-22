@@ -12,6 +12,11 @@ class Project extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(ProjectCategory::class, ProjectCategoryPivot::class);
+        return $this->belongsToMany(
+            ProjectCategory::class,
+            ProjectCategoryPivot::class,
+            ProjectCategoryPivot::getPivotKeyFor(self::class),
+            ProjectCategoryPivot::getPivotKeyFor(ProjectCategory::class),
+        );
     }
 }

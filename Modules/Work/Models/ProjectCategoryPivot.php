@@ -2,13 +2,13 @@
 
 namespace Modules\Work\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Modules\Core\Models\Pivot;
 
 class ProjectCategoryPivot extends Pivot
 {
     protected $table = 'work__project_category';
 
-    protected $pivotKeys = [
+    protected static $pivotKeys = [
         Project::class => 'project_id',
         ProjectCategory::class => 'category_id',
     ];
