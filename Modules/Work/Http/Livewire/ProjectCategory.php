@@ -4,6 +4,7 @@ namespace Modules\Work\Http\Livewire;
 
 use Livewire\Component;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
+use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
 use Modules\Core\Http\Livewire\Plugins\LoadLayoutView;
 use Modules\Core\Http\Livewire\Plugins\LoopFunctions;
@@ -15,6 +16,7 @@ class ProjectCategory extends Component
     use LoadLayoutView;
     use HasDataTable;
     use CanDestroyRecord;
+    use CanReorderRecord;
     use WatchLanguageChange;
     use LoopFunctions;
 
@@ -24,7 +26,12 @@ class ProjectCategory extends Component
 
     public bool $showForm = false;
 
-    public ?ModelsProjectCategory $projectCategory;
+    public ?ModelsProjectCategory $state;
+
+    protected $rules = [
+        'name' => 'required',
+        'slug' => 'required',
+    ];
 
     public function languageSwitched()
     {
@@ -36,11 +43,38 @@ class ProjectCategory extends Component
         $this->applyLocale();
     }
 
+    public function updatedName($value)
+    {
+        $this->slug = str($value)->slug()->toString();
+    }
+
     public function mount()
     {
         $this->fetchLocale();
-        $this->projectCategory = new ModelsProjectCategory;
-        $this->propertiesFrom($this->projectCategory);
+        $this->state = app($this->getModel());
+        $this->propertiesFrom($this->state);
+    }
+
+    public function add()
+    {
+        $this->state = app($this->getModel());
+        $this->propertiesFrom($this->state);
+        $this->showForm = true;
+    }
+
+    public function edit($categoryId)
+    {
+        $this->state = app($this->getModel())->find($categoryId);
+        $this->propertiesFrom($this->state);
+        $this->showForm = true;
+    }
+
+    public function save()
+    {
+        $validated = $this->validate();
+        $this->state->fill($validated);
+        $this->state->save();
+        $this->showForm = false;
     }
 
     protected function getModel()

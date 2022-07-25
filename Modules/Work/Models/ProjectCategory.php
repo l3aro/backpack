@@ -5,12 +5,14 @@ namespace Modules\Work\Models;
 use Baro\PipelineQueryCollection\Concerns\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Models\Plugins\Orderable;
 use Spatie\Translatable\HasTranslations;
 
 class ProjectCategory extends Model
 {
     use HasTranslations;
     use Filterable;
+    use Orderable;
 
     protected $table = 'work__project_categories';
 

@@ -18,13 +18,16 @@
             </div>
         </div>
         <div class="ml-2 flex">
-            <x-core::button.primary class="mr-2">
+            <x-core::button.primary wire:click.prevent="add" class="mr-2">
                 <x-heroicon-s-plus class="h-5 w-5" />
             </x-core::button.primary>
         </div>
     </div>
-    <x-core::data-table>
+    <x-core::data-table wire:sortable="reorder" draggable="true">
         <x-slot name="header">
+            <x-core::data-table.heading class="w-1">
+                &nbsp;
+            </x-core::data-table.heading>
             <x-core::data-table.heading sortable wire:click="applySort('id')" :direction="$sort['id'] ?? null">
                 ID
             </x-core::data-table.heading>
@@ -43,8 +46,12 @@
         </x-slot>
         @forelse ($records as $record)
             <tr wire:key="category-{{ $record->id }}" wire:sortable.item="{{ $record->id }}">
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <a href="{{ route('admin.blog.categories.show', $record->id) }}" class="font-bold text-blue-600">
+                <td wire:sortable.handle
+                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-300 hover:text-gray-500 transition cursor-grab">
+                    <x-heroicon-s-switch-vertical class="h-6 w-6" />
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer">
+                    <a wire:click.prevent="edit({{ $record->id }})" class="font-bold text-blue-600">
                         {{ $record->id }}
                     </a>
                 </td>
@@ -65,7 +72,8 @@
                                 <x-heroicon-o-dots-vertical class="w-5 h-5" />
                             </button>
                         </x-slot>
-                        <x-core::dropdown.link role="menuitem" tabindex="-1">
+                        <x-core::dropdown.link role="menuitem" tabindex="-1"
+                            wire:click.prevent="edit({{ $record->id }})">
                             <x-heroicon-s-pencil-alt class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Edit') }}
                         </x-core::dropdown.link>
@@ -90,21 +98,34 @@
         </x-slot>
     </x-core::data-table>
 
-    <x-core::modal.confirmation wire:model="confirmingDeletion">
+    <x-modal.card wire:model.defer="confirmingDeletion" blur>
         <x-slot name="title">
-            {{ __('Delete Blog') }} #{{ $confirmingId ?? '' }}
+            {{ __('Delete Record') }} #{{ $confirmingId ?? '' }}
         </x-slot>
 
         <p class="mb-4 text-sm text-gray-500">
             {{ __('Are you sure you want to delete this post category? This action cannot be undone.') }}
         </p>
         <x-slot name="footer">
-            <x-core::button.secondary type="button" wire:click="$toggle('confirmingDeletion')">
-                {{ __('Cancel') }}
-            </x-core::button.secondary>
-            <x-core::button.danger type="button" class="btn btn-danger" wire:click="confirmDelete">
-                {{ __('Delete') }}
-            </x-core::button.danger>
+            <div class="flex justify-between">
+                <x-button flat label="Cancel" x-on:click="close" />
+                <x-button negative label="Delete" wire:click="confirmDelete" />
+            </div>
         </x-slot>
-    </x-core::modal.confirmation>
+    </x-modal.card>
+
+    <x-modal.card title="Setup Record" blur wire:model.defer="showForm">
+        <div class="grid grid-cols-1 gap-4">
+            <x-input wire:model.debounce.1s="name" :label="__('Name')" />
+            <x-input wire:model.defer="slug" :label="__('Slug')" />
+        </div>
+
+        <x-slot name="footer">
+            <div class="flex justify-between gap-x-4">
+                <x-button flat :label="__('Cancel')" x-on:click="close" />
+                <x-button primary :label="__('Save')" wire:click="save" />
+            </div>
+        </x-slot>
+    </x-modal.card>
+
 </x-core::container>
