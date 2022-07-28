@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('work__project_categories', function (Blueprint $table) {
             $table->id();
-            $table->json('name');
+            $table->json('title');
             $table->json('slug');
             $table->unsignedBigInteger('priority')->default(1);
             $table->timestamps();

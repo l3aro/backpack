@@ -56,7 +56,7 @@
                     </a>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {{ $record->name }}
+                    {{ $record->title }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {{ $record->projects_count }}
@@ -116,7 +116,7 @@
 
     <x-modal.card title="Setup Record" blur wire:model.defer="showForm">
         <div class="grid grid-cols-1 gap-4">
-            <x-input wire:model.debounce.1s="name" :label="__('Name')" />
+            <x-input wire:model.debounce.1s="title" :label="__('Title')" />
             <x-input wire:model.defer="slug" :label="__('Slug')" />
         </div>
 

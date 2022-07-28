@@ -1,10 +1,15 @@
-@props(['field', 'height' => '400px'])
+@props(['field', 'height' => '400px', 'label' => null])
 
 @php
 $field ??= $attributes->wire('model')->value() ?? '';
 @endphp
 
 <div wire:ignore class="w-full">
+    @isset($label)
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">
+            {{ $label }}
+        </label>
+    @endisset
     <textarea x-data="{ content: @entangle($attributes->wire('model')), editor: null, id: $id('markdown-editor') }" x-init="editor = new SimpleMDE({
         element: $el,
         initialValue: content,

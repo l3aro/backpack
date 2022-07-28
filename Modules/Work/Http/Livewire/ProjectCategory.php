@@ -29,7 +29,7 @@ class ProjectCategory extends Component
     public ?ModelsProjectCategory $state;
 
     protected $rules = [
-        'name' => 'required',
+        'title' => 'required',
         'slug' => 'required',
     ];
 
@@ -43,7 +43,7 @@ class ProjectCategory extends Component
         $this->applyLocale();
     }
 
-    public function updatedName($value)
+    public function updatedTitle($value)
     {
         $this->slug = str($value)->slug()->toString();
     }

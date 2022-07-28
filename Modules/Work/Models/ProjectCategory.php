@@ -18,10 +18,10 @@ class ProjectCategory extends Model
 
     protected $guarded = ['id'];
 
-    public $translatable = ['name', 'slug'];
+    public $translatable = ['title', 'slug'];
 
     protected $attributes = [
-        'name' => null,
+        'title' => null,
         'slug' => null,
     ];
 
@@ -39,7 +39,7 @@ class ProjectCategory extends Model
         return $query->where(
             fn (Builder $query) => $query
                 ->whereId($search)
-                ->orWhere("name->$locale", 'like', "%$search%")
+                ->orWhere("title->$locale", 'like', "%$search%")
         );
     }
 

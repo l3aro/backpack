@@ -35,7 +35,7 @@
                 Title
             </x-core::data-table.heading>
             <x-core::data-table.heading>
-                Project Count
+                Description
             </x-core::data-table.heading>
             <x-core::data-table.heading sortable wire:click="applySort('created_at')" :direction="$sort['created_at'] ?? null">
                 Created At
@@ -50,13 +50,13 @@
                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-300 hover:text-gray-500 transition cursor-grab">
                     <x-heroicon-s-switch-vertical class="h-6 w-6" />
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <a href="{{ route('admin.blog.categories.show', $record->id) }}" class="font-bold text-blue-600">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer">
+                    <a wire:click.prevent="edit({{ $record->id }})" class="font-bold text-blue-600">
                         {{ $record->id }}
                     </a>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {{ $record->name }}
+                    {{ $record->title }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {{ $record->description }}
@@ -115,9 +115,12 @@
     </x-modal.card>
 
     <x-modal.card title="Setup Record" blur wire:model.defer="showForm">
-        <div class="grid grid-cols-1 gap-4">
-            <x-input wire:model.debounce.1s="name" :label="__('Name')" />
+        <div class="grid grid-cols-1 gap-y-6">
+            <x-input wire:model.debounce.1s="title" :label="__('Title')" />
             <x-input wire:model.defer="slug" :label="__('Slug')" />
+            <x-select :async-data="route('admin.work.search.category')" multiselect wire:model.defer="categories" :label="__('Categories')" option-label="title"
+                option-value="id" />
+            <x-core::field.markdown wire:model.defer="description" :label="__('Description')" />
         </div>
 
         <x-slot name="footer">
