@@ -3,6 +3,7 @@
 namespace Modules\Work\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Modules\Core\Http\Livewire\Plugins\CanDestroyRecord;
 use Modules\Core\Http\Livewire\Plugins\CanReorderRecord;
 use Modules\Core\Http\Livewire\Plugins\HasDataTable;
@@ -19,6 +20,7 @@ class Project extends Component
     use CanReorderRecord;
     use WatchLanguageChange;
     use LoopFunctions;
+    use WithFileUploads;
 
     protected $viewPath = 'work::livewire.project';
 
@@ -27,6 +29,8 @@ class Project extends Component
     public bool $showForm = false;
 
     public ?ModelsProject $state;
+
+    public $photo;
 
     public $categories;
 
@@ -61,6 +65,7 @@ class Project extends Component
     {
         $this->state = app($this->getModel());
         $this->propertiesFrom($this->state);
+        $this->photo = null;
         $this->showForm = true;
     }
 
@@ -68,6 +73,7 @@ class Project extends Component
     {
         $this->state = app($this->getModel())->find($categoryId);
         $this->propertiesFrom($this->state);
+        $this->photo = null;
         $this->showForm = true;
     }
 

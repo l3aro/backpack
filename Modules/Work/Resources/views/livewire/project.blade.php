@@ -118,6 +118,7 @@
         <div class="grid grid-cols-1 gap-y-6">
             <x-input wire:model.debounce.1s="title" :label="__('Title')" />
             <x-input wire:model.defer="slug" :label="__('Slug')" />
+            <x-core::field.image wire:model.defer="photo" :label="__('Cover')" :default="$photo?->temporaryUrl() ?? ($state->getFirstMediaUrl('cover', 'thumb') ?? '')" />
             <x-select :async-data="route('admin.work.search.category')" multiselect wire:model.defer="categories" :label="__('Categories')" option-label="title"
                 option-value="id" />
             <x-core::field.markdown wire:model.defer="description" :label="__('Description')" />
