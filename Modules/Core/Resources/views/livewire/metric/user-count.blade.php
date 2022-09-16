@@ -15,7 +15,7 @@
     </dl>
     
     <x-slot name="footer">
-        <a href="{{ route('admin.users.index') }}" class="font-medium text-green-300 hover:text-green-500">
+        <a href="{{ route('admin.users.index') }}" class="font-medium text-green-700 hover:text-green-900 dark:text-green-300 dark:hover:text-green-500">
             View all
         </a>
     </x-slot>

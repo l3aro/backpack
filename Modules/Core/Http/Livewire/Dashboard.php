@@ -10,4 +10,11 @@ class Dashboard extends Component
     use LoadLayoutView;
 
     public $viewPath = 'core::livewire.dashboard';
+
+    public function viewData()
+    {
+        return [
+            'metrics' => config('core.metric'),
+        ];
+    }
 }

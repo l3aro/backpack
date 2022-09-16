@@ -1,5 +1,9 @@
 <div class="mt-8">
-    <x-core::metric title="Overview">
-        <livewire:core::metric.user-count />
-    </x-core::metric>
+    @foreach ($metrics as $metric)
+        <x-core::metric :title="$metric['title']">
+            @foreach ($metric['components'] as $component)
+                <livewire:is :component="$component" />
+            @endforeach
+        </x-core::metric>
+    @endforeach
 </div>
