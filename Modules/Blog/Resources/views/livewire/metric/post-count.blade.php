@@ -27,7 +27,7 @@
     </div>
 
     <x-slot name="footer">
-        <a href="{{ route('admin.users.index') }}" class="font-medium dark:text-green-300 dark:hover:text-green-500">
+        <a href="{{ route('admin.blog.posts.index') }}" class="font-medium dark:text-green-300 dark:hover:text-green-500">
             View all
         </a>
     </x-slot>
