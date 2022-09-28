@@ -44,6 +44,19 @@ class AppServiceProvider extends ServiceProvider
                     ->setIcon('heroicon-o-home')
                     ->setOpenNewTab(true))
                 ->add(fn (Item $item) => $item
+                    ->setTitle('Shop')
+                    ->setChildren(fn (Section $section) => $section
+                        ->add(fn (Item $item) => $item
+                            ->setTitle(__('Shop Categories'))
+                            ->setUrl(route('admin.shop.categories.index'))
+                            ->setIcon('heroicon-o-tag')
+                            ->activeWhen(fn () => request()->routeIs('admin.shop.categories.*')))
+                        ->add(fn (Item $item) => $item
+                            ->setTitle(__('Blog Posts'))
+                            ->setUrl(route('admin.blog.posts.index'))
+                            ->setIcon('heroicon-o-document-text')
+                            ->activeWhen(fn () => request()->routeIs('admin.blog.posts.*')))))
+                ->add(fn (Item $item) => $item
                     ->setTitle('Blog')
                     ->setChildren(fn (Section $section) => $section
                         ->add(fn (Item $item) => $item
