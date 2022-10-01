@@ -18,6 +18,12 @@ export default () => ({
         if (navigator.clipboard) {
             appendCopyButton(this.$el)
         }
+
+        this.$el
+            .querySelectorAll("[class^='language-diff']")
+            .forEach((item) => {
+                item.classList.add('diff-highlight')
+            })
     },
 })
 
