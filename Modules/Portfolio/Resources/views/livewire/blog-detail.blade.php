@@ -12,7 +12,7 @@
                     {{ $post->title }}
                 </h1>
                 <p class="text-sm md:text-base font-normal text-gray-600">
-                    {{ __('Published') }} {{ $post->published_at->translatedFormat('H:i jS F Y') }}
+                    {{ __('Published') }} {{ $post->published_at?->translatedFormat('H:i jS F Y') }}
                 </p>
             </div>
 
