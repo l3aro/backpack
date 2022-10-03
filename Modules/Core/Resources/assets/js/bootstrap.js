@@ -48,3 +48,4 @@ window.AOS = AOS
 window.markdownParse = parse
 window.Tagify = Tagify
 window.Prism = Prism
+window.Turbo = Turbo
