@@ -48,7 +48,7 @@
             <tr wire:key="category-{{ $record->id }}" wire:sortable.item="{{ $record->id }}">
                 <td wire:sortable.handle
                     class="px-6 py-4 whitespace-nowrap text-sm text-gray-300 hover:text-gray-500 transition cursor-grab">
-                    <x-heroicon-s-switch-vertical class="h-6 w-6" />
+                    <x-heroicon-s-arrows-up-down class="h-6 w-6" />
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 cursor-pointer">
                     <a wire:click.prevent="edit({{ $record->id }})" class="font-bold text-blue-600">
@@ -69,12 +69,12 @@
                         <x-slot name="trigger">
                             <button type="button"
                                 class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 focus:outline-none focus:text-gray-900">
-                                <x-heroicon-o-dots-vertical class="w-5 h-5" />
+                                <x-heroicon-o-ellipsis-vertical class="w-5 h-5" />
                             </button>
                         </x-slot>
                         <x-core::dropdown.link role="menuitem" tabindex="-1"
                             wire:click.prevent="edit({{ $record->id }})">
-                            <x-heroicon-s-pencil-alt class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+                            <x-heroicon-s-pencil-square class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Edit') }}
                         </x-core::dropdown.link>
                         <x-core::dropdown.link href="#" wire:click.prevent="destroy({{ $record->id }})"

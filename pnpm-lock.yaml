@@ -6,6 +6,7 @@ specifiers:
   '@danharrin/alpine-mousetrap': ^0.1.4
   '@fancyapps/ui': ^4.0.26
   '@popperjs/core': ^2.11.5
+  '@ryangjchandler/alpine-tooltip': ^1.2.0
   '@shopify/draggable': ^1.0.0-beta.8
   '@tailwindcss/forms': ^0.5.2
   '@tailwindcss/typography': ^0.5.2
@@ -33,6 +34,7 @@ dependencies:
   '@danharrin/alpine-mousetrap': 0.1.5
   '@fancyapps/ui': 4.0.31
   '@popperjs/core': 2.11.6
+  '@ryangjchandler/alpine-tooltip': 1.2.0
   '@shopify/draggable': 1.0.0-beta.8
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
@@ -108,6 +110,10 @@ packages:
 
   /@popperjs/core/2.11.6:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+    dev: false
+
+  /@ryangjchandler/alpine-tooltip/1.2.0:
+    resolution: {integrity: sha512-PzShzyYPoDTMvfayQRoNAnoxOkcfVYrrYrtiqX/Dg09Jp2qpNDB8IkcShs3BQwK0D4RnaYFtFXCqtXGhGU0dPA==}
     dev: false
 
   /@shopify/draggable/1.0.0-beta.8:

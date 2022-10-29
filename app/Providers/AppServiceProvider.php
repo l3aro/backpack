@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
                 ->add(fn (Item $item) => $item
                     ->setTitle(__('Dashboard'))
                     ->setUrl(route('admin.dashboard'))
-                    ->setIcon('heroicon-o-database')
+                    ->setIcon('heroicon-o-circle-stack')
                     ->activeWhen(fn () => request()->routeIs('admin.dashboard')))
                 ->add(fn (Item $item) => $item
                     ->setTitle(__('Home'))
@@ -50,19 +50,19 @@ class AppServiceProvider extends ServiceProvider
                             ->setTitle(__('Shop Categories'))
                             ->setUrl(route('admin.shop.categories.index'))
                             ->setIcon('heroicon-o-tag')
-                            ->activeWhen(fn () => request()->routeIs('admin.shop.categories.*')))
-                        ->add(fn (Item $item) => $item
-                            ->setTitle(__('Blog Posts'))
-                            ->setUrl(route('admin.blog.posts.index'))
-                            ->setIcon('heroicon-o-document-text')
-                            ->activeWhen(fn () => request()->routeIs('admin.blog.posts.*')))))
+                            ->activeWhen(fn () => request()->routeIs('admin.shop.categories.*')))))
+                        // ->add(fn (Item $item) => $item
+                        //     ->setTitle(__('Blog Posts'))
+                        //     ->setUrl(route('admin.blog.posts.index'))
+                        //     ->setIcon('heroicon-o-document-text')
+                        //     ->activeWhen(fn () => request()->routeIs('admin.blog.posts.*')))))
                 ->add(fn (Item $item) => $item
                     ->setTitle('Blog')
                     ->setChildren(fn (Section $section) => $section
                         ->add(fn (Item $item) => $item
                             ->setTitle(__('Blog Categories'))
                             ->setUrl(route('admin.blog.categories.index'))
-                            ->setIcon('heroicon-o-archive')
+                            ->setIcon('heroicon-o-archive-box')
                             ->activeWhen(fn () => request()->routeIs('admin.blog.categories.*')))
                         ->add(fn (Item $item) => $item
                             ->setTitle(__('Blog Posts'))
@@ -75,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
                         ->add(fn (Item $item) => $item
                             ->setTitle(__('Work Categories'))
                             ->setUrl(route('admin.work.categories'))
-                            ->setIcon('heroicon-o-archive')
+                            ->setIcon('heroicon-o-archive-box')
                             ->activeWhen(fn () => request()->routeIs('admin.work.categories')))
                         ->add(fn (Item $item) => $item
                             ->setTitle(__('Work Projects'))
@@ -111,7 +111,7 @@ class AppServiceProvider extends ServiceProvider
                         ->add(fn (Item $item) => $item
                             ->setTitle(__('Portfolio'))
                             ->setUrl(route('admin.settings.portfolio'))
-                            ->setIcon('heroicon-s-annotation')
+                            ->setIcon('heroicon-o-bookmark')
                             ->activeWhen(fn () => request()->routeIs('admin.settings.portfolio')))));
         };
     }

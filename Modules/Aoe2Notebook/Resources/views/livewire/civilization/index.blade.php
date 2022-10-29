@@ -68,7 +68,7 @@
                         <x-slot name="trigger">
                             <button type="button"
                                 class="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 focus:outline-none focus:text-gray-900">
-                                <x-heroicon-o-dots-vertical class="w-5 h-5" />
+                                <x-heroicon-o-ellipsis-vertical class="w-5 h-5" />
                             </button>
                         </x-slot>
                         <x-core::dropdown.link
@@ -80,7 +80,7 @@
                         <x-core::dropdown.link
                             href="{{ route('admin.aoe2notebook.civilizations.edit', $civilization->id) }}"
                             role="menuitem" tabindex="-1">
-                            <x-heroicon-s-pencil-alt class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+                            <x-heroicon-s-pencil-square class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
                             {{ __('Edit') }}
                         </x-core::dropdown.link>
                         <x-core::dropdown.link href="#" wire:click.prevent="destroy({{ $civilization->id }})"

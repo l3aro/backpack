@@ -35,8 +35,9 @@ class Project extends Component
     public $categories;
 
     protected $rules = [
-        'name' => 'required',
+        'title' => 'required',
         'slug' => 'required',
+        'description' => 'required',
     ];
 
     public function languageSwitched()
@@ -82,12 +83,24 @@ class Project extends Component
         $validated = $this->validate();
         $this->state->fill($validated);
         $this->state->save();
+        if ($this->photo) {
+            $this->state->addMedia($this->photo)->toMediaCollection();
+        }
+        $this->resetState();
         $this->showForm = false;
     }
 
     protected function getModel()
     {
         return ModelsProject::class;
+    }
+
+    protected function resetState()
+    {
+        $project = new ModelsProject();
+        $this->propertiesFrom($project);
+        $this->fill($project);
+        $this->photo = null;
     }
 
     public function viewData(): array

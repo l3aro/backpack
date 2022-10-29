@@ -3,7 +3,7 @@
         <button type="button" x-on:click="open = ! open"
             class="h-full px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 lg:hidden">
             <span class="sr-only">Open sidebar</span>
-            <x-heroicon-o-menu-alt-1 class="h-6 w-6" />
+            <x-heroicon-o-bars-3 class="h-6 w-6" />
         </button>
     </template>
     <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 flex z-40 lg:hidden" role="dialog"
@@ -14,7 +14,7 @@
                 <button type="button"
                     class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span class="sr-only">Close sidebar</span>
-                    <x-heroicon-o-x class="h-6 w-6 text-white" />
+                    <x-heroicon-o-x-mark class="h-6 w-6 text-white" />
                 </button>
             </div>
             <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto soft-scroll">

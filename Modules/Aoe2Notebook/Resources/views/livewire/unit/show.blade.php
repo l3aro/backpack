@@ -1,7 +1,7 @@
 <x-core::container>
     <div class="flex justify-end mb-3">
         <x-core::button.primary href="{{ route('admin.aoe2notebook.units.edit', $unit->id) }}">
-            <x-heroicon-o-pencil-alt class="w-5 h-5" />
+            <x-heroicon-o-pencil-square class="w-5 h-5" />
         </x-core::button.primary>
     </div>
     <x-core::card class="space-y-8">

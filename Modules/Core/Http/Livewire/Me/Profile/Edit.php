@@ -31,7 +31,7 @@ class Edit extends Component
 
     public function mount()
     {
-        $this->user = User::find(auth()->id());
+        $this->user = User::find(auth('admin')->id());
     }
 
     protected function save()

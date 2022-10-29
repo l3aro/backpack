@@ -9,7 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    <link href="{{ mix('assets/css/app.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
     <livewire:styles />
     <wireui:scripts />
     @vite(['Modules/Core/Resources/assets/js/app.js', 'Modules/Core/Resources/assets/css/app.css'])

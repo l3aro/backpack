@@ -12,7 +12,7 @@
                 <button x-on:click.prevent="shown = false; clearTimeout(timeout)"
                     class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <span class="sr-only">Close</span>
-                    <x-heroicon-s-x class="h-5 w-5" />
+                    <x-heroicon-s-x-mark class="h-5 w-5" />
                 </button>
             </div>
         </div>
