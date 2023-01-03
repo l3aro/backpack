@@ -3,10 +3,13 @@
 namespace Modules\Core\Models\Plugins;
 
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 trait HasProfilePhoto
 {
+    use InteractsWithMedia;
+
     /**
      * Update the user's profile photo.
      *
@@ -15,32 +18,14 @@ trait HasProfilePhoto
      */
     public function updateProfilePhoto(UploadedFile $photo)
     {
-        tap($this->profile_photo_path, function ($previous) use ($photo) {
-            $this->forceFill([
-                'profile_photo_path' => $photo->storePublicly(
-                    '',
-                    ['disk' => $this->profilePhotoDisk()]
-                ),
-            ])->save();
+        $this->addMedia($photo)->toMediaCollection('avatar');
 
-            if ($previous) {
-                Storage::disk($this->profilePhotoDisk())->delete($previous);
-            }
-        });
+        Cache::forget($this->getAvatarCacheKey());
     }
 
-    /**
-     * Delete the user's profile photo.
-     *
-     * @return void
-     */
-    public function deleteProfilePhoto()
+    protected function getAvatarCacheKey(): string
     {
-        Storage::disk($this->profilePhotoDisk())->delete($this->profile_photo_path);
-
-        $this->forceFill([
-            'profile_photo_path' => null,
-        ])->save();
+        return 'user_avatar'.$this->id;
     }
 
     /**
@@ -50,9 +35,11 @@ trait HasProfilePhoto
      */
     public function getProfilePhotoUrlAttribute()
     {
-        return $this->profile_photo_path
-            ? Storage::disk($this->profilePhotoDisk())->url($this->profile_photo_path)
-            : $this->defaultProfilePhotoUrl();
+        return Cache::remember(
+            $this->getAvatarCacheKey(),
+            60 * 60 * 24,
+            fn () => $this->getFirstMediaUrl('avatar', 'thumb')
+        );
     }
 
     /**
@@ -65,13 +52,16 @@ trait HasProfilePhoto
         return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
     }
 
-    /**
-     * Get the disk that profile photos should be stored on.
-     *
-     * @return string
-     */
-    protected function profilePhotoDisk()
+    public function registerMediaCollections(): void
     {
-        return 'public';
+        $this
+            ->addMediaCollection('avatar')
+            ->useFallbackUrl($this->defaultProfilePhotoUrl())
+            ->singleFile()
+            ->registerMediaConversions(function () {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->crop('crop-center', 400, 400);
+            });
     }
 }

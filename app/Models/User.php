@@ -13,8 +13,9 @@ use Laravel\Sanctum\HasApiTokens;
 use Modules\Core\Enums\UserTypeEnum;
 use Modules\Core\Models\Plugins\HasBitwiseFlag;
 use Modules\Core\Models\Plugins\HasProfilePhoto;
+use Spatie\MediaLibrary\HasMedia;
 
-class User extends Authenticatable implements CanFilterContract
+class User extends Authenticatable implements CanFilterContract, HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasBitwiseFlag;

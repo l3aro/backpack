@@ -73,7 +73,7 @@ $field ??= $attributes->wire('model')->value() ?? '';
                     </button>
 
                     <button class="focus:outline-none" x-on:click="togglePopover" type="button">
-                        <x-heroicon-s-selector class="w-5 h-5" />
+                        <x-heroicon-s-chevron-up-down class="w-5 h-5" />
                     </button>
                 </div>
             </x-slot>

@@ -50,6 +50,7 @@ class Edit extends Component
 
         if ($this->photo) {
             $userService->uploadProfilePhoto($this->user->id, $this->photo);
+            $this->photo = null;
         }
     }
 

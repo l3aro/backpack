@@ -7,8 +7,6 @@ use Baro\PipelineQueryCollection\ScopeFilter;
 use Illuminate\Routing\Controller;
 use Modules\Work\Models\Project;
 use Modules\Work\Models\ProjectCategory;
-use Modules\Work\Transformers\ProjectCategoryResource;
-use Modules\Work\Transformers\ProjectResource;
 
 class SearchController extends Controller
 {
